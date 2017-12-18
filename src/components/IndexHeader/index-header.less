@@ -1,0 +1,38 @@
+@charset "UTF-8";
+@import "../../less/variables";
+
+.index-header {
+    position: relative;
+    width:100%;
+    background:url(../../images/header-bg.jpg) repeat-x 0 0;
+    .header-content{
+        width: @wrap-width;
+        margin: 0px auto;
+        height: 97px;
+        .logo{
+            padding:8px;
+            width:200px;
+            img{
+                width:81px;
+            }
+        }
+        .intro{
+            padding-top:8px;
+            float: right;
+            text-align: right;
+            .small-op{
+                font-size: 12px;
+                margin-bottom: 10px;
+                li{
+                    margin-left: 20px;
+                }
+            }
+            .tel{
+                color:#000;
+                .tel-number{
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+}
