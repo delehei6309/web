@@ -4,7 +4,7 @@
 var path = require('path');
 var express = require('express');
 var app = express();
-app.use('/static', express.static(path.resolve('./dist')));
+app.use('/dist', express.static(path.resolve('./dist')));
 var port = 8095;
 app.get('*', function (req, res) {
     res.sendFile(path.resolve('./html/index.html'))

@@ -7,22 +7,24 @@ import {setTitle} from '../tools/operation';
 import Parent from '../containers/Parent';
 import Home from '../containers/Home';
 import Solution from '../containers/Solution';
+import NetworkSecurity from '../containers/NetworkSecurity';
 const title = '富源天成';
 let routes = [
+    /*{
+        path:'/',
+        redirect:'/home'
+    },
     {
         path:'/home',
         component:Home,
         meta: {
             title: title,
         }
-    },
+    },*/
     {
         path:'/parent',
-        name:'Parent',
         component:Parent,
-        meta: {
-            title: title
-        },
+        redirect:'/home',
         children:[
             {
                 path:'home',
@@ -38,6 +40,16 @@ let routes = [
                 meta: {
                     title: title
                 },
+                children:[
+                    {
+                        path:'network-security',
+                        name:'network-security',
+                        component:NetworkSecurity,//'网络及安全
+                        meta: {
+                            title: title
+                        },
+                    }
+                ]
             }
         ]
     }

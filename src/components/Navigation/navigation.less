@@ -1,0 +1,32 @@
+@charset "UTF-8";
+@import "../../less/variables";
+
+.navigation {
+    .nav-title{
+        font-size: 28px;
+    }
+    .nav-items{
+        .item{
+            .title-first{
+                font-size:20px;
+            }
+            .child-items{
+                overflow: hidden;
+                .child-list{
+                    padding-left:20px;
+                    height:32px;
+                    width:212px;
+                }
+            }
+
+        }
+    }
+    .animate{
+        transition-property: height;
+        transition-duration: .5s;
+        height:0;
+        /*&.show {
+            height: auto;
+        }*/
+    }
+}
