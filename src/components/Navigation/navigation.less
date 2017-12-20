@@ -1,32 +1,25 @@
 @charset "UTF-8";
 @import "../../less/variables";
-
-.navigation {
-    .nav-title{
-        font-size: 28px;
-    }
-    .nav-items{
-        .item{
-            .title-first{
-                font-size:20px;
-            }
-            .child-items{
-                overflow: hidden;
-                .child-list{
-                    padding-left:20px;
-                    height:32px;
-                    width:212px;
+.nav{
+    background:url(../../images/nav-bg.jpg) repeat-x 0 0;
+    border-bottom: solid 3px #193c7e;
+    .nav-content{
+        margin:0 auto;
+        height:45px;
+        width:@wrap-width;
+        ul{
+            text-align: center;
+            margin:0;
+            li{
+                width:167px;
+                line-height: 45px;
+                font-size: 14px;
+                font-weight: bold;
+                >a{
+                    color:#000000;
+                    text-decoration: none;
                 }
             }
-
         }
-    }
-    .animate{
-        transition-property: height;
-        transition-duration: .5s;
-        height:0;
-        /*&.show {
-            height: auto;
-        }*/
     }
 }

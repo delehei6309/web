@@ -50,17 +50,17 @@
             }
         },
         created(){
-            
+
         },
         components: {
             IndexHeader,IndexFooter
         },
         computed: {},
         methods: {
-            
+
         },
         watch: {
-            
+
         },
         destroyed(){
 

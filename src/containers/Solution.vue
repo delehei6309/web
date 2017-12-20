@@ -1,16 +1,19 @@
 <template>
     <div class="solution">
-
-        解决方案
-        <navigation :navItems="navItems"></navigation>
-        <router-view  class="content-view"></router-view>
+        <div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>
+        <div>
+            <div class="clear box-width">
+                <navigation-list :navItems="navItems"></navigation-list>
+                <router-view  class="content-view"></router-view>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import $api from '../tools/api';
     import '../less/solution.less';
-    import Navigation from '../components/Navigation';
+    import NavigationList from '../components/NavigationChild';
     export default {
         name: 'solution',
         data(){
@@ -19,11 +22,11 @@
                 {
                     name:'数据中心建设123',
                     link:'my',
-                    show:false,
+                    val:1,
                     child:[
                         {
                             name:'网络及安全',
-                            link:'solution/network-security'
+                            link:'/parent/solution/network-security'
                         },
                         {
                             name:'云计算',
@@ -37,7 +40,7 @@
                 },{
                     name:'开场白',
                     link:'speak',
-                    show:true,
+                    val:2,
                     child:[
                         {
                             name:'说点吧',
@@ -67,7 +70,7 @@
 
         },
         components: {
-            Navigation
+            NavigationList
         },
         computed: {},
         methods: {
