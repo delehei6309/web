@@ -5,9 +5,9 @@
             <div class="nav-content">
                 <ul class="clear">
                     <li v-for="(item,index) in navItems">
-                        <router-link class="menu" :to="{path:item.link}"
+                        <router-link :to="{path:item.link}"
                             active-class="menu-active"
-                            replace>{{item.name}}</router-link>
+                            >{{item.name}}</router-link>
                     </li>
                 </ul>
             </div>
@@ -28,10 +28,10 @@
             return {
                 navItems:[
                     {
-                        link:'home',
+                        link:'/parent/home',
                         name:'首页'
                     },{
-                        link:'solution',
+                        link:'/parent/solution',
                         name:'解决方案'
                     },{
                         link:'',

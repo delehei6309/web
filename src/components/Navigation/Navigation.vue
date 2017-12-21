@@ -11,10 +11,10 @@
             return {
                 navItems:[
                     {
-                        link:'home',
+                        link:'/parent/home',
                         name:'首页'
                     },{
-                        link:'solution',
+                        link:'/parent/solution',
                         name:'解决方案'
                     },{
                         link:'',

@@ -1,7 +1,6 @@
 <template>
     <div class="network-security">
-        <input type="text">
-       计算机安全
+
     </div>
 </template>
 
@@ -9,7 +8,7 @@
     import $api from '../tools/api';
     import '../less/solution.less';
     import Navigation from '../components/NavigationChild';
-    console.log('-------------->>>>>>>',$api);
+    console.log('-------------->>>>>>>000000000000000');
     export default {
         name: 'network-security',
         data(){

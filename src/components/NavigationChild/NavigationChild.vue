@@ -6,7 +6,7 @@
                 <div class="title-first" :class="{'active':item.val == activeVal}" @click.stop="navChange(item)">{{item.name}}</div>
                 <div class="child-items animate":style="{'height':item.val == activeVal?item.child.length*40 + 'px' : 0}">
                     <div v-for="(child,key) in item.child" class="child-list">
-                        <router-link class="menu" :to="{path:child.link}"
+                        <router-link :to="{path:child.link}"
                                      active-class="menu-active"
                                      replace>{{child.name}}</router-link>
                     </div>

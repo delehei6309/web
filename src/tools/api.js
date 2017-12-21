@@ -5,8 +5,8 @@ import 'babel-polyfill';
 import axios from 'axios';
 import * as config from './config';
 /*document.body.scrollTop = 0;
-document.documentElement.scrollTop = 0;
-console.log('========----------->');*/
+document.documentElement.scrollTop = 0;*/
+console.log('========----------->');
 let serverUrl = config.devUrl;
 let sysUrl = config.sysDev;
 if (process.env.kingold == 'test') {

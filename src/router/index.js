@@ -4,10 +4,16 @@ import Router from 'vue-router';
 import {logout} from '../tools/operation';
 Vue.use(Router)
 import {setTitle} from '../tools/operation';
-import Parent from '../containers/Parent';
-import Home from '../containers/Home';
+//import Parent from '../containers/Parent';
+/*import Home from '../containers/Home';
 import Solution from '../containers/Solution';
-import NetworkSecurity from '../containers/NetworkSecurity';
+import DataCenter from '../containers/DataCenter';
+import NetworkSecurity from '../containers/NetworkSecurity';*/
+const Parent = () => import('../containers/Parent');
+const Home = () => import('../containers/Home');
+const Solution = () => import('../containers/Solution');
+const DataCenter = () => import('../containers/DataCenter');
+const NetworkSecurity = () => import('../containers/NetworkSecurity');
 const title = '富源天成';
 let routes = [
     /*{
@@ -36,15 +42,24 @@ let routes = [
             },{
                 path:'solution',
                 name:'solution',
+                redirect:'/parent/solution/data-center',
                 component:Solution,
                 meta: {
                     title: title
                 },
                 children:[
                     {
+                        path:'data-center',
+                        name:'data-center',
+                        component:DataCenter,//
+                        meta: {
+                            title: title
+                        },
+                    },
+                    {
                         path:'network-security',
                         name:'network-security',
-                        component:NetworkSecurity,//'网络及安全
+                        component:NetworkSecurity,//网络及安全
                         meta: {
                             title: title
                         },

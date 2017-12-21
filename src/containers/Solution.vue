@@ -20,10 +20,14 @@
             return {
                 navItems:[
                 {
-                    name:'数据中心建设123',
+                    name:'数据中心建设',
                     link:'my',
                     val:1,
                     child:[
+                        {
+                            name:'数据中心建设',
+                            link:'/parent/solution/data-center'
+                        },
                         {
                             name:'网络及安全',
                             link:'/parent/solution/network-security'
