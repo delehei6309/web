@@ -1,107 +1,28 @@
 @charset "UTF-8";
 @import "variables";
 
-.login {
-    position: relative;
-    width: 100%;
-    height: 750px;
-    //background-image: url("../images/login/login-bg.jpg");
-    .form-warp {
-        position: absolute;
-        left: 50%;
-        top: 136px;
-        margin-left: -165px;
-        width: 330px;
-        background: #FFF;
-        border-radius: 10px;
-        .tabs {
-            border-bottom: 1px solid @border-default-color;
-            .tab {
-                text-align: center;
-                font-size: 16px;
-                color: @color-text-secondary;
-                padding: 10px;
-                cursor: pointer;
-                &:first-child {
-                    border-right: @border-default;
-                }
-                &.active, &:hover {
-                    color: @bg-menu-active;
-                }
-            }
+.home{
+    .banner-box{
+        height:400px;
+    }
+    .bulletin-box{
+        height:34px;
+        line-height: 34px;
+        background:url("../images/yy8.jpg") repeat-x 0 0;
+    }
+    .inner-box{
+        padding-top:10px;
+        .small-con,.big-con{
+            overflow: hidden;
+            background-color: #f1f1f1;
+            border: solid 1px #e6e6e6;
+            padding: 10px 20px 10px 20px;
         }
-        .form-content {
-            position: relative;
-            padding: 20px 30px;
-            .code-item{
-                margin-top: 20px;
-                margin-left: 20px;
-                .btn-get-code{
-                    width: 100%;
-                    height: 100%;
-                    background: @bg-menu-active;
-                }
-                .btn-img-code{
-                    width: 100%;
-                    height: 100%;
-                    background: @bg-menu-active;
-                    font-size: 14px;
-                    letter-spacing: 4px;
-                    color: #fff;
-                }
-                .btn-text{
-                    width: 100%;
-                    height: 100%;
-                    background: #ccc;
-                    color: #fff;
-                    font-size: 14px;
-                }
-            }
-            .form-item {
-                border: 1px solid #979797;
-                border-radius: 2px;
-                padding: 9px 10px;
-                margin-top: 20px;
-
-                &.short-item{
-                    width: 156px;
-                    overflow-x: hidden;
-                }
-                .label {
-                    margin-bottom: 0;
-                    margin-right: 10px;
-                }
-                .form-input {
-                    border: none;
-                    height: 22px;
-                    line-height: 22px;
-                    color: @color-text;
-                }
-            }
-            .text-hint {
-                margin-top: 10px;
-                .err-info {
-                    color: #D0011B;
-                }
-            }
-            .btn-warp{
-                width: 100%;
-                margin-top: 20px;
-                .btn-submit{
-                    height: 40px;
-                    font-size: 18px;
-                    width: 100%;
-                }
-            }
+        .small-con{
+            width:342px;
         }
-        .login-footer{
-            font-size: 12px;
-            color: @color-text-gray;
-            text-align: center;
-            padding: 15px 0px 20px;
-            margin: 10px 30px 0;
-            border-top: @border-default;
+        .big-con {
+            width: 652px;
         }
     }
-
 }

@@ -6,17 +6,17 @@ var express = require('express');
 var app = express();
 app.use('/dist', express.static(path.resolve('./dist')));
 var port = 8095;
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
     res.sendFile(path.resolve('./html/index.html'))
 })
-app.get('/data', function (req, res) {
-    var response = {
-        "first_name":'first_name',
-        "last_name":'last_name'
-    };
-    console.log(response);
-    res.end(JSON.stringify(response));
-})
+// app.get('/data', function (req, res) {
+//     var response = {
+//         "first_name":'first_name',
+//         "last_name":'last_name'
+//     };
+//     console.log(response);
+//     res.end(JSON.stringify(response));
+// })
 app.listen(port, (error) => {
     if (error) {
         console.error(error)

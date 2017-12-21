@@ -26,7 +26,7 @@
             }
         },
         created(){
-
+            console.log('123');
         },
         components: {
             //NavigationList

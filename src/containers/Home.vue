@@ -9,8 +9,20 @@
                 <!--<div class="swiper-scrollbar"   slot="scrollbar"></div>-->
             </swiper>
         </div>
-        <div class="home-content">
-            内容
+        <div class="bulletin-box">
+            <div class="box-width">
+                公告
+            </div>
+        </div>
+        <div class="inner-box">
+            <div class="box-width clear">
+                <div class="small-con">
+                    <inner-title :title="'新闻动态'" :link="'/parent/solution/data-center'"></inner-title>
+                </div>
+                <div class="big-con right">
+                    <inner-title :title="'公司简介'"></inner-title>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -19,6 +31,7 @@
     import $api from '../tools/api';
     import '../less/home.less';
     import 'swiper/dist/css/swiper.css';
+    import InnerTitle from '../components/InnerTitle';
     import { swiper, swiperSlide } from 'vue-awesome-swiper';
     const pic1 = require('../images/picture/pic1.jpg');
     const pic2 = require('../images/picture/pic2.jpg');
@@ -51,7 +64,7 @@
 
         },
         components: {
-            swiper,swiperSlide
+            swiper,swiperSlide,InnerTitle
         },
         computed: {
             /*swiper() {
