@@ -72,9 +72,13 @@
         },
         mounted(){
             //items
-            this.items2 = this.items.concat(this.items);
-            console.log(this.items2);
-            this.animate();
+            if(this.items.length>10){
+                this.items2 = this.items.concat(this.items);
+                console.log(this.items2);
+                this.animate();
+            }else{
+                this.items2 = this.items;
+            }
         },
         computed: {},
         methods: {
@@ -109,8 +113,11 @@
                 this.animateStopState = true;
             },
             animateStart(){
-                this.animateStopState = false;
-                this.animate();
+                if(this.items.length>10){
+                    this.animateStopState = false;
+                    this.animate();
+                }
+
             }
         },
         destroyed(){

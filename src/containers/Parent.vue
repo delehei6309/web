@@ -43,7 +43,7 @@
                         link:'',
                         name:'成功案例'
                     },{
-                        link:'',
+                        link:'/parent/about',
                         name:'关于我们'
                     }
                 ]
