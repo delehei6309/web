@@ -37,7 +37,8 @@ let routes = [
                 name:'home',
                 component:Home,
                 meta: {
-                    title: title
+                    title: title,
+                    scrollToTop: true
                 },
             },{
                 path:'solution',
@@ -45,7 +46,8 @@ let routes = [
                 redirect:'/parent/solution/data-center',
                 component:Solution,
                 meta: {
-                    title: title
+                    title: title,
+                    scrollToTop: true
                 },
                 children:[
                     {
@@ -53,7 +55,8 @@ let routes = [
                         name:'data-center',
                         component:DataCenter,//
                         meta: {
-                            title: title
+                            title: title,
+                            sss:true
                         },
                     },
                     {
@@ -61,7 +64,8 @@ let routes = [
                         name:'network-security',
                         component:NetworkSecurity,//网络及安全
                         meta: {
-                            title: title
+                            title: title,
+                            sss:true
                         },
                     }
                 ]
@@ -69,6 +73,32 @@ let routes = [
         ]
     }
 ];
+/*const scrollBehavior = (to, from, savedPosition) => {
+    if (savedPosition) {
+        // savedPosition is only available for popstate navigations.
+        return savedPosition
+    } else {
+        const position = {}
+        // new navigation.
+        // scroll to anchor by returning the selector
+        if (to.hash) {
+            console.log('hash');
+            position.selector = to.hash
+        }
+        // check if any matched route config has meta that requires scrolling to top
+        if (to.matched.some(m => m.meta.scrollToTop)) {
+            // cords will be used if no selector is provided,
+            // or if the selector didn't match any element.
+            console.log('top');
+            position.x = 0
+            position.y = 0
+        }
+        // if the returned position is falsy or an empty object,
+        // will retain current scroll position.
+        console.log(position);
+        return position
+    }
+}*/
 routes.map(route => {
     route.beforeEnter = (to, from, next)=>{
         let {meta} = to;
@@ -83,5 +113,12 @@ routes.push({
 });
 export default new Router({
     mode: 'history',
-    routes
+    routes,
+    scrollBehavior(to, from, savedPosition){
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { x: 0, y: 0 }
+        }
+    }
 })

@@ -1,0 +1,120 @@
+<template>
+    <div class="text-iscroll" style="height:260px;overflow: hidden">
+        <ul :style="{transform:`translateY(${translate}px)`}" @mouseenter="animateStop" @mouseleave="animateStart">
+            <li class="clear" v-for="(item,index) in items2" :style="{height:`${liHeight}px`}">
+                <div class="ellipsis">{{item.text}}</div>
+                <div class="right">{{item.date}}</div>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<script>
+    import './text-iscroll.less';
+    export default {
+        name: 'inner-title',
+        props:['scrollItems','viewSize'],
+        data(){
+            return {
+                styleObject:{
+                    transform:'translateY(0px)'
+                },
+                translate:0,
+                liHeight:26,
+                items:[
+                    {
+                        text:'在那遥远的地方，有位好姑娘111122222222222221',
+                        date:'2017-12-22'
+                    },
+                    {
+                        text:'在那遥远的地方，有位好姑娘',
+                        date:'2017-12-22'
+                    },
+                    {
+                        text:'在那遥远的地方，有位好姑娘',
+                        date:'2017-12-22'
+                    },
+                    {
+                        text:'在那遥远的地方，有位好姑娘',
+                        date:'2017-12-22'
+                    },
+                    {
+                        text:'在那遥远的地方，有位好姑娘',
+                        date:'2017-12-22'
+                    },
+                    {
+                        text:'在那遥远的地方，有位好姑娘',
+                        date:'2017-12-22'
+                    },
+                    {
+                        text:'在那遥远的地方，有位好姑娘',
+                        date:'2017-12-22'
+                    },
+                    {
+                        text:'在那遥远的地方，有位好姑娘',
+                        date:'2017-12-22'
+                    },
+                    {
+                        text:'在那遥远的地方，有位好姑娘',
+                        date:'2017-12-22'
+                    },
+                    {
+                        text:'在那遥远的地方，有位好姑娘',
+                        date:'2017-12-22'
+                    }
+                ],
+                items2:[],
+                animateStopState:false
+            }
+        },
+        created(){
+            this.compatible();
+        },
+        mounted(){
+            //items
+            this.items2 = this.items.concat(this.items);
+            console.log(this.items2);
+            this.animate();
+        },
+        computed: {},
+        methods: {
+            compatible(){/*兼容性*/
+                if (!window.requestAnimationFrame) {
+                    window.requestAnimationFrame = (function () {
+                        return window.webkitRequestAnimationFrame ||
+                            window.mozRequestAnimationFrame ||
+                            window.oRequestAnimationFrame ||
+                            window.msRequestAnimationFrame ||
+                            function (callback, element) {
+                                window.setTimeout(callback, 1000 / 60);
+                            };
+                    })();
+                }
+            },
+            animate(){
+                if(this.animateStopState){
+                    return false;
+                }
+                let leng = this.items.length;
+                if(this.translate <= -1*leng*(this.liHeight)){
+                    this.translate = 0;
+                }else{
+                    this.translate -= .5 ;
+                }
+                window.requestAnimationFrame(() => {
+                    this.animate();
+                });
+            },
+            animateStop(){
+                this.animateStopState = true;
+            },
+            animateStart(){
+                this.animateStopState = false;
+                this.animate();
+            }
+        },
+        destroyed(){
+
+        }
+    }
+</script>

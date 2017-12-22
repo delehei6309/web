@@ -48,7 +48,12 @@ const config = {
             },
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+                options: {
+                    // ...
+                    postcss: [require('precss'),
+                        require('autoprefixer')({browsers: ['last 2 versions', 'iOS 7']})]
+                }
             },
             {
                 test: /\.js$/,

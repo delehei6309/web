@@ -18,6 +18,9 @@
             <div class="box-width clear">
                 <div class="small-con">
                     <inner-title :title="'新闻动态'" :link="'/parent/solution/data-center'"></inner-title>
+                    <div class="news-content">
+                        <text-iscroll></text-iscroll>
+                    </div>
                 </div>
                 <div class="big-con right">
                     <inner-title :title="'公司简介'"></inner-title>
@@ -32,12 +35,12 @@
     import '../less/home.less';
     import 'swiper/dist/css/swiper.css';
     import InnerTitle from '../components/InnerTitle';
+    import TextIscroll from '../components/TextIscroll';
     import { swiper, swiperSlide } from 'vue-awesome-swiper';
     const pic1 = require('../images/picture/pic1.jpg');
     const pic2 = require('../images/picture/pic2.jpg');
     const pic3 = require('../images/picture/pic3.jpg');
     const pic4 = require('../images/picture/pic4.jpg');
-    console.log(swiper,'222', swiperSlide);
     export default {
         name: 'home',
         data(){
@@ -57,6 +60,18 @@
                     pagination: {
                         el: '.swiper-pagination'
                     }
+                },
+                newSwiperItems:[
+
+                ],
+                newSwiperOption:{
+                    loop: true,
+                    direction : 'vertical',
+                    slidesPerView:8,
+                    autoplay: {
+                        delay: 0,
+                        //disableOnInteraction: false
+                    }
                 }
             }
         },
@@ -64,7 +79,7 @@
 
         },
         components: {
-            swiper,swiperSlide,InnerTitle
+            swiper,swiperSlide,InnerTitle,TextIscroll
         },
         computed: {
             /*swiper() {
