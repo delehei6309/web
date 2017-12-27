@@ -12,11 +12,19 @@
     }
     .inner-box{
         padding-top:10px;
+        line-height: 1.5em;
+        >div{
+            margin-bottom:10px;
+        }
         .small-con,.big-con{
             overflow: hidden;
             background-color: #f1f1f1;
             border: solid 1px #e6e6e6;
             padding: 10px 20px 10px 20px;
+            .com-content{
+                padding:10px 0;
+                height:280px;
+            }
         }
         .small-con{
             width:342px;
@@ -24,8 +32,26 @@
         .big-con {
             width: 652px;
         }
-        .news-content{
-            padding:10px 0;
+        .img-box{
+            width:267px;
+            height:228px;
+            overflow: hidden;
+            border-radius:5px;
+            float: left;
+            margin-right: 10px;
+        }
+        .friend{
+            ul{
+                li{
+                    width:140px;
+                    height:80px;
+                    overflow: hidden;
+                    margin:0 10px 10px 0;
+                    img{
+                        height:100%;
+                    }
+                }
+            }
         }
     }
 }

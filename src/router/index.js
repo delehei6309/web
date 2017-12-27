@@ -12,6 +12,7 @@ import NetworkSecurity from '../containers/NetworkSecurity';*/
 const Parent = () => import('../containers/Parent');
 const Home = () => import('../containers/Home');
 const Solution = () => import('../containers/Solution');
+const About = () => import('../containers/About');
 const DataCenter = () => import('../containers/DataCenter');
 const NetworkSecurity = () => import('../containers/NetworkSecurity');
 const title = '富源天成';
@@ -69,6 +70,14 @@ let routes = [
                         },
                     }
                 ]
+            },{
+                path:'about',
+                name:'about',
+                component:About,
+                meta: {
+                    title: title,
+                    scrollToTop: true
+                }
             }
         ]
     }

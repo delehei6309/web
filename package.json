@@ -53,6 +53,7 @@
     "style-loader": "^0.18.0",
     "transform-runtime": "^0.0.0",
     "url-loader": "^0.5.8",
+    "vue-amap": "^0.4.5",
     "vue-awesome-swiper": "^3.0.6",
     "vue-loader": "^10.0.0",
     "vue-template-compiler": "^2.1.0",
