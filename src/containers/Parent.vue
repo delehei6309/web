@@ -1,17 +1,7 @@
 <template>
     <div class="parent">
         <index-header></index-header>
-        <div class="nav">
-            <div class="nav-content">
-                <ul class="clear">
-                    <li v-for="(item,index) in navItems">
-                        <router-link :to="{path:item.link}"
-                            active-class="menu-active"
-                            >{{item.name}}</router-link>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <self-navigation></self-navigation>
         <router-view  class="content-view"></router-view>
         <index-footer></index-footer>
     </div>
@@ -19,6 +9,7 @@
 
 <script>
     import IndexHeader from '../components/IndexHeader';
+    import SelfNavigation from '../components/Navigation';
     import IndexFooter from '../components/IndexFooter';
     import $api from '../tools/api';
     import '../less/parent.less';
@@ -31,20 +22,29 @@
                         link:'/parent/home',
                         name:'首页'
                     },{
+                        link:'/parent/product-information',
+                        name:'产品信息'
+                    },{
+                        link:'/parent/press-center',
+                        name:'新闻中心'
+                    },{
+                        link:'/parent/successful-case',
+                        name:'成功案例'
+                    },{
                         link:'/parent/solution',
                         name:'解决方案'
                     },{
-                        link:'',
-                        name:'新闻中心'
-                    },{
-                        link:'',
-                        name:'服务中心'
-                    },{
-                        link:'',
-                        name:'成功案例'
+                        link:'/parent/technical-support',
+                        name:'技术支持'
                     },{
                         link:'/parent/about',
-                        name:'关于我们'
+                        name:'关于公司'
+                    },{
+                        link:'/parent/join-us',
+                        name:'加入我们'
+                    },{
+                        link:'/parent/contact-us',
+                        name:'联系我们'
                     }
                 ]
             }
@@ -53,7 +53,7 @@
 
         },
         components: {
-            IndexHeader,IndexFooter
+            IndexHeader,SelfNavigation,IndexFooter
         },
         computed: {},
         methods: {

@@ -2,7 +2,7 @@
     <div class="index-header">
         <div class="header-content clear">
             <div class="logo">
-                <img src="../../images/logo.jpg" alt="logo">
+                <img src="../../images/logo.png" alt="logo">
             </div>
             <div class="intro">
                 <ul class="small-op clear">
@@ -10,7 +10,7 @@
                 </ul>
                 <div class="tel">
                     <div>咨询热线</div>
-                    <div class="tel-number">0101010110</div>
+                    <div class="tel-number">010-62155676</div>
                 </div>
             </div>
         </div>

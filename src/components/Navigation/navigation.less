@@ -2,7 +2,7 @@
 @import "../../less/variables";
 .nav{
     background:url(../../images/nav-bg.jpg) repeat-x 0 0;
-    border-bottom: solid 3px #193c7e;
+    border-bottom: solid 3px @color-blue;
     .nav-content{
         margin:0 auto;
         height:45px;
@@ -11,15 +11,49 @@
             text-align: center;
             margin:0;
             li{
-                width:167px;
+                width:11%;
                 line-height: 45px;
                 font-size: 14px;
                 font-weight: bold;
-                >a{
+                position: relative;
+                a{
                     color:#000000;
                     text-decoration: none;
                 }
+                .nav-child{
+                    position: absolute;
+                    z-index: 99;
+                    top:100%;
+                    left:0;
+                    min-width:100%;
+                    padding:15px;
+                    //line-height:1.5em;
+                    //font-size: 12px;
+                    background-color:#fff;
+                    font-weight:normal;
+                    border-radius: 5px;
+                    box-shadow:3px 5px 10px #000;
+                    dl{
+                        margin-bottom:0;
+                        word-wrap:normal;
+                        border-bottom:1px dashed @color-split;
+                        dt,dd{
+                            width:110px;
+                            text-align: center;
+                            a{
+                                &:hover{
+                                    color:#007bff;
+                                }
+                            }
+                        }
+                    }
+                }
             }
+        }
+    }
+    dl{
+        dd{
+            margin:0;
         }
     }
 }

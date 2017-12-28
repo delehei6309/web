@@ -1,10 +1,11 @@
 <template>
-    <div class="solution">
+    <div class="press-center">
         <div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>
         <div>
             <div class="clear box-width">
                 <navigation-list :navItems="navItems"></navigation-list>
-                <router-view  class="content-view"></router-view>
+                <!--<router-view  class="content-view"></router-view>-->
+                新闻中心
             </div>
         </div>
     </div>
@@ -12,10 +13,10 @@
 
 <script>
     import $api from '../tools/api';
-    import '../less/solution.less';
+    import '../less/press-center.less';
     import NavigationList from '../components/NavigationChild';
     export default {
-        name: 'solution',
+        name: 'about',
         data(){
             return {
                 navItems:[

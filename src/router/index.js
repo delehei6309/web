@@ -11,11 +11,13 @@ import DataCenter from '../containers/DataCenter';
 import NetworkSecurity from '../containers/NetworkSecurity';*/
 const Parent = () => import('../containers/Parent');
 const Home = () => import('../containers/Home');
-const Solution = () => import('../containers/Solution');
+const ProductInformation = () => import('../containers/ProductInformation');
+const PressCenter = () => import('../containers/PressCenter');
+const SuccessfulCase = () => import('../containers/SuccessfulCase');
 const About = () => import('../containers/About');
 const DataCenter = () => import('../containers/DataCenter');
 const NetworkSecurity = () => import('../containers/NetworkSecurity');
-const title = '富源天成';
+const title = '致远嘉禾';
 let routes = [
     /*{
         path:'/',
@@ -42,12 +44,12 @@ let routes = [
                     scrollToTop: true
                 },
             },{
-                path:'solution',
-                name:'solution',
-                redirect:'/parent/solution/data-center',
-                component:Solution,
+                path:'product-information',
+                name:'product-information',
+                redirect:'/parent/product-information/data-center',
+                component:ProductInformation,
                 meta: {
-                    title: title,
+                    title: '产品信息',
                     scrollToTop: true
                 },
                 children:[
@@ -70,6 +72,22 @@ let routes = [
                         },
                     }
                 ]
+            },{
+                path:'press-center',
+                name:'press-center',
+                component:PressCenter,
+                meta: {
+                    title: '新闻中心',
+                    scrollToTop: true
+                }
+            },{
+                path:'successful-case',
+                name:'successful-case',
+                component:SuccessfulCase,
+                meta: {
+                    title: '成功案例',
+                    scrollToTop: true
+                }
             },{
                 path:'about',
                 name:'about',

@@ -1,11 +1,10 @@
 <template>
-    <div class="solution">
+    <div class="product-information">
         <div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>
         <div>
             <div class="clear box-width">
                 <navigation-list :navItems="navItems"></navigation-list>
-                <!--<router-view  class="content-view"></router-view>-->
-                关于我们
+                <router-view  class="content-view"></router-view>
             </div>
         </div>
     </div>
@@ -16,7 +15,7 @@
     import '../less/product-information.less';
     import NavigationList from '../components/NavigationChild';
     export default {
-        name: 'about',
+        name: 'product-information',
         data(){
             return {
                 navItems:[
@@ -27,11 +26,11 @@
                     child:[
                         {
                             name:'数据中心建设',
-                            link:'/parent/solution/data-center'
+                            link:'/parent/product-information/data-center'
                         },
                         {
                             name:'网络及安全',
-                            link:'/parent/solution/network-security'
+                            link:'/parent/product-information/network-security'
                         },
                         {
                             name:'云计算',

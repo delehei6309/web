@@ -73,9 +73,15 @@
                 <div class="small-con right">
                     <inner-title :title="'我们的位置'"></inner-title>
                     <div style="height:200px;">
-                        <el-amap class="amap-box"
+                        <select name="" id="" >
+                            <option value="122"disabled="false">123</option>
+                            <option value="122">123</option>
+                            <option value="122">123</option>
+                            <option value="122">123</option>
+                        </select>
+                       <!-- <el-amap class="amap-box"
                                  vid="amap" :plugin="plugin"
-                                 :center="center"></el-amap>
+                                 :center="center"></el-amap>-->
                     </div>
                 </div>
             </div>
@@ -97,13 +103,13 @@
     const friend1 = require('../images/friend1.jpg');
     const friend2 = require('../images/friend2.jpg');
     const friend3 = require('../images/friend3.jpg');
-    import Vue from 'vue';
+    /*import Vue from 'vue';
     import AMap from 'vue-amap';
     Vue.use(AMap);
     AMap.initAMapApiLoader({
         key: 'your amap key',
         plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
-    });
+    });*/
     export default {
         name: 'home',
         data(){
@@ -200,7 +206,7 @@
 
         },
         components: {
-            swiper,swiperSlide,InnerTitle,TextIscroll,AMap
+            swiper,swiperSlide,InnerTitle,TextIscroll
         },
         computed: {
             /*swiper() {

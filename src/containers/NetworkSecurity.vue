@@ -6,7 +6,7 @@
 
 <script>
     import $api from '../tools/api';
-    import '../less/solution.less';
+    import '../less/product-information.less';
     import Navigation from '../components/NavigationChild';
     console.log('-------------->>>>>>>000000000000000');
     export default {

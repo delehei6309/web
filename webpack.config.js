@@ -108,8 +108,8 @@ const config = {
         new webpack.NoEmitOnErrorsPlugin(),
         // new WebpackMd5Hash(),
         new HtmlWebpackPlugin({
-            title: '富源天成',
-            favicon: './src/images/logo.jpg',
+            title: '致远嘉禾',
+            favicon: './src/images/logo.png',
             chunks: ['ventor', 'tools', 'main'],
             inject: 'body',
             hash: true,
