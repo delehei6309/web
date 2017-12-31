@@ -43,11 +43,11 @@ let get = (path, data = {}) => {
     return axios({
         url,
         method: 'get',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
+        /*headers: {
+            'Content-Type': 'application/json'
+        },*/
         params: data,
-        withCredentials: true
+        //withCredentials: true
     }).then(response => {
         if (response.status == 200) {
             if(response.data.code == 401){
@@ -96,15 +96,15 @@ let post = (path, data = {}) => {
     return axios({
         url,
         method: 'post',
-        headers: {
+        /*headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
-        },
+        },*/
         params: {
             t: new Date().getTime(),
             callSystemID: '3102'
 
         },
-        withCredentials: true,
+        //withCredentials: true,
         dataType: 'json',
         data: $query(data)
     }).then(response => {

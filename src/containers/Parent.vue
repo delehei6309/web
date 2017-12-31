@@ -2,7 +2,7 @@
     <div class="parent">
         <index-header></index-header>
         <self-navigation></self-navigation>
-        <router-view  class="content-view"></router-view>
+        <router-view  class="content-view" :key="key"></router-view>
         <index-footer></index-footer>
     </div>
 </template>
@@ -55,7 +55,11 @@
         components: {
             IndexHeader,SelfNavigation,IndexFooter
         },
-        computed: {},
+        computed: {
+            key() {
+                return this.$route.name !== undefined? this.$route.name +new Date(): this.$route +new Date()
+            }
+        },
         methods: {
 
         },

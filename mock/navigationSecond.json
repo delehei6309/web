@@ -1,0 +1,124 @@
+{
+    "code":"200",
+    "message":"success",
+    "result":"true",
+    "data":{
+        "productCateList":[
+            {
+                "id":11,
+                "catename":"HP产品"
+            },{
+                "id":12,
+                "catename":"IBM产品"
+            },{
+                "id":13,
+                "catename":"lenovo产品"
+            },{
+                "id":14,
+                "catename":"dell产品"
+            },{
+                "id":15,
+                "catename":"浪潮产品"
+            },{
+                "id":16,
+                "catename":"Cisco产品"
+            },{
+                "id":17,
+                "catename":"H3C产品"
+            }
+        ],
+        "articleList":[
+            {
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/2015519142954358.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            }
+        ]
+    }
+}

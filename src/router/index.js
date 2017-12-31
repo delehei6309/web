@@ -12,6 +12,7 @@ import NetworkSecurity from '../containers/NetworkSecurity';*/
 const Parent = () => import('../containers/Parent');
 const Home = () => import('../containers/Home');
 const ProductInformation = () => import('../containers/ProductInformation');
+const ProductList = () => import('../containers/ProductList');
 const PressCenter = () => import('../containers/PressCenter');
 const SuccessfulCase = () => import('../containers/SuccessfulCase');
 const About = () => import('../containers/About');
@@ -46,7 +47,7 @@ let routes = [
             },{
                 path:'product-information',
                 name:'product-information',
-                redirect:'/parent/product-information/data-center',
+                redirect:'/parent/product-information/product-list',
                 component:ProductInformation,
                 meta: {
                     title: '产品信息',
@@ -54,23 +55,41 @@ let routes = [
                 },
                 children:[
                     {
-                        path:'data-center',
-                        name:'data-center',
-                        component:DataCenter,//
+                        path:'product-list',
+                        name:'product-list-first',
+                        component:ProductList,//商用台式机
                         meta: {
                             title: title,
                             sss:true
                         },
                     },
                     {
-                        path:'network-security',
-                        name:'network-security',
-                        component:NetworkSecurity,//网络及安全
+                        path:'product-list/:id',
+                        name:'product-list',
+                        component:ProductList,//商用台式机
                         meta: {
                             title: title,
                             sss:true
                         },
-                    }
+                    }/*,
+                    {
+                        path:'hp-server/:id',
+                        name:'hp-server',
+                        component:ProductList,//服务器
+                        meta: {
+                            title: title,
+                            sss:true
+                        },
+                    },
+                    {
+                        path:'hp-storage',
+                        name:'hp-storage',
+                        component:ProductList,//存储
+                        meta: {
+                            title: title,
+                            sss:true
+                        },
+                    }*/
                 ]
             },{
                 path:'press-center',

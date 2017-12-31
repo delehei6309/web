@@ -3,20 +3,31 @@
  */
 var path = require('path');
 var express = require('express');
+var fs=require('fs');
+var file= path.resolve('./mock/navigation.json');
+var result=JSON.parse(fs.readFileSync(file));
 var app = express();
 app.use('/dist', express.static(path.resolve('./dist')));
 var port = 8095;
 app.get('*', function (req, res) {
-    res.sendFile(path.resolve('./html/index.html'))
-})
-// app.get('/data', function (req, res) {
-//     var response = {
-//         "first_name":'first_name',
-//         "last_name":'last_name'
-//     };
-//     console.log(response);
-//     res.end(JSON.stringify(response));
-// })
+    //console.log(req);
+    if(req.path == '/index/cate/moveOnCate.html'){
+        res.end(JSON.stringify(result));
+    }else{
+        res.sendFile(path.resolve('./html/index.html'));
+    }
+
+});
+app.post('/index/cate/moveOnCate.html',function(req,res){
+    res.send(JSON.stringify(result));
+});
+var fileSecond= path.resolve('./mock/navigationSecond.json');
+var resultSecond=JSON.parse(fs.readFileSync(fileSecond));
+app.post('/index/product/clickProductCate.html',function(req,res){
+    //setTimeout(()=>{
+        res.send(JSON.stringify(resultSecond));
+    //},6000);
+});
 app.listen(port, (error) => {
     if (error) {
         console.error(error)

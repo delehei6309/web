@@ -1,0 +1,29 @@
+@charset "UTF-8";
+@import "variables";
+
+.product-list {
+    .product-items{
+        dl{
+            width:222px;
+            overflow: hidden;
+            margin-right: 15px;
+            text-align: center;
+            &:nth-child(3n){
+                margin-right: 0;
+            }
+            dt{
+                height:236px;
+                //line-height: 200px;
+                img{
+                    max-width: 100%;
+                    max-height: 100%;
+                    width:auto;
+                }
+            }
+            dd{
+                margin:0;
+                padding:8px 0;
+            }
+        }
+    }
+}

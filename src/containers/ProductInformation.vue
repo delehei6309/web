@@ -1,10 +1,13 @@
 <template>
     <div class="product-information">
-        <div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>
+        <div class="banner-box" @click="click"><img src="../images/picture/pic1.jpg" alt=""></div>
         <div>
             <div class="clear box-width">
-                <navigation-list :navItems="navItems"></navigation-list>
-                <router-view  class="content-view"></router-view>
+                <navigation-list :title="'产品列表'" :navs="navItems"></navigation-list>
+                <div class="right">
+                    <router-view v-if="routeName!='product-information'"  class="content-view" :articleList="articleList"></router-view>
+                    <div v-else>所有</div>
+                </div>
             </div>
         </div>
     </div>
@@ -14,71 +17,48 @@
     import $api from '../tools/api';
     import '../less/product-information.less';
     import NavigationList from '../components/NavigationChild';
+    //import {navItems} from '../../navigation.js';
     export default {
         name: 'product-information',
         data(){
             return {
-                navItems:[
-                {
-                    name:'数据中心建设',
-                    link:'my',
-                    val:1,
-                    child:[
-                        {
-                            name:'数据中心建设',
-                            link:'/parent/product-information/data-center'
-                        },
-                        {
-                            name:'网络及安全',
-                            link:'/parent/product-information/network-security'
-                        },
-                        {
-                            name:'云计算',
-                            link:'solution/cloud-computing'
-                        },
-                        {
-                            name:'云桌面',
-                            link:'solution/cloud-desktop'
-                        }
-                    ]
-                },{
-                    name:'开场白',
-                    link:'speak',
-                    val:2,
-                    child:[
-                        {
-                            name:'说点吧',
-                            link:'birth'
-                        },
-                        {
-                            name:'随意一些',
-                            link:'place'
-                        },
-                        {
-                            name:'那就来',
-                            link:'status'
-                        }
-                    ]
-                },{
-                    name:'才艺展示',
-                    link:'show'
-                },{
-                    name:'获奖感言',
-                    link:'thanks'
-                }
-            ]
+                navItems:[],
+                articleList:[],
+                routeName:this.$route.name,
+                data:123
 
             }
         },
         created(){
+            console.log(this.navItems)
+            //setTimeout(()=>{
+                $api.post('/index/product/clickProductCate.html').then((res)=>{
+                    if(res.code == 200){
+                        res.data.productCateList.map((item)=>{
+                            item.children = [];
+                            this.navItems.push(item);
 
+                        });
+                        res.data.articleList.map((item)=>{
+                            this.articleList.push(item);
+                        });
+                    }
+                });
+
+            //},3000);
         },
         components: {
             NavigationList
         },
-        computed: {},
+        computed: {
+            key() {
+                return this.$route.name !== undefined? this.$route.name +new Date(): this.$route +new Date()
+            }
+        },
         methods: {
-
+            click(){
+                this.data = 1111111111111;
+            }
         },
         watch: {
 
