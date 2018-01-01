@@ -4,37 +4,34 @@
 var path = require('path');
 var express = require('express');
 var fs=require('fs');
-var file= path.resolve('./mock/navigation.json');
-var result=JSON.parse(fs.readFileSync(file));
+/*var file= path.resolve('./mock/navigation.json');
+var result=JSON.parse(fs.readFileSync(file));*/
 var app = express();
 app.use('/dist', express.static(path.resolve('./dist')));
 var port = 8095;
 app.get('*', function (req, res) {
     //console.log(req);
-    if(req.path == '/index/cate/moveOnCate.html'){
-        res.end(JSON.stringify(result));
-    }else{
-        res.sendFile(path.resolve('./html/index.html'));
-    }
+    res.sendFile(path.resolve('./html/index.html'));
 
 });
-app.post('/index/cate/moveOnCate.html',function(req,res){
-    res.send(JSON.stringify(result));
-});
-var fileSecond= path.resolve('./mock/navigationSecond.json');
-var resultSecond=JSON.parse(fs.readFileSync(fileSecond));
-app.post('/index/product/clickProductCate.html',function(req,res){
-    //setTimeout(()=>{
-        res.send(JSON.stringify(resultSecond));
-    //},6000);
-});
-
-var fileCateList= path.resolve('./mock/secondCateList.json');
-var resultCateList=JSON.parse(fs.readFileSync(fileCateList));
-app.post('/index/product/getProductListByCateid.html',function(req,res){
-    //setTimeout(()=>{
-    res.send(JSON.stringify(resultCateList));
-    //},6000);
+let pathObj = {
+    '/index/cate/moveOnCate.html':'navigation',
+    '/index/product/clickProductCate.html':'navigationSecond',
+    '/index/product/getProductListByCateid.html':'secondCateList',
+    '/index/article/clickCate.html':'newsClickCate',
+    '/index/product/productDetail.html':'productDetail',
+    '/index/article/articleDetail.html':'articleDetail'
+};
+let resultObj = {};
+for(let i in pathObj){
+    let file= path.resolve(`./mock/${pathObj[i]}.json`);
+    resultObj[i] = JSON.parse(fs.readFileSync(file));
+    //console.log(resultObj[i],'12345566')
+}
+app.post('*',function(req,res){
+    //console.log(JSON.stringiy(resultObj[req.path]))
+    //res.send(JSON.stringiy(resultObj[req.path]));
+    res.send(resultObj[req.path]);
 });
 app.listen(port, (error) => {
     if (error) {

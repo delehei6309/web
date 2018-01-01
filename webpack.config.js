@@ -108,7 +108,7 @@ const config = {
         new webpack.NoEmitOnErrorsPlugin(),
         // new WebpackMd5Hash(),
         new HtmlWebpackPlugin({
-            title: '致远嘉禾',
+            title: '北京致远嘉禾科技发展有限公司',
             favicon: './src/images/logo.png',
             chunks: ['ventor', 'tools', 'main'],
             inject: 'body',

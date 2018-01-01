@@ -1,0 +1,46 @@
+{
+    "code":"200",
+    "message":"success",
+    "result":"true",
+    "data":{
+        "secondCateList":[
+            {
+                "id":21,
+                "catename":"公司新闻"
+            },{
+                "id":22,
+                "catename":"行业动态"
+            },{
+                "id":23,
+                "catename":"每日资讯"
+            }
+        ],
+        "articleList":[
+            {
+                "id":211,
+                "title":"欢度元旦",
+                "create_time":"2018-01-01"
+            }, {
+                "id":211,
+                "title":"欢度元旦",
+                "create_time":"2018-01-01"
+            }, {
+                "id":211,
+                "title":"欢度元旦",
+                "create_time":"2018-01-01"
+            }, {
+                "id":211,
+                "title":"欢度元旦",
+                "create_time":"2018-01-01"
+            }, {
+                "id":211,
+                "title":"欢度元旦",
+                "create_time":"2018-01-01"
+            }, {
+                "id":211,
+                "title":"欢度元旦",
+                "create_time":"2018-01-01"
+            }
+        ]
+    }
+}

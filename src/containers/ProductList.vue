@@ -1,15 +1,15 @@
 <template>
     <div class="inner-list product-list">
         <!--产品列表-->
-        <div class="list-title">
-            <h6>所有产品</h6>
-        </div>
         <div class="clear product-items">
             <dl v-for="(item) in articleList">
                 <dt>
-                    <img :src="item.image" alt="">
+                    <router-link :to="{name:'product-detail',params:{id:item.id}}"><img :src="item.image" alt=""></router-link>
+
                 </dt>
-                <dd>{{item.name}}</dd>
+                <dd>
+                    <router-link :to="{name:'product-detail',params:{id:item.id}}">{{item.name}}</router-link>
+                </dd>
                 <dd>{{item.number}}</dd>
             </dl>
         </div>
@@ -40,9 +40,9 @@
         methods: {
             getData(){
                 let id = this.$route.params.id;
-                $api.post('/index/cate/moveOnCate.html',{id}).then((res)=>{
+                /*$api.post('/index/cate/moveOnCate.html',{id}).then((res)=>{
                     console.log(res.data);
-                });
+                });*/
             }
         },
 

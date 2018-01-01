@@ -3,14 +3,25 @@
         <div class="nav-title">{{title}}</div>
         <ul class="nav-items">
             <li v-for="(item,index) in navs" class="item">
-                <div class="title-first" :class="{'active':item.id == activeId}" @click.stop="navChange(item)">{{item.catename}}</div>
-                <div class="child-items animate":style="{'height':item.id == activeId?item.children.length*40 + 'px' : 0}">
-                    <div v-for="(child,key) in item.children" class="child-list">
-                        <router-link :to="{name:'product-list',params:{id:child.id || '234'}}"
-                                     active-class="menu-active"
-                                     replace>{{child.catename}}</router-link>
+                <template v-if="type == 'product'">
+                    <div class="title-first"
+                         :class="{'active':item.id == activeId}"
+                         @click.stop="navChange(item)">{{item.catename}}</div>
+                    <div class="child-items animate":style="{'height':item.id == activeId?item.articleList.length*40 + 'px' : 0}">
+                        <div v-for="(child,key) in item.articleList" class="child-list">
+                            <router-link :to="{name:'product-list',params:{id:child.id || '234'}}"
+                                         active-class="menu-active"
+                                         replace>{{child.title}}</router-link>
+                        </div>
                     </div>
-                </div>
+                </template>
+                <template v-else>
+                    <div class="title-first"
+                         :class="{'active':item.id == activeId}">
+                        <router-link :to="{name:'press-list',params:{id:item.id || '234'}}"
+                                     active-class="menu-active">{{item.catename}}</router-link>
+                    </div>
+                </template>
             </li>
         </ul>
     </div>
@@ -22,7 +33,7 @@
     import Toast from '../Toast';
     export default {
         name: 'navigation',
-        props:['title','navs'],
+        props:['title','navs','type'],
         data(){
             return {
                 /*navItems:[/!*
@@ -33,12 +44,17 @@
                     }
                 *!/],*/
                 navItems:null,
-                activeId:'11',
-                articleList:null
+                activeId:'',
+                articleList:null,
+                //navs:[]
             }
         },
         created(){
-            console.log('-------->>>>>>>>>>',this.$route)
+            console.log('-------->>>>>>>>>>',this.$route.params.id,this.navItems);
+            let paramsId = this.$route.params.id;
+            if(paramsId){
+                this.activeId = paramsId.toString().substring(0,2);
+            }
 
         },
         computed: {},
@@ -49,7 +65,7 @@
         },*/
         methods: {
             navChange(item){
-                if(!item.children || item.children.length<1){
+                /*if(!item.children || item.children.length<1){
                     $api.post('/index/product/getProductListByCateid.html').then((res)=>{
                         if(res.code == 200){
                             res.data.secondCateList.map((m)=>{
@@ -61,7 +77,7 @@
                             return false;
                         }
                     });
-                }
+                }*/
                 item.id == this.activeId ? this.activeId = '' : this.activeId = item.id;
 
             }

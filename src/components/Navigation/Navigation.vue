@@ -1,9 +1,9 @@
 <template>
     <div class="nav">
-        <div class="nav-content">
+        <div class="nav-content box-width">
             <ul class="clear">
                 <li v-for="(item,index) in navItems"
-                    @mouseenter="mouseenterEvent(item)"
+                    @mouseenter="mouseenterEvent(item,index)"
                     @mouseleave="mouseleaveEvent(item)"
                     @click="item.show=false">
                     <div class="nav-view">
@@ -21,7 +21,7 @@
                                         >{{child.catename}}</router-link>
                                     </dt>
                                     <dd v-for="grandson in child.articleList">
-                                        <router-link :to="{name:'',params:{id:grandson.id || '234'}}"
+                                        <router-link :to="{name:'product-list',params:{id:grandson.id || '234'}}"
                                                      active-class="menu-active"
                                         >{{grandson.title}}</router-link>
                                     </dd>
@@ -32,7 +32,7 @@
                             <div class="nav-child" :style="{'width':'300px'}" v-show="item.show" @click="item.show=false">
                                 <dl v-for="(child,k) in item.children" class="clear">
                                     <dt class="nav-child-view">
-                                        <router-link :to="{name:'',params:{id:child.id || '234'}}"
+                                        <router-link :to="{name:'press-list',params:{id:child.id || '234'}}"
                                                      active-class="menu-active"
                                         >{{child.catename}}</router-link>
                                     </dt>
@@ -84,7 +84,7 @@
                     },{
                         id:4,
                         link:'/parent/solution',
-                        itle:'解决方案',
+                        title:'解决方案',
                         children:null,
                         show:false
                     },{
@@ -115,13 +115,18 @@
             }
         },
         created(){
-
+            //Toast('服务器错误！');
         },
         computed: {},
         methods: {
-            mouseenterEvent(item){
+            mouseenterEvent(item,index){
+                let url = '/index/article/clickCate.html';
+                if(index == 1){
+                    //产品
+                    url = '/index/cate/moveOnCate.html';
+                }
                 if(!item.children || item.children.length<1){
-                    $api.post('/index/cate/moveOnCate.html').then((res)=>{
+                    $api.post(url).then((res)=>{
                         if(res.code == 200){
                             item.children = res.data.secondCateList;
                         }else{

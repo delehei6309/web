@@ -3,10 +3,12 @@
         <div class="banner-box" @click="click"><img src="../images/picture/pic1.jpg" alt=""></div>
         <div>
             <div class="clear box-width">
-                <navigation-list :title="'产品列表'" :navs="navItems"></navigation-list>
-                <div class="right">
-                    <router-view v-if="routeName!='product-information'"  class="content-view" :articleList="articleList"></router-view>
-                    <div v-else>所有</div>
+                <navigation-list :title="'产品列表'" :navs="navItems" :type="'product'"></navigation-list>
+                <div class="right inner-right">
+                    <div class="inner-list-title">
+                        <h6>{{listName}}</h6>
+                    </div>
+                    <router-view class="content-view" :articleList="articleList"></router-view>
                 </div>
             </div>
         </div>
@@ -17,11 +19,13 @@
     import $api from '../tools/api';
     import '../less/product-information.less';
     import NavigationList from '../components/NavigationChild';
+    import Toast from '../components/Toast';
     //import {navItems} from '../../navigation.js';
     export default {
         name: 'product-information',
         data(){
             return {
+                listName:'产品信息',
                 navItems:[],
                 articleList:[],
                 routeName:this.$route.name,
@@ -30,22 +34,32 @@
             }
         },
         created(){
-            console.log(this.navItems)
-            //setTimeout(()=>{
-                $api.post('/index/product/clickProductCate.html').then((res)=>{
-                    if(res.code == 200){
-                        res.data.productCateList.map((item)=>{
-                            item.children = [];
-                            this.navItems.push(item);
-
-                        });
-                        res.data.articleList.map((item)=>{
-                            this.articleList.push(item);
-                        });
-                    }
-                });
-
-            //},3000);
+            let paramId = this.$route.params.id;
+            $api.post('/index/cate/moveOnCate.html').then((res)=>{
+                if(res.code == 200){
+                    res.data.secondCateList.map((item)=>{
+                        this.navItems.push(item);
+                        if(item.id == paramId.toString().substring(0,2)){//id之间的关系
+                            this.listName = item.catename;
+                        }
+                    });
+                }else{
+                    Toast(res.message || '服务器错误！');
+                }
+            });
+            let url = '/index/product/clickProductCate.html';
+            if(paramId){
+                //url = '/index/product/getProductListBySecondCateid.html';
+            }
+            $api.post(url,{/*pageCount*/}).then((res)=>{
+                if(res.code == 200){
+                    res.data.articleList.map((item)=>{
+                        this.articleList.push(item);
+                    });
+                }else{
+                    Toast(res.message || '服务器错误！');
+                }
+            });
         },
         components: {
             NavigationList

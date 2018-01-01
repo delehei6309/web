@@ -1,6 +1,6 @@
 <template>
     <div class="index-header">
-        <div class="header-content clear">
+        <div class="header-content clear box-width">
             <div class="logo">
                 <img src="../../images/logo.png" alt="logo">
             </div>

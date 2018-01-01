@@ -3,9 +3,14 @@
         <div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>
         <div>
             <div class="clear box-width">
-                <navigation-list :navItems="navItems"></navigation-list>
-                <!--<router-view  class="content-view"></router-view>-->
-                新闻中心
+                <navigation-list :title="'网站导航'" :navs="navItems"></navigation-list>
+                <div class="right inner-right">
+                    <div class="inner-list-title">
+                        <h6>{{innerTitle}}</h6>
+                    </div>
+                    <router-view  class="content-view" :articleList="articleList"></router-view>
+                </div>
+
             </div>
         </div>
     </div>
@@ -15,64 +20,52 @@
     import $api from '../tools/api';
     import '../less/press-center.less';
     import NavigationList from '../components/NavigationChild';
+    import Toast from '../components/Toast';
     export default {
         name: 'about',
         data(){
             return {
-                navItems:[
-                {
-                    name:'数据中心建设',
-                    link:'my',
-                    val:1,
-                    child:[
-                        {
-                            name:'数据中心建设',
-                            link:'/parent/solution/data-center'
-                        },
-                        {
-                            name:'网络及安全',
-                            link:'/parent/solution/network-security'
-                        },
-                        {
-                            name:'云计算',
-                            link:'solution/cloud-computing'
-                        },
-                        {
-                            name:'云桌面',
-                            link:'solution/cloud-desktop'
-                        }
-                    ]
-                },{
-                    name:'开场白',
-                    link:'speak',
-                    val:2,
-                    child:[
-                        {
-                            name:'说点吧',
-                            link:'birth'
-                        },
-                        {
-                            name:'随意一些',
-                            link:'place'
-                        },
-                        {
-                            name:'那就来',
-                            link:'status'
-                        }
-                    ]
-                },{
-                    name:'才艺展示',
-                    link:'show'
-                },{
-                    name:'获奖感言',
-                    link:'thanks'
-                }
-            ]
+                navItems:[],
+                articleList:[],
+                htmlConfig:{
+                    solution:{
+                        innerTitle:'解决方案',
+                        id:4,
+                    },
+                    press:{
+                        innerTitle:'新闻中心',
+                        id:4,
+                    }
+                },
+                innerTitle:''
 
             }
         },
         created(){
-
+            let paramId = this.$route.params.id;
+            let path = this.$route.path;
+            for(let ind in this.htmlConfig){
+                console.log(path.indexOf(ind))
+                if(path.indexOf(ind)>-1){
+                    console.log('----------->>>>>>>>>>>>>',this.innerTitle)
+                    this.innerTitle = this.htmlConfig[ind].innerTitle;
+                }
+            }
+            $api.post('/index/article/clickCate.html').then((res)=>{
+                if(res.code == 200){
+                    res.data.secondCateList.map((item)=>{
+                        this.navItems.push(item);
+                    });
+                    //默认展示的内容
+                    if(!paramId){
+                        res.data.articleList.map((item)=>{
+                            this.articleList.push(item);
+                        });
+                    }
+                }else{
+                    Toast(res.message || '服务器错误！');
+                }
+            });
         },
         components: {
             NavigationList

@@ -14,11 +14,15 @@ const Home = () => import('../containers/Home');
 const ProductInformation = () => import('../containers/ProductInformation');
 const ProductList = () => import('../containers/ProductList');
 const PressCenter = () => import('../containers/PressCenter');
+const Solution = () => import('../containers/PressCenter');
+const PressList = () => import('../containers/PressList');
+const ProductDetail = () => import('../containers/ProductDetail');
+const PressDetail = () => import('../containers/PressDetail');
 const SuccessfulCase = () => import('../containers/SuccessfulCase');
 const About = () => import('../containers/About');
 const DataCenter = () => import('../containers/DataCenter');
 const NetworkSecurity = () => import('../containers/NetworkSecurity');
-const title = '致远嘉禾';
+const title = '北京致远嘉禾科技发展有限公司';
 let routes = [
     /*{
         path:'/',
@@ -57,7 +61,7 @@ let routes = [
                     {
                         path:'product-list',
                         name:'product-list-first',
-                        component:ProductList,//商用台式机
+                        component:ProductList,//
                         meta: {
                             title: title,
                             sss:true
@@ -66,7 +70,16 @@ let routes = [
                     {
                         path:'product-list/:id',
                         name:'product-list',
-                        component:ProductList,//商用台式机
+                        component:ProductList,//
+                        meta: {
+                            title: title,
+                            sss:true
+                        },
+                    },
+                    {
+                        path:'product-detail/:id',
+                        name:'product-detail',
+                        component:ProductDetail,//详细
                         meta: {
                             title: title,
                             sss:true
@@ -95,10 +108,37 @@ let routes = [
                 path:'press-center',
                 name:'press-center',
                 component:PressCenter,
+                redirect:'/parent/press-center/press-list',
                 meta: {
                     title: '新闻中心',
                     scrollToTop: true
-                }
+                },
+                children:[
+                    {
+                        path:'press-list',
+                        name:'press-list-first',
+                        component:PressList,//
+                        meta: {
+                            title: title
+                        },
+                    },
+                    {
+                        path:'press-list/:id',
+                        name:'press-list',
+                        component:PressList,//商用台式机
+                        meta: {
+                            title: title
+                        }
+                    },
+                    {
+                        path:'press-detail/:id',
+                        name:'press-detail',
+                        component:PressDetail,//商用台式机
+                        meta: {
+                            title: title
+                        }
+                    }
+                ]
             },{
                 path:'successful-case',
                 name:'successful-case',
@@ -107,6 +147,40 @@ let routes = [
                     title: '成功案例',
                     scrollToTop: true
                 }
+            },{
+                path:'solution',
+                name:'solution',
+                component:Solution,
+                meta: {
+                    title: '成功案例',
+                    scrollToTop: true
+                },
+                children:[
+                    {
+                        path:'solution-list',
+                        name:'solution-list-first',
+                        component:PressList,//
+                        meta: {
+                            title: title
+                        },
+                    },
+                    {
+                        path:'solution-list/:id',
+                        name:'solution-list',
+                        component:PressList,//
+                        meta: {
+                            title: title
+                        }
+                    },
+                    {
+                        path:'solution-detail/:id',
+                        name:'solution-detail',
+                        component:PressDetail,//
+                        meta: {
+                            title: title
+                        }
+                    }
+                ]
             },{
                 path:'about',
                 name:'about',
