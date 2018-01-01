@@ -39,7 +39,7 @@
                 if(res.code == 200){
                     res.data.secondCateList.map((item)=>{
                         this.navItems.push(item);
-                        if(item.id == paramId.toString().substring(0,2)){//id之间的关系
+                        if(paramId && (item.id == paramId.toString().substring(0,2))){//id之间的关系
                             this.listName = item.catename;
                         }
                     });
