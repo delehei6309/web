@@ -8,7 +8,7 @@
                     <div v-for="(child,key) in item.children" class="child-list">
                         <router-link :to="{name:'product-list',params:{id:child.id || '234'}}"
                                      active-class="menu-active"
-                                     replace>{{child.title}}</router-link>
+                                     replace>{{child.catename}}</router-link>
                     </div>
                 </div>
             </li>
@@ -33,21 +33,13 @@
                     }
                 *!/],*/
                 navItems:null,
-                activeId:'my1314520Deblov888889999',
+                activeId:'11',
                 articleList:null
             }
         },
         created(){
-            console.log(this.navs)
-            /*$api.post('/index/product/clickProductCate.html').then((res)=>{
-                if(res.code == 200){
-                    res.data.productCateList.map((item)=>{
-                        item.children = [];
-                        this.navItems.push(item);
-                    });
-                    this.navItems[0].children = res.data.articleList
-                }
-            });*/
+            console.log('-------->>>>>>>>>>',this.$route)
+
         },
         computed: {},
         /*watch(){
@@ -57,7 +49,21 @@
         },*/
         methods: {
             navChange(item){
-                item.name == this.activeName ? this.activeName = '' : this.activeName = item.name;
+                if(!item.children || item.children.length<1){
+                    $api.post('/index/product/getProductListByCateid.html').then((res)=>{
+                        if(res.code == 200){
+                            res.data.secondCateList.map((m)=>{
+                                this.activeId = item.id;
+                                item.children.push(m);
+                            });
+                        }else{
+                            Toast(res.message || '服务器错误！');
+                            return false;
+                        }
+                    });
+                }
+                item.id == this.activeId ? this.activeId = '' : this.activeId = item.id;
+
             }
         },
         destroyed(){

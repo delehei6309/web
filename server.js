@@ -28,6 +28,14 @@ app.post('/index/product/clickProductCate.html',function(req,res){
         res.send(JSON.stringify(resultSecond));
     //},6000);
 });
+
+var fileCateList= path.resolve('./mock/secondCateList.json');
+var resultCateList=JSON.parse(fs.readFileSync(fileCateList));
+app.post('/index/product/getProductListByCateid.html',function(req,res){
+    //setTimeout(()=>{
+    res.send(JSON.stringify(resultCateList));
+    //},6000);
+});
 app.listen(port, (error) => {
     if (error) {
         console.error(error)

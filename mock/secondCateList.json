@@ -1,0 +1,113 @@
+{
+    "code":"200",
+    "message":"success",
+    "result":"true",
+    "data":{
+        "secondCateList":[
+            {
+                "id":111,
+                "catename":"商务台式机"
+            },{
+                "id":112,
+                "catename":"服务器"
+            },{
+                "id":113,
+                "catename":"存储"
+            }
+        ],
+        "productCount":4,
+        "articleList":[
+            {
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/2015519142954358.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            },{
+                "id":111,
+                "name":"惠普HP 400 ssss",
+                "number":1222222222,
+                "image":"http://www.zhiyuanjiahe.com/UploadFiles/20161289417834.png"
+            }
+        ]
+    }
+}
