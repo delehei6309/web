@@ -3,7 +3,7 @@
         <!--产品列表-->
         <div class=" press-items">
             <dl v-for="(item) in articleList" class="clear">
-                <dt>
+                <dt class="ellipsis">
                     <router-link :to="{'name':'press-detail',params:{id:item.id}}">{{item.title}}</router-link>
                 </dt>
                 <dd class="right">{{item.create_time}}</dd>
@@ -14,7 +14,7 @@
 
 <script>
     import $api from '../tools/api';
-    import '../less/product-list.less';
+    import '../less/press-list.less';
     import axios from 'axios';
     import Toast from '../components/Toast';
     export default {

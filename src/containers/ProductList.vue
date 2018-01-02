@@ -8,9 +8,11 @@
 
                 </dt>
                 <dd>
-                    <router-link :to="{name:'product-detail',params:{id:item.id}}">{{item.name}}</router-link>
+                    <span>名称：</span><router-link :to="{name:'product-detail',params:{id:item.id}}">{{item.name}}</router-link>
                 </dd>
-                <dd>{{item.number}}</dd>
+                <dd>
+                    <span>编号：</span><span>{{item.number}}</span>
+                </dd>
             </dl>
         </div>
     </div>

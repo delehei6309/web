@@ -1,6 +1,7 @@
 <template>
     <div class="press-center">
-        <div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>
+        <!--<div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>-->
+        <swiper></swiper>
         <div>
             <div class="clear box-width">
                 <navigation-list :title="'网站导航'" :navs="navItems"></navigation-list>
@@ -8,7 +9,7 @@
                     <div class="inner-list-title">
                         <h6>{{innerTitle}}</h6>
                     </div>
-                    <router-view  class="content-view" :articleList="articleList"></router-view>
+                    <router-view :articleList="articleList"></router-view>
                 </div>
 
             </div>
@@ -20,6 +21,7 @@
     import $api from '../tools/api';
     import '../less/press-center.less';
     import NavigationList from '../components/NavigationChild';
+    import Swiper from '../components/Swiper';
     import Toast from '../components/Toast';
     export default {
         name: 'about',
@@ -68,7 +70,7 @@
             });
         },
         components: {
-            NavigationList
+            NavigationList,Swiper
         },
         computed: {},
         methods: {

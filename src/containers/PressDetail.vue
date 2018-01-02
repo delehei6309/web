@@ -17,7 +17,7 @@
                     <span>{{articleInfor.click}}次</span>
                 </li>
             </ul>
-            <p>{{articleInfor.desc}}</p>
+            <p class="desc">{{articleInfor.desc}}</p>
             <div v-html="articleInfor.content">
 
             </div>
@@ -27,7 +27,7 @@
 
 <script>
     import $api from '../tools/api';
-    import '../less/product-list.less';
+    import '../less/press-detail.less';
     import axios from 'axios';
     import Toast from "../components/Toast/toast";
     export default {

@@ -8,7 +8,7 @@
                     <div class="inner-list-title">
                         <h6>{{listName}}</h6>
                     </div>
-                    <router-view class="content-view" :articleList="articleList"></router-view>
+                    <router-view :articleList="articleList"></router-view>
                 </div>
             </div>
         </div>
