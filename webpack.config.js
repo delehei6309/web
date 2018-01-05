@@ -110,6 +110,9 @@ const config = {
         new HtmlWebpackPlugin({
             title: '北京致远嘉禾科技发展有限公司',
             favicon: './src/images/logo.png',
+            meta:{
+                keywords:'sb'
+            },
             chunks: ['ventor', 'tools', 'main'],
             inject: 'body',
             hash: true,

@@ -2,8 +2,8 @@
     <div class="inner-detail product-detail">
         <!--详细内容-->
         <div class="inner-main">
-            <div class="product-detail-img">
-                <img :src="productInfor.image" alt="">
+            <div class="product-detail-img img-box">
+                <img v-lazy="productInfor.image" alt="">
             </div>
             <div>{{productInfor.content}}}</div>
         </div>

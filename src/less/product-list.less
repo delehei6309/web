@@ -3,11 +3,12 @@
 
 .product-list {
     .product-items{
+        min-height:290px;
         dl{
             width:222px;
             overflow: hidden;
             margin-right: 35px;
-            text-align: center;
+            //text-align: center;
             &:nth-child(3n){
                 margin-right: 0;
             }
@@ -35,6 +36,16 @@
             dd{
                 margin:0;
                 padding:8px 0;
+                a{
+                    color:inherit;
+                    text-decoration: none;
+                    &:hover{
+                        color:#007bff;
+                    }
+                }
+                &:last-child{
+                    padding:0;
+                }
             }
         }
     }
