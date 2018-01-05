@@ -9,6 +9,10 @@
                 <dd class="right">{{item.create_time}}</dd>
             </dl>
         </div>
+        <!--分页-->
+        <div class="pagination-wrap">
+            <b-pagination size="md" :total-rows="totalRows" v-model="pageNo" :per-page="pageSize" align="center" @change="pageChange"></b-pagination>
+        </div>
     </div>
 </template>
 
@@ -18,39 +22,44 @@
     import axios from 'axios';
     import Toast from '../components/Toast';
     export default {
-        props:['articleList'],
+        //props:['articleList'],
         name: 'product-list',
         data(){
             return {
-                router: 'ppp'
+                pageSize:20,
+                pageNo:0,
+                totalRows:100,
+                articleList:null
+
             }
         },
         created(){
-            if(this.$route.params.id){
-                $api.post('/index/article/getArticleList.html').then((res)=>{
-                    if(res.code == 200){
-                        res.data.articleList.map((item)=>{
-                            this.articleList.push(item);
-                        });
-                    }else{
-                        Toast(res.message || '服务器错误！');
-                    }
-                });
-            }
-
-            this.getData();
-
+            this.getPressList();
         },
         components: {
 
         },
         computed: {},
         methods: {
-            getData(){
-                //let id = this.$route.params.id;
-                /*$api.post('/index/cate/moveOnCate.html',{id}).then((res)=>{
-                    console.log(res.data);
-                });*/
+            getPressList(){
+                let paramsId = this.$route.params.id;
+                let {pageSize,pageNo} = this;
+                let url = '/index/article/clickCate.html';
+                if(paramsId){
+                    url = '/index/article/getArticleList.html';
+                }
+                $api.post(url,{paramsId,pageSize,pageNo}).then((res)=>{
+                    if(res.code == 200){
+                        this.articleList = res.data.articleList;
+                    }else{
+                        Toast(res.message || '服务器错误！');
+                    }
+                });
+            },
+            pageChange(){
+                this.$nextTick(()=>{
+                    this.getPressList();
+                });
             }
         },
 

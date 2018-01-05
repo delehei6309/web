@@ -9,7 +9,7 @@
                     <div class="inner-list-title">
                         <h6>{{innerTitle}}</h6>
                     </div>
-                    <router-view :articleList="articleList"></router-view>
+                    <router-view ></router-view>
                 </div>
 
             </div>
@@ -58,12 +58,12 @@
                     res.data.secondCateList.map((item)=>{
                         this.navItems.push(item);
                     });
-                    //默认展示的内容
+                    /*//默认展示的内容
                     if(!paramId){
                         res.data.articleList.map((item)=>{
                             this.articleList.push(item);
                         });
-                    }
+                    }*/
                 }else{
                     Toast(res.message || '服务器错误！');
                 }

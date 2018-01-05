@@ -8,7 +8,7 @@
                     <div class="inner-list-title">
                         <h6>{{listName}}</h6>
                     </div>
-                    <router-view :articleList="articleList"></router-view>
+                    <router-view ></router-view>
                 </div>
             </div>
         </div>
@@ -29,13 +29,20 @@
                 navItems:[],
                 articleList:[],
                 routeName:this.$route.name,
-                data:123
+                data:123,
+                pageObject:{
+                    pageNo:0,
+                    pageSize:20,
+                    totalRows:100
+                }
 
             }
         },
         created(){
             let paramId = this.$route.params.id;
-            $api.post('/index/cate/moveOnCate.html').then((res)=>{
+            let {pageNo,pageSize} = this.pageObject;
+            //获取左边菜单
+            $api.post('/index/cate/moveOnCate.html',{pageNo,pageSize}).then((res)=>{
                 if(res.code == 200){
                     res.data.secondCateList.map((item)=>{
                         this.navItems.push(item);
@@ -47,19 +54,7 @@
                     Toast(res.message || '服务器错误！');
                 }
             });
-            let url = '/index/product/clickProductCate.html';
-            if(paramId){
-                //url = '/index/product/getProductListBySecondCateid.html';
-            }
-            $api.post(url,{/*pageCount*/}).then((res)=>{
-                if(res.code == 200){
-                    res.data.articleList.map((item)=>{
-                        this.articleList.push(item);
-                    });
-                }else{
-                    Toast(res.message || '服务器错误！');
-                }
-            });
+
         },
         components: {
             NavigationList

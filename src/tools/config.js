@@ -4,8 +4,9 @@
 let protocol = window.location.protocol;
 export const devUrl = `http://localhost:8095`;
 export const testUrl = `http://localhost:8095`;
-export const productionUrl = ``;
-export const telNumber = '400-100-1000';
+export const productionUrl = `${protocol}//127.0.0.1`;
+export const telNumber = '';
+console.log(protocol);
 
 export const sysDev = '';
 export const sysTest = '';

@@ -71,17 +71,17 @@
                     </div>
                 </div>
                 <div class="small-con right">
-                    <inner-title :title="'我们的位置'"></inner-title>
-                    <div style="height:200px;">
-                        <select name="" id="" >
-                            <option value="122"disabled="false">123</option>
-                            <option value="122">123</option>
-                            <option value="122">123</option>
-                            <option value="122">123</option>
-                        </select>
-                       <!-- <el-amap class="amap-box"
-                                 vid="amap" :plugin="plugin"
-                                 :center="center"></el-amap>-->
+                    <inner-title :title="'我们的位置'" :more="'none'"></inner-title>
+                    <div style="height:280px;">
+                        <el-amap class="amap-box" :vid="'amap'" :center="center" :zoom="zoom">
+                            <el-amap-info-window
+                                :position="contentWindow.position"
+                                :content="contentWindow.content"
+                                :visible = "contentWindow.visible"
+                                :events="contentWindow.events">
+                            </el-amap-info-window>
+                            <!--<el-amap-marker :position="center" ></el-amap-marker>-->
+                        </el-amap>
                     </div>
                 </div>
             </div>
@@ -103,13 +103,13 @@
     const friend1 = require('../images/friend1.jpg');
     const friend2 = require('../images/friend2.jpg');
     const friend3 = require('../images/friend3.jpg');
-    /*import Vue from 'vue';
+    import Vue from 'vue';
     import AMap from 'vue-amap';
     Vue.use(AMap);
     AMap.initAMapApiLoader({
-        key: 'your amap key',
+        key: '4e4f60b6ba1c6d1ced6c01e3777e7b01',
         plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
-    });*/
+    });
     export default {
         name: 'home',
         data(){
@@ -131,75 +131,23 @@
                         el: '.swiper-pagination'
                     }
                 },
-                newSwiperItems:[
-
-                ],
-                newSwiperOption:{
-                    loop: true,
-                    direction : 'vertical',
-                    slidesPerView:8,
-                    autoplay: {
-                        delay: 0,
-                        //disableOnInteraction: false
-                    }
-                },
                 friends:[friend1,friend2,friend3,friend1,friend2,friend3,friend1,friend3],
-                zoom: 12,
-                center: [116.312878,39.872414],
+                zoom: 14,
+                //center: [116.312878,39.872414],
                 lng: 0,
                 lat: 0,
                 loaded: false,
-                plugin: [{
-                    pName: 'Geolocation',
+                center: [116.33351,39.97011],
+                contentWindow: {
+                    position: [116.33351,39.97011],
+                    content: '北京致远嘉禾科技发展有限公司',
+                    visible: true,
                     events: {
-                        init(o) {
-                            // o 是高德地图定位插件实例
-                            o.getCurrentPosition((status, result) => {
-                                if (result && result.position) {
-                                    self.lng = result.position.lng;
-                                    self.lat = result.position.lat;
-                                    self.center = [self.lng, self.lat];
-                                    self.loaded = true;
-                                    self.$nextTick();
-                                }
-                            });
+                        close() {
+                            console.log('close infowindow');
                         }
                     }
-                }]
-                /*address: '',
-                events: {
-                    init(o) {
-                        // o 是高德地图定位插件实例
-                        o.getCurrentPosition((status, result) => {
-                            if (result && result.position) {
-                                self.lng = result.position.lng;
-                                self.lat = result.position.lat;
-                                self.center = [self.lng, self.lat];
-                                self.loaded = true;
-                                self.$nextTick();
-                            }
-                        });
-                    },
-                    click(e) {
-                        let { lng, lat } = e.lnglat;
-                        self.lng = lng;
-                        self.lat = lat;
-
-                        // 这里通过高德 SDK 完成。
-                        var geocoder = new AMap.Geocoder({
-                            radius: 1000,
-                            extensions: "all"
-                        });
-                        geocoder.getAddress([lng ,lat], function(status, result) {
-                            if (status === 'complete' && result.info === 'OK') {
-                                if (result && result.regeocode) {
-                                    self.address = result.regeocode.formattedAddress;
-                                    self.$nextTick();
-                                }
-                            }
-                        });
-                    }
-                }*/
+                },
             }
         },
         created(){

@@ -5,7 +5,8 @@
                 <li v-for="(item,index) in navItems"
                     @mouseenter="mouseenterEvent(item,index)"
                     @mouseleave="mouseleaveEvent(item)"
-                    @click="item.show=false">
+                    @click="item.show=false"
+                    >
                     <div class="nav-view">
                         <router-link :to="{path:item.link}"
                                      active-class="menu-active"

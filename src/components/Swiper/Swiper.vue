@@ -34,11 +34,11 @@
             return {
                 swiperItems:[banner1,banner2,banner3,banner4,banner5],
                 swiperOption:{
-                    autoplay: {
+                    /*autoplay: {
                         delay: 3000,
                         disableOnInteraction:false,
 
-                    },
+                    },*/
                     loop:true,
                     centeredSlides:true,
                     slidesPerView:2,
