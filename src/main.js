@@ -3,7 +3,7 @@ import BootstrapVue from 'bootstrap-vue';
 Vue.use(BootstrapVue);
 
 import VueLazyload from 'vue-lazyload';
-const loading = require('./images/loading.gif');
+const loading = require('./images/loading2.gif');
 Vue.use(VueLazyload, {
     preLoad: 1.3,
     error: './img/error.jpg',

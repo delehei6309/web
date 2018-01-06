@@ -2,7 +2,7 @@
     <div class="home">
         <div class="banner-box">
             <swiper :options="swiperOption" ref="mySwiper">
-                <swiper-slide v-for="(item,index) in swiperItems"><img :src="item" alt=""></swiper-slide>
+                <swiper-slide v-for="(item,index) in slideImages"><img :src="item.image" :alt="item.title"></swiper-slide>
                 <div class="swiper-pagination"  slot="pagination"></div>
                 <div class="swiper-button-prev" slot="button-prev"></div>
                 <div class="swiper-button-next" slot="button-next"></div>
@@ -19,7 +19,7 @@
                 <div class="small-con">
                     <inner-title :title="'新闻动态'" :link="'/parent/solution/data-center'"></inner-title>
                     <div class="news-content com-content">
-                        <text-iscroll></text-iscroll>
+                        <text-iscroll :items="newsList"></text-iscroll>
                     </div>
                 </div>
                 <div class="big-con right">
@@ -54,7 +54,7 @@
                 <div class="small-con right">
                     <inner-title :title="'案例展示'" :link="'/parent/solution/data-center'"></inner-title>
                     <div class="news-content com-content">
-                        <text-iscroll></text-iscroll>
+                        <text-iscroll :items="newsList"></text-iscroll>
                     </div>
                 </div>
             </div>
@@ -105,6 +105,7 @@
     const friend3 = require('../images/friend3.jpg');
     import Vue from 'vue';
     import AMap from 'vue-amap';
+    import Toast from "../components/Toast/toast";
     Vue.use(AMap);
     AMap.initAMapApiLoader({
         key: '4e4f60b6ba1c6d1ced6c01e3777e7b01',
@@ -116,6 +117,8 @@
             let self = this;
             return {
                 swiperItems:[pic1,pic2,pic3,pic4],
+                slideImages:null,
+                newsList:[],
                 swiperOption: {
                     navigation: {
                         nextEl: '.swiper-button-next',
@@ -151,7 +154,7 @@
             }
         },
         created(){
-
+            this.getData();
         },
         components: {
             swiper,swiperSlide,InnerTitle,TextIscroll
@@ -166,7 +169,27 @@
             this.swiper.slideTo(3, 1000, false)*/
         },
         methods: {
+            getData(){
+                $api.post('/index/index/index.html').then((res)=>{
+                    if(res.code == 200){
+                        res.data.slideImages.map((item,k)=>{
+                            item.image = this.swiperItems[k+1];
+                        });
+                        //轮播图
+                        this.slideImages = res.data.slideImages;
+                        //新闻列表
+                        /*res.data.newsList.map(el=>{
+                            this.newsList.push(el);
+                        });*/
+                        this.newsList = res.data.newsList;
 
+                        //随意模拟一下
+                        this.newsList = this.newsList.concat(this.newsList).concat(this.newsList);
+                    }else{
+                        Toast(res.message || '服务器错误！');
+                    }
+                });
+            }
         },
         watch: {
 

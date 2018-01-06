@@ -121,6 +121,10 @@
         computed: {},
         methods: {
             mouseenterEvent(item,index){
+                if(index == 0){
+                    //首页没有子导航
+                    return false;
+                }
                 let url = '/index/article/clickCate.html';
                 if(index == 1){
                     //产品

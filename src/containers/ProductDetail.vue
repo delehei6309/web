@@ -13,7 +13,7 @@
 <script>
     import $api from '../tools/api';
     import '../less/product-detail.less';
-    import axios from 'axios';
+    //import axios from 'axios';
     import Toast from "../components/Toast/toast";
     export default {
         props:[],

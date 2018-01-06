@@ -2,8 +2,8 @@
     <div class="text-iscroll" style="height:260px;overflow: hidden">
         <ul :style="{transform:`translateY(${translate}px)`}" @mouseenter="animateStop" @mouseleave="animateStart">
             <li class="clear" v-for="(item,index) in items2" :style="{height:`${liHeight}px`}">
-                <div class="ellipsis">{{item.text}}</div>
-                <div class="right">{{item.date}}</div>
+                <div class="ellipsis">{{item.title}}</div>
+                <div class="right">{{item.time}}</div>
             </li>
         </ul>
     </div>
@@ -13,7 +13,7 @@
     import './text-iscroll.less';
     export default {
         name: 'inner-title',
-        props:['scrollItems','viewSize'],
+        props:['items','viewSize'],
         data(){
             return {
                 styleObject:{
@@ -21,7 +21,7 @@
                 },
                 translate:0,
                 liHeight:26,
-                items:[
+                /*items:[
                     {
                         text:'在那遥远的地方，有位好姑娘111122222222222221',
                         date:'2017-12-22'
@@ -63,25 +63,36 @@
                         date:'2017-12-22'
                     },
                     {
-                        text:'在那遥远的地方，有位好姑娘',
+                        text:'在那遥远的地方，有位好姑娘0',
                         date:'2017-12-22'
                     }
-                ],
+                ],*/
                 items2:[],
                 animateStopState:false
             }
         },
         created(){
             this.compatible();
+
         },
         mounted(){
             //items
-            if(this.items.length>10){
-                this.items2 = this.items.concat(this.items);
-                console.log(this.items2);
-                this.animate();
-            }else{
-                this.items2 = this.items;
+
+        },
+        watch:{
+            items(val) {
+                this.translate = 0;
+                this.animateStopState = false;
+                this.items2 = [];
+                if(val && val.length>0){
+                    if(val.length>10){
+                        this.items2 = val.concat(val);
+                        console.log(this.items2);
+                        this.animate();
+                    }else{
+                        this.items2 = this.items;
+                    }
+                }
             }
         },
         computed: {},
