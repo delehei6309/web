@@ -1,6 +1,6 @@
 <template>
     <div class="inner-list product-list">
-        <div class="product-content">
+        <div v-if="articleList && articleList.length>0" class="product-content">
             <!--产品列表-->
             <div class="clear product-items">
                 <dl v-for="(item) in articleList">
@@ -8,8 +8,10 @@
                         <router-link :to="{name:'product-detail',params:{id:item.id}}"><img  v-lazy="item.image" alt=""></router-link>
 
                     </dt>
-                    <dd>
-                        <span>名称：</span><router-link :to="{name:'product-detail',params:{id:item.id}}">{{item.name}}</router-link>
+                    <dd class="ellipsis">
+                        <span>名称：</span><router-link
+                            :to="{name:'product-detail',params:{id:item.id}}"
+                            :title="item.name">{{item.name}}</router-link>
                     </dd>
                     <dd>
                         <span>编号：</span><span>{{item.number}}</span>
@@ -18,8 +20,11 @@
             </div>
             <!--分页-->
             <div class="pagination-wrap">
-                <b-pagination size="md" :total-rows="totalRows" v-model="pageNo" :per-page="pageSize" align="center" @change="pageChange"></b-pagination>
+                <b-pagination size="md" :total-rows="productCount" v-model="pageCount" :per-page="pageSize" align="center" @change="pageChange"></b-pagination>
             </div>
+        </div>
+        <div v-else>
+            没有相关内容
         </div>
     </div>
 </template>
@@ -35,8 +40,8 @@
         data(){
             return {
                 pageSize:20,
-                pageNo:0,
-                totalRows:100,
+                pageCount:1,
+                productCount:0,
                 articleList:null
             }
         },
@@ -50,15 +55,30 @@
         methods: {
             getProductList(){
                 let paramsId = this.$route.params.id || null;
-                let {pageSize,pageNo} = this;
+                let {pageCount,pageSize} = this;
                 let url = '/index/product/clickProductCate.html';
+                let data = {
+                    pageCount
+                };
                 if(paramsId){
                     //若存在id
                     url = '/index/product/getProductListBySecondCateid.html';
+                    data = {
+                        second_cateid:paramsId,
+                        pageCount
+                    };
+                    if(this.$route.query.pid == '0'){
+                        url = '/index/product/getProductListByCateid.html';
+                        data = {
+                            cate_id:paramsId,
+                            pageCount
+                        }
+                    }
                 }
-                $api.post(url,{paramsId,pageSize,pageNo}).then((res)=>{
+                $api.post(url,data).then((res)=>{
                     if(res.code == 200){
                         this.articleList = res.data.articleList;
+                        console.log(this.articleList);
                         /*res.data.articleList.map((item)=>{
                             this.articleList.push(item);
                         });*/

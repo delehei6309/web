@@ -1,5 +1,5 @@
 <template>
-    <div class="text-iscroll" style="height:260px;overflow: hidden">
+    <div v-if="items && items.length>0" class="text-iscroll" style="height:260px;overflow: hidden">
         <ul :style="{transform:`translateY(${translate}px)`}" @mouseenter="animateStop" @mouseleave="animateStart">
             <li class="clear" v-for="(item,index) in items2" :style="{height:`${liHeight}px`}">
                 <div class="ellipsis">{{item.title}}</div>
@@ -7,6 +7,7 @@
             </li>
         </ul>
     </div>
+    <div v-else>暂无内容</div>
 </template>
 
 <script>
@@ -81,6 +82,7 @@
         },
         watch:{
             items(val) {
+                console.log('-------->>>>>>',val)
                 this.translate = 0;
                 this.animateStopState = false;
                 this.items2 = [];

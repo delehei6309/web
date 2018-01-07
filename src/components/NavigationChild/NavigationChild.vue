@@ -3,22 +3,22 @@
         <div class="nav-title">{{title}}</div>
         <ul class="nav-items">
             <li v-for="(item,index) in navs" class="item">
-                <template v-if="type == 'product'">
+                <template v-if="id == 2">
                     <div class="title-first"
                          :class="{'active':item.id == activeId}"
                          @click.stop="navChange(item)">{{item.catename}}</div>
-                    <div class="child-items animate":style="{'height':item.id == activeId?item.articleList.length*40 + 'px' : 0}">
-                        <div v-for="(child,key) in item.articleList" class="child-list">
-                            <router-link :to="{name:'product-list',params:{id:child.id || '234'}}"
+                    <div class="child-items animate":style="{'height':item.id == activeId?item.secondCateList.length*40 + 'px' : 0}">
+                        <div v-for="(child,key) in item.secondCateList" class="child-list">
+                            <router-link :to="{name:'product-list',params:{id:child.id}}"
                                          active-class="menu-active"
-                                         replace>{{child.title}}</router-link>
+                                         replace>{{child.catename}}</router-link>
                         </div>
                     </div>
                 </template>
                 <template v-else>
                     <div class="title-first"
                          :class="{'active':item.id == activeId}">
-                        <router-link :to="{name:'press-list',params:{id:item.id || '234'}}"
+                        <router-link :to="{name:item.link,params:{id:item.id}}"
                                      active-class="menu-active">{{item.catename}}</router-link>
                     </div>
                 </template>
@@ -33,7 +33,7 @@
     import Toast from '../Toast';
     export default {
         name: 'navigation',
-        props:['title','navs','type'],
+        props:['title','navs','id'],
         data(){
             return {
                 /*navItems:[/!*
@@ -50,34 +50,44 @@
             }
         },
         created(){
-            console.log('-------->>>>>>>>>>',this.$route.params.id,this.navItems);
-            let paramsId = this.$route.params.id;
-            if(paramsId){
-                this.activeId = paramsId.toString().substring(0,2);
-            }
+            console.log('-------->>>>>>>>>>',this.$route.params.id,this.navs);
+            //if(this.navs)
+            this.paramsId = this.$route.params.id;
+            /*if(paramsId){
+                if(this.id == 2){
+                    //产品类
+                    this.activeId = paramsId.toString().substring(0,2);
+                }else{
+                    this.activeId = paramsId;
+                }
+
+            }*/
 
         },
         computed: {},
-        /*watch(){
-            /!*navs(o){
-                console.log(o);
-            }*!/
-        },*/
+        watch:{
+            navs(val) {
+                if(val && val.length>0){
+                    console.log(val);
+                    if(this.$route.query.pid == '0' || this.$route.path.indexOf('product')<0){
+                        this.activeId = this.paramsId;
+                    }else{
+                        val.forEach(m=>{
+                            m.secondCateList.forEach(el=>{
+                                if(el.id == this.paramsId){
+                                    this.activeId = el.pid;
+                                    return false;
+                                }
+                            });
+
+                        });
+                    }
+                }
+            }
+        },
         methods: {
             navChange(item){
-                /*if(!item.children || item.children.length<1){
-                    $api.post('/index/product/getProductListByCateid.html').then((res)=>{
-                        if(res.code == 200){
-                            res.data.secondCateList.map((m)=>{
-                                this.activeId = item.id;
-                                item.children.push(m);
-                            });
-                        }else{
-                            Toast(res.message || '服务器错误！');
-                            return false;
-                        }
-                    });
-                }*/
+                console.log(item.id)
                 item.id == this.activeId ? this.activeId = '' : this.activeId = item.id;
 
             }

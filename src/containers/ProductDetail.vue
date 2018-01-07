@@ -5,7 +5,7 @@
             <div class="product-detail-img img-box">
                 <img v-lazy="productInfor.image" alt="">
             </div>
-            <div>{{productInfor.content}}}</div>
+            <div v-html="productInfor.content" class="content-wrap"></div>
         </div>
     </div>
 </template>
@@ -26,10 +26,10 @@
         },
         created(){
             $api.post('/index/product/productDetail.html',{
-                id:123
+                id:this.$route.params.id
             }).then((res)=>{
                 if(res.code == 200){
-                    this.productInfor = res.data.productInfor;
+                    this.productInfor = res.data.productInfo;
                 }else{
                     Toast(res.message || '服务器错误！')
                 }

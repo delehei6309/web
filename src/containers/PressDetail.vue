@@ -2,25 +2,23 @@
     <div class="inner-detail">
         <!--详细内容-->
         <div class="inner-main">
-            <h6>{{articleInfor.title}}</h6>
+            <h6>{{title}}</h6>
             <ul class="clear">
                 <li>
                     <span>时间：</span>
-                    <span>{{articleInfor.create_time}}</span>
+                    <span>{{create_time}}</span>
                 </li>
                 <li>
                     <span>作者：</span>
-                    <span>{{articleInfor.author}}</span>
+                    <span>{{author}}</span>
                 </li>
                 <li>
                     <span>点击：</span>
-                    <span>{{articleInfor.click}}次</span>
+                    <span>{{click}}次</span>
                 </li>
             </ul>
-            <p class="desc">{{articleInfor.desc}}</p>
-            <div v-html="articleInfor.content">
-
-            </div>
+            <p class="desc">{{desc}}</p>
+            <div v-html="content"></div>
         </div>
     </div>
 </template>
@@ -36,15 +34,22 @@
         data(){
             return {
                 router: 'ppp',
-                articleInfor:{}
+                title:'title',
+                create_time:'2018-01-01',
+                author:'作者',
+                click:'1000',
+                desc:'摘要',
+                content:'content'
             }
         },
         created(){
             $api.post('/index/article/articleDetail.html',{
-                article_id:123
+                id:this.$route.params.id
             }).then((res)=>{
                 if(res.code == 200){
-                    this.articleInfor = res.data.articleInfor;
+                    for(let i in res.data.articleInfo){
+                        this[i] = res.data.articleInfo[i];
+                    }
                 }else{
                     Toast(res.message || '服务器错误！')
                 }
