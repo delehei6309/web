@@ -142,15 +142,43 @@ let routes = [
             },{
                 path:'successful-case',
                 name:'successful-case',
-                component:SuccessfulCase,
+                component:PressCenter,
+                redirect:'/parent/successful-case/successful-list',
                 meta: {
                     title: '成功案例',
                     scrollToTop: true
-                }
+                },
+                children:[
+                    {
+                        path:'successful-list',
+                        name:'successful-list-first',
+                        component:PressList,//
+                        meta: {
+                            title: title
+                        },
+                    },
+                    {
+                        path:'successful-list/:id',
+                        name:'successful-list',
+                        component:PressList,//
+                        meta: {
+                            title: title
+                        }
+                    },
+                    {
+                        path:'successful-detail/:id',
+                        name:'successful-detail',
+                        component:PressDetail,//
+                        meta: {
+                            title: title
+                        }
+                    }
+                ]
             },{
                 path:'solution',
                 name:'solution',
                 component:Solution,
+                redirect:'/parent/solution/solution-list',
                 meta: {
                     title: '成功案例',
                     scrollToTop: true
@@ -182,13 +210,66 @@ let routes = [
                     }
                 ]
             },{
+                path:'technical-support',
+                name:'technical-support',
+                component:Solution,
+                redirect:'/parent/technical-support/technical-list',
+                meta: {
+                    title: '技术支持',
+                    scrollToTop: true
+                },
+                children:[
+                    {
+                        path:'technical-list',
+                        name:'technical-list-first',
+                        component:PressList,//
+                        meta: {
+                            title: title
+                        },
+                    },
+                    {
+                        path:'technical-list/:id',
+                        name:'technical-list',
+                        component:PressList,//
+                        meta: {
+                            title: title
+                        }
+                    },
+                    {
+                        path:'solution-detail/:id',
+                        name:'solution-detail',
+                        component:PressDetail,//
+                        meta: {
+                            title: title
+                        }
+                    }
+                ]
+            },{
                 path:'about',
                 name:'about',
-                component:About,
+                component:Solution,
+                redirect:'/parent/about/about-list',
                 meta: {
-                    title: title,
-                    scrollToTop: true
-                }
+                    title: title,//关于我们
+                    scrollToTop: true,
+                },
+                children:[
+                    {
+                        path:'about-list',
+                        name:'about-list-first',
+                        component:PressList,//
+                        meta: {
+                            title: title
+                        },
+                    },{
+                        path:'about-list/:id',
+                        name:'about-list',
+                        component:PressList,//
+                        meta: {
+                            title: title
+                        },
+                    }
+                ]
             }
         ]
     }

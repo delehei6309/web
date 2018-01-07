@@ -1,7 +1,7 @@
 <template>
     <div class="inner-title clear">
         <div class="title">{{title || 'title'}}</div>
-        <div class="more right">
+        <div class="more right" v-if="more!='none'">
             <router-link :to="{path:link}"
                          active-class="active">{{more || 'MORE'}}</router-link>
         </div>

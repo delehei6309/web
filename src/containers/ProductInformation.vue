@@ -3,12 +3,12 @@
         <div class="banner-box" @click="click"><img src="../images/picture/pic1.jpg" alt=""></div>
         <div>
             <div class="clear box-width">
-                <navigation-list :title="'产品列表'" :navs="navItems" :type="'product'"></navigation-list>
+                <navigation-list :title="'产品列表'" :navs="navItems" :id="2"></navigation-list>
                 <div class="right inner-right">
                     <div class="inner-list-title">
                         <h6>{{listName}}</h6>
                     </div>
-                    <router-view class="content-view" :articleList="articleList"></router-view>
+                    <router-view ></router-view>
                 </div>
             </div>
         </div>
@@ -29,15 +29,22 @@
                 navItems:[],
                 articleList:[],
                 routeName:this.$route.name,
-                data:123
+                data:123,
+                pageObject:{
+                    pageNo:0,
+                    pageSize:20,
+                    totalRows:100
+                }
 
             }
         },
         created(){
             let paramId = this.$route.params.id;
-            $api.post('/index/cate/moveOnCate.html').then((res)=>{
+            let {pageNo,pageSize} = this.pageObject;
+            //获取左边菜单
+            $api.post('/index/product_cate/getProductCateList.html').then((res)=>{
                 if(res.code == 200){
-                    res.data.secondCateList.map((item)=>{
+                    res.data.productCateList.map((item)=>{
                         this.navItems.push(item);
                         if(paramId && (item.id == paramId.toString().substring(0,2))){//id之间的关系
                             this.listName = item.catename;
@@ -47,27 +54,15 @@
                     Toast(res.message || '服务器错误！');
                 }
             });
-            let url = '/index/product/clickProductCate.html';
-            if(paramId){
-                //url = '/index/product/getProductListBySecondCateid.html';
-            }
-            $api.post(url,{/*pageCount*/}).then((res)=>{
-                if(res.code == 200){
-                    res.data.articleList.map((item)=>{
-                        this.articleList.push(item);
-                    });
-                }else{
-                    Toast(res.message || '服务器错误！');
-                }
-            });
+
         },
         components: {
             NavigationList
         },
         computed: {
-            key() {
+            /*key() {
                 return this.$route.name !== undefined? this.$route.name +new Date(): this.$route +new Date()
-            }
+            }*/
         },
         methods: {
             click(){

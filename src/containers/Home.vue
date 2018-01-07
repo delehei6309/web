@@ -2,7 +2,7 @@
     <div class="home">
         <div class="banner-box">
             <swiper :options="swiperOption" ref="mySwiper">
-                <swiper-slide v-for="(item,index) in swiperItems"><img :src="item" alt=""></swiper-slide>
+                <swiper-slide v-for="(item,index) in slideImages"><img :src="item.image" :alt="item.title"></swiper-slide>
                 <div class="swiper-pagination"  slot="pagination"></div>
                 <div class="swiper-button-prev" slot="button-prev"></div>
                 <div class="swiper-button-next" slot="button-next"></div>
@@ -19,19 +19,17 @@
                 <div class="small-con">
                     <inner-title :title="'新闻动态'" :link="'/parent/solution/data-center'"></inner-title>
                     <div class="news-content com-content">
-                        <text-iscroll></text-iscroll>
+                        <text-iscroll :items="newsList"></text-iscroll>
                     </div>
                 </div>
                 <div class="big-con right">
                     <inner-title :title="'公司简介'"></inner-title>
                     <div class="intro com-content">
                         <div class="img-box">
-                            <img src="../images/picture/kaka.jpg" alt="" >
+                            <img src="../images/intro1.jpg" alt="" >
                         </div>
                         <span>
-                            2006-07赛季意甲联赛里，卡卡打入8球，被评为意甲联赛最佳球员和最佳外援。在欧洲冠军联赛里，卡卡在1/8决赛射入致胜的一球；在1/4决赛，半决赛中，卡卡都有进球，协助AC米兰杀入决赛。在决赛中，卡卡助攻因扎吉射入一球，协助AC米兰第七次夺取冠军杯。卡卡以10球成为本届冠军联赛的最佳射手并被评为最佳球员和最佳前锋。
-                            2007年12月，在日本举行的世界俱乐部杯决赛中，卡卡两次助攻因扎吉并打入一球，帮助AC米兰以4比2完胜博卡青年，夺得冠军，同时卡卡也被评为2007年世界俱乐部杯最佳球员、2007年金球奖及世界足球先生等多个奖项。
-                            2007-08赛季，卡卡在意甲联赛里打入15球，是AC米兰队中的头号射手。卡卡也是联赛助攻第二多的球员。但AC米兰整体表现不佳，没有获得2008-09赛季冠军联赛的参赛资格
+                            北京致远嘉禾科技发展有限公司，是一家一直致力于成为具有卓越企业精神的IT经营及增值服务的企业。公司总部位于有中国硅谷之称的中关村核心地带，集合中关村技术园区数家高新技术企业资源，为客户提供商用的HP服务器、存储、工作站、 磁带机、IBM服务器等设备，是惠普授权的钻石级经销商
                         </span>
                     </div>
                 </div>
@@ -54,7 +52,7 @@
                 <div class="small-con right">
                     <inner-title :title="'案例展示'" :link="'/parent/solution/data-center'"></inner-title>
                     <div class="news-content com-content">
-                        <text-iscroll></text-iscroll>
+                        <text-iscroll :items="newsList"></text-iscroll>
                     </div>
                 </div>
             </div>
@@ -71,17 +69,17 @@
                     </div>
                 </div>
                 <div class="small-con right">
-                    <inner-title :title="'我们的位置'"></inner-title>
-                    <div style="height:200px;">
-                        <select name="" id="" >
-                            <option value="122"disabled="false">123</option>
-                            <option value="122">123</option>
-                            <option value="122">123</option>
-                            <option value="122">123</option>
-                        </select>
-                       <!-- <el-amap class="amap-box"
-                                 vid="amap" :plugin="plugin"
-                                 :center="center"></el-amap>-->
+                    <inner-title :title="'我们的位置'" :more="'none'"></inner-title>
+                    <div style="height:280px;">
+                        <el-amap class="amap-box" :vid="'amap'" :center="center" :zoom="zoom">
+                            <el-amap-info-window
+                                :position="contentWindow.position"
+                                :content="contentWindow.content"
+                                :visible = "contentWindow.visible"
+                                :events="contentWindow.events">
+                            </el-amap-info-window>
+                            <!--<el-amap-marker :position="center" ></el-amap-marker>-->
+                        </el-amap>
                     </div>
                 </div>
             </div>
@@ -103,19 +101,22 @@
     const friend1 = require('../images/friend1.jpg');
     const friend2 = require('../images/friend2.jpg');
     const friend3 = require('../images/friend3.jpg');
-    /*import Vue from 'vue';
+    import Vue from 'vue';
     import AMap from 'vue-amap';
+    import Toast from "../components/Toast/toast";
     Vue.use(AMap);
     AMap.initAMapApiLoader({
-        key: 'your amap key',
+        key: '4e4f60b6ba1c6d1ced6c01e3777e7b01',
         plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
-    });*/
+    });
     export default {
         name: 'home',
         data(){
             let self = this;
             return {
                 swiperItems:[pic1,pic2,pic3,pic4],
+                slideImages:null,
+                newsList:[],
                 swiperOption: {
                     navigation: {
                         nextEl: '.swiper-button-next',
@@ -131,79 +132,27 @@
                         el: '.swiper-pagination'
                     }
                 },
-                newSwiperItems:[
-
-                ],
-                newSwiperOption:{
-                    loop: true,
-                    direction : 'vertical',
-                    slidesPerView:8,
-                    autoplay: {
-                        delay: 0,
-                        //disableOnInteraction: false
-                    }
-                },
                 friends:[friend1,friend2,friend3,friend1,friend2,friend3,friend1,friend3],
-                zoom: 12,
-                center: [116.312878,39.872414],
+                zoom: 14,
+                //center: [116.312878,39.872414],
                 lng: 0,
                 lat: 0,
                 loaded: false,
-                plugin: [{
-                    pName: 'Geolocation',
+                center: [116.33351,39.97011],
+                contentWindow: {
+                    position: [116.33351,39.97011],
+                    content: '北京致远嘉禾科技发展有限公司',
+                    visible: true,
                     events: {
-                        init(o) {
-                            // o 是高德地图定位插件实例
-                            o.getCurrentPosition((status, result) => {
-                                if (result && result.position) {
-                                    self.lng = result.position.lng;
-                                    self.lat = result.position.lat;
-                                    self.center = [self.lng, self.lat];
-                                    self.loaded = true;
-                                    self.$nextTick();
-                                }
-                            });
+                        close() {
+                            console.log('close infowindow');
                         }
                     }
-                }]
-                /*address: '',
-                events: {
-                    init(o) {
-                        // o 是高德地图定位插件实例
-                        o.getCurrentPosition((status, result) => {
-                            if (result && result.position) {
-                                self.lng = result.position.lng;
-                                self.lat = result.position.lat;
-                                self.center = [self.lng, self.lat];
-                                self.loaded = true;
-                                self.$nextTick();
-                            }
-                        });
-                    },
-                    click(e) {
-                        let { lng, lat } = e.lnglat;
-                        self.lng = lng;
-                        self.lat = lat;
-
-                        // 这里通过高德 SDK 完成。
-                        var geocoder = new AMap.Geocoder({
-                            radius: 1000,
-                            extensions: "all"
-                        });
-                        geocoder.getAddress([lng ,lat], function(status, result) {
-                            if (status === 'complete' && result.info === 'OK') {
-                                if (result && result.regeocode) {
-                                    self.address = result.regeocode.formattedAddress;
-                                    self.$nextTick();
-                                }
-                            }
-                        });
-                    }
-                }*/
+                },
             }
         },
         created(){
-
+            this.getData();
         },
         components: {
             swiper,swiperSlide,InnerTitle,TextIscroll
@@ -218,7 +167,28 @@
             this.swiper.slideTo(3, 1000, false)*/
         },
         methods: {
+            getData(){
+                $api.post('/index/index/index1.html').then((res)=>{
+                    if(res.code == 200){
+                        res.data.slideImages.map((item,k)=>{
+                            item.image = this.swiperItems[k+1];
+                        });
+                        //轮播图
+                        this.slideImages = res.data.slideImages;
+                        console.log(this.slideImages);
+                        //新闻列表
+                        /*res.data.newsList.map(el=>{
+                            this.newsList.push(el);
+                        });*/
+                        this.newsList = res.data.newsList;
 
+                        //随意模拟一下
+                        this.newsList = this.newsList.concat(this.newsList).concat(this.newsList);
+                    }else{
+                        Toast(res.message || '服务器错误！');
+                    }
+                });
+            }
         },
         watch: {
 

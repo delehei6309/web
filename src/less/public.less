@@ -1,6 +1,8 @@
 @charset "UTF-8";
 @import "variables";
-
+body{
+    //background-color:#efefef;
+}
 .content-view{
     .banner-box{
         height:315px;
@@ -23,12 +25,15 @@
     .inner-list-title{
         color:@color-blue2;
         padding:10px 0;
-        border-bottom:1px solid @color-blue2;
+        border-bottom:@border-default;
         *{
             color:@color-blue2;
+            font-size: 18px;
+            margin: 0;
+            padding: 5px 0;
         }
     }
-    .inner-list{
+    .inner-list,.inner-detail{
         padding:10px 0;
     }
 }
@@ -37,4 +42,45 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     width:202px;
+}
+.img-box{
+    min-height: 80px;
+    min-width:80px;
+    position:relative;
+    padding:8px;
+    >img{
+        width:auto;
+        height:auto;
+        max-width:98%;
+        max-height:98%;
+        position: absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+    }
+}
+//分页
+.pagination-wrap{
+    position:relative;
+    height:45px;
+    padding:5px;
+    .pagination{
+        position: absolute;
+        left:50%;
+        transform: translateX(-50%);
+        .page-link{
+            color:@color-active;
+        }
+        .page-item.active .page-link{
+            background-color:@color-active;
+            border-color:@color-active;
+            color:#fff;
+        }
+    }
+}
+.content-wrap{
+    padding-top:20px;
+    >*{
+        margin:0 auto;
+    }
 }

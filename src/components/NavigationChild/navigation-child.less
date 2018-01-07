@@ -2,8 +2,11 @@
 @import "../../less/variables";
 
 .navigation-child {
+    border:@border-default;
     .nav-title{
-        font-size: 28px;
+        font-size: 24px;
+        padding: 10px;
+        color: #333;
     }
     .nav-items{
         width:230px;
@@ -12,13 +15,19 @@
                 font-size:16px;
                 height:50px;
                 line-height: 50px;
-                background:#efefef url("../../images/nav1.png") no-repeat 20px 50%;
+                border-radius:4px 4px 0 0;
+                background:#dfdfdf url("../../images/nav1.png") no-repeat 20px 50%;
+                //background-image: linear-gradient(-1deg, #efefef 0%, #efefef 24%, #efeeef 70%, #eeeeee 100%);
                 padding-left: 51px;
                 background-size:20px;
                 cursor: pointer;
+                border-bottom:1px solid #193c7e;
                 &.active{
                     background-image: url("../../images/nav2.png");
+                    border-radius:4px;
                     background-color: #193c7e;
+                    border:0;
+                    //background-image: linear-gradient(-1deg, #7C4F2B 0%, #8F6441 24%, #D8BD7E 70%, #EECE83 100%);
                     color:#fff;
                 }
                 a{
@@ -28,6 +37,7 @@
             }
             .child-items{
                 overflow: hidden;
+                background-color:#fff;
                 .child-list{
                     padding-left:40px;
                     height:40px;

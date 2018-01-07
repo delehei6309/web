@@ -2,10 +2,10 @@
     <div class="inner-detail product-detail">
         <!--详细内容-->
         <div class="inner-main">
-            <div class="product-detail-img">
-                <img :src="productInfor.image" alt="">
+            <div class="product-detail-img img-box">
+                <img v-lazy="productInfor.image" alt="">
             </div>
-            <div>{{productInfor.content}}}</div>
+            <div v-html="productInfor.content" class="content-wrap"></div>
         </div>
     </div>
 </template>
@@ -13,7 +13,7 @@
 <script>
     import $api from '../tools/api';
     import '../less/product-detail.less';
-    import axios from 'axios';
+    //import axios from 'axios';
     import Toast from "../components/Toast/toast";
     export default {
         props:[],
@@ -26,10 +26,10 @@
         },
         created(){
             $api.post('/index/product/productDetail.html',{
-                id:123
+                id:this.$route.params.id
             }).then((res)=>{
                 if(res.code == 200){
-                    this.productInfor = res.data.productInfor;
+                    this.productInfor = res.data.productInfo;
                 }else{
                     Toast(res.message || '服务器错误！')
                 }
