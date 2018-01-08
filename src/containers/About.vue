@@ -5,8 +5,24 @@
             <div class="clear box-width">
                 <navigation-list :navItems="navItems"></navigation-list>
                 <!--<router-view  class="content-view"></router-view>-->
-                关于我们
+                关于我们{{navItems.children}}
+                <a type="button">点我</a>
             </div>
+            <ul>
+                <li v-for="item in navItems">
+                    <dl>
+                        <dt>{{item.title}}</dt>
+                        <dd>
+                            <div v-for="child in item.children">
+                                <div>{{child.catename}}</div>
+                                <div>
+                                    <p v-for="list in child.articleList">{{list.title}}</p>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -15,11 +31,13 @@
     import $api from '../tools/api';
     import '../less/product-information.less';
     import NavigationList from '../components/NavigationChild';
+    import {mapState} from 'vuex';
+    import store from '../store';
     export default {
         name: 'about',
         data(){
             return {
-                navItems:[
+                /*navItems:[
                 {
                     name:'数据中心建设',
                     link:'my',
@@ -67,17 +85,23 @@
                     name:'获奖感言',
                     link:'thanks'
                 }
-            ]
+            ]*/
 
             }
         },
         created(){
-
+            console.log('000000000000000----------->>>>',this.merchantNumStatus);
+            this.$store.dispatch('getNavigation',2);
+            console.log('000000000000000----------->>>>',this.navItems);
         },
         components: {
             NavigationList
         },
-        computed: {},
+        computed: {
+            ...mapState([
+                'merchantNumStatus','navItems'
+            ])
+        },
         methods: {
 
         },

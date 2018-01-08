@@ -20,7 +20,8 @@ let pathObj = {
     '/index/product/getProductListByCateid.html':'secondCateList',
     '/index/article/clickCate.html':'newsClickCate',
     '/index/product/productDetail.html':'productDetail',
-    '/index/article/articleDetail.html':'articleDetail'
+    '/index/article/articleDetail.html':'articleDetail',
+    '/channel/getChannelUser':'channelUser'
 };
 let resultObj = {};
 for(let i in pathObj){
