@@ -4,9 +4,10 @@ Vue.use(BootstrapVue);
 
 import VueLazyload from 'vue-lazyload';
 const loading = require('./images/loading2.gif');
+const error = require('./images/error.png');
 Vue.use(VueLazyload, {
     preLoad: 1.3,
-    error: './img/error.jpg',
+    error: error,
     loading: loading,
     //attempt: 1,
     //listenEvents: [ 'scroll', 'mousewheel' ]

@@ -1,7 +1,7 @@
 <template>
     <div class="nav">
         <div class="nav-content box-width">
-            <ul class="clear">
+            <ul class="clear ul-navigation">
                 <li v-for="(item,index) in navItems"
                     @mouseenter="mouseenterEvent(item,index)"
                     @mouseleave="mouseleaveEvent(item)"
@@ -31,7 +31,7 @@
                         </template>
                         <template v-if="item.id != 2 && item.id != 1">
                             <div class="nav-child clear" :style="{'width':item.width || '300px'}" v-show="item.show" @click="item.show=false">
-                                <dl v-for="(child,k) in item.children" class=" t">
+                                <dl v-for="(child,k) in item.children" class="no-product">
                                     <dt class="nav-child-view">
                                         <router-link :to="{name:item.name,params:{id:child.id || '234'}}"
                                                      active-class="menu-active"
@@ -81,6 +81,7 @@
                         id:4,
                         link:'/parent/successful-case',
                         title:'成功案例',
+                        name:'successful-list',
                         children:null,
                         show:false
                     },{
@@ -100,6 +101,7 @@
                         id:8,
                         link:'/parent/about',
                         title:'关于我们',
+                        name:'about-list',
                         children:null,
                         show:false
                     }/*,{

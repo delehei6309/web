@@ -39,7 +39,7 @@
         name: 'product-list',
         data(){
             return {
-                pageSize:20,
+                pageSize:15,
                 pageCount:1,
                 productCount:0,
                 articleList:null
@@ -58,30 +58,30 @@
                 let {pageCount,pageSize} = this;
                 let url = '/index/product/clickProductCate.html';
                 let data = {
-                    pageCount
+                    pageCount,
+                    pageSize
                 };
                 if(paramsId){
                     //若存在id
                     url = '/index/product/getProductListBySecondCateid.html';
                     data = {
                         second_cateid:paramsId,
-                        pageCount
+                        pageCount,
+                        pageSize
                     };
                     if(this.$route.query.pid == '0'){
                         url = '/index/product/getProductListByCateid.html';
                         data = {
                             cate_id:paramsId,
-                            pageCount
+                            pageCount,
+                            pageSize
                         }
                     }
                 }
                 $api.post(url,data).then((res)=>{
                     if(res.code == 200){
                         this.articleList = res.data.articleList;
-                        console.log(this.articleList);
-                        /*res.data.articleList.map((item)=>{
-                            this.articleList.push(item);
-                        });*/
+                        this.productCount = res.data.productCount;
                     }else{
                         Toast(res.message || '服务器错误！');
                     }

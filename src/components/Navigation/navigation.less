@@ -16,9 +16,11 @@
                 font-size: 14px;
                 font-weight: bold;
                 position: relative;
+                margin-right: 5px;
                 a{
                     color:#000000;
                     text-decoration: none;
+                    //display:block;
                 }
                 .nav-child{
                     position: absolute;
@@ -53,6 +55,19 @@
                                 width:auto;
                             }
                         }
+                    }
+                }
+            }
+        }
+        .ul-navigation{
+            >li{
+                >.nav-view{
+                    a{
+                        display:block;
+                    }
+                    .menu-active,a:hover{
+                        color:#fff;
+                        background-color:#193c7e;
                     }
                 }
             }
