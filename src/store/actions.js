@@ -12,8 +12,14 @@ let getUserInfo = () => {
     return $api.post('/channel/getChannelUser');
 };
 //获取导航
-let getNavigation = () => {
-    return $api.post('/index/cate/moveOnCate.html');
+let getNavigation = (id) => {
+    console.log('000000000000000000',id)
+    let url = '/index/cate/moveOnCate.html';
+    if(id == 2){
+        //产品
+        url =  '/index/product_cate/getProductCateList.html';
+    }
+    return $api.post(url,{cateid:id});
 };
 actions.getUserInfo = ({commit}) => {
     return getUserInfo()
@@ -25,20 +31,31 @@ actions.getUserInfo = ({commit}) => {
         });
 };
 actions.getNavigation = ({commit},id)=>{
-    console.log(id);
-    return getNavigation()
+
+
+    return getNavigation(id)
         .then(data => {
             if (data.code == 200) {
-                navItems.forEach(el=>{
+                /*state.navItems.forEach(el=>{
                     if(el.id == id){
                         if(!el.children || el.children.length<1){
                             el.children = data.data.secondCateList;
-                            console.log(data)
+                            if(id == 1){
+                                //产品真是特殊
+                                el.children = data.data.productCateList;
+                            }
+                            el.children = data.data.secondCateList;
                             return
                         }
                     }
-                });
-                commit('setNavigation',navItems)
+                });*/
+                let list = data.data.secondCateList;
+                if(id == 1){
+                    //产品真是特殊
+                    list = data.data.productCateList;
+                }
+
+               commit('setNavigation',{list,id})
             }
             return data;
         });

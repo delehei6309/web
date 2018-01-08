@@ -9,11 +9,12 @@ let navItems = [
         id:2,
         title:'产品信息',
         link:'/parent/product-information',
-        children:[],
+        children:null,
         show:false
     },{
         id:3,
         link:'/parent/press-center',
+        name:'press-list',
         title:'新闻中心',
         children:null,
         show:false
@@ -24,33 +25,22 @@ let navItems = [
         children:null,
         show:false
     },{
-        id:5,
+        id:6,
         link:'/parent/solution',
+        name:'solution-list',
         title:'解决方案',
         children:null,
+        width:'400px',
         show:false
     },{
-        id:6,
+        id:7,
         link:'/parent/technical-support',
         title:'技术支持',
         children:null
     },{
-        id:7,
-        link:'/parent/about',
-        title:'关于公司',
-        children:null,
-        show:false
-    },{
         id:8,
-        link:'/parent/join-us',
-        title:'加入我们',
-        children:null,
-        show:false
-    },{
-        id:9
-        ,
-        link:'/parent/contact-us',
-        title:'联系我们',
+        link:'/parent/about',
+        title:'关于我们',
         children:null,
         show:false
     }

@@ -32,7 +32,7 @@
     import '../less/product-information.less';
     import NavigationList from '../components/NavigationChild';
     import {mapState} from 'vuex';
-    import store from '../store';
+    //import store from '../store';
     export default {
         name: 'about',
         data(){

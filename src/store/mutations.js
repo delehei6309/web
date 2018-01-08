@@ -21,10 +21,17 @@ mutations.setUserInfo = (state, data) => {
 
 // 导航
 
-mutations.setNavigation = (state, data) => {
+mutations.setNavigation = (state, {list,id}) => {
 
-    if (data) {
-        state.navItems = data;
+    if (list) {
+        console.log(id);
+        state.navItems.forEach(el=>{
+            if(el.id == id){
+                console.log(el)
+                el.children = list;
+            }
+        });
+        //state.navItems = data;
     }
     console.log(state)
 };

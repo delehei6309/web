@@ -2,11 +2,15 @@
     <div class="successful-case">
         <div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>
         <div>
-           <!-- <div class="clear box-width">
-                <navigation-list :navItems="navItems"></navigation-list>
-                <router-view  class="content-view"></router-view>
-            </div>-->
-            案例
+           <div class="clear box-width">
+               <navigation-list :title="'网站导航'" :navs="navItems"></navigation-list>
+               <div class="right inner-right">
+                   <div class="inner-list-title">
+                       <h6>{{innerTitle}}</h6>
+                   </div>
+                   <router-view ></router-view>
+               </div>
+           </div>
         </div>
     </div>
 </template>
@@ -19,6 +23,7 @@
         name: 'successful-case',
         data(){
             return {
+                innerTitle:'233',
                 navItems:[
                 {
                     name:'数据中心建设',
