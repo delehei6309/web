@@ -236,8 +236,8 @@ let routes = [
                         }
                     },
                     {
-                        path:'solution-detail/:id',
-                        name:'solution-detail',
+                        path:'technical-detail/:id',
+                        name:'technical-detail',
                         component:PressDetail,//
                         meta: {
                             title: title
@@ -265,6 +265,13 @@ let routes = [
                         path:'about-list/:id',
                         name:'about-list',
                         component:PressList,//
+                        meta: {
+                            title: title
+                        },
+                    },{
+                        path:'about-detail/:id',
+                        name:'about-detail',
+                        component:PressDetail,//
                         meta: {
                             title: title
                         },

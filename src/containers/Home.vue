@@ -17,13 +17,14 @@
         <div class="inner-box">
             <div class="box-width clear">
                 <div class="small-con">
-                    <inner-title :title="'新闻动态'" :link="'/parent/solution/data-center'"></inner-title>
+                    <inner-title :title="'新闻动态'"
+                                 :link="'/parent/press-center/press-list'"></inner-title>
                     <div class="news-content com-content">
                         <text-iscroll :items="newsList"></text-iscroll>
                     </div>
                 </div>
                 <div class="big-con right">
-                    <inner-title :title="'公司简介'"></inner-title>
+                    <inner-title :title="'公司简介'" :link="'/parent/about/about-list'"></inner-title>
                     <div class="intro com-content">
                         <div class="img-box">
                             <img src="../images/intro1.jpg" alt="" >
@@ -37,22 +38,28 @@
             <div class="box-width clear">
 
                 <div class="big-con">
-                    <inner-title :title="'解决方案'"></inner-title>
-                    <div class="intro com-content">
-                        <div class="img-box">
-                            <img src="../images/picture/kaka.jpg" alt="" >
-                        </div>
-                        <span>
-                            2006-07赛季意甲联赛里，卡卡打入8球，被评为意甲联赛最佳球员和最佳外援。在欧洲冠军联赛里，卡卡在1/8决赛射入致胜的一球；在1/4决赛，半决赛中，卡卡都有进球，协助AC米兰杀入决赛。在决赛中，卡卡助攻因扎吉射入一球，协助AC米兰第七次夺取冠军杯。卡卡以10球成为本届冠军联赛的最佳射手并被评为最佳球员和最佳前锋。
-                            2007年12月，在日本举行的世界俱乐部杯决赛中，卡卡两次助攻因扎吉并打入一球，帮助AC米兰以4比2完胜博卡青年，夺得冠军，同时卡卡也被评为2007年世界俱乐部杯最佳球员、2007年金球奖及世界足球先生等多个奖项。
-                            2007-08赛季，卡卡在意甲联赛里打入15球，是AC米兰队中的头号射手。卡卡也是联赛助攻第二多的球员。但AC米兰整体表现不佳，没有获得2008-09赛季冠军联赛的参赛资格
-                        </span>
+                    <inner-title :title="'解决方案'" :link="'/parent/solution/solution-list'"></inner-title>
+                    <div class="intro com-content solution">
+                        <ul class="clear solution-items">
+                            <li class="clear solution-item" v-for="item in projectList">
+                                <div class="imgs">
+                                    <img :src="item.pic || defaultPic" alt="">
+                                </div>
+                                <div class="right">
+                                    <div class="title">
+                                        <router-link
+                                            :to="{path:'/parent/solution/solution-detail/'+item.id}">{{item.title}}</router-link>
+                                    </div>
+                                    <div class="">{{item.desc}}</div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="small-con right">
-                    <inner-title :title="'案例展示'" :link="'/parent/solution/data-center'"></inner-title>
+                    <inner-title :title="'案例展示'" :link="'/parent/successful-case/successful-list'"></inner-title>
                     <div class="news-content com-content">
-                        <text-iscroll :items="newsList"></text-iscroll>
+                        <text-iscroll :items="caseShowList" :link="'/parent/successful-case/successful-detail/'"></text-iscroll>
                     </div>
                 </div>
             </div>
@@ -70,7 +77,7 @@
                 </div>
                 <div class="small-con right">
                     <inner-title :title="'我们的位置'" :more="'none'"></inner-title>
-                    <div style="height:280px;">
+                    <div style="height:222px;">
                         <el-amap class="amap-box" :vid="'amap'" :center="center" :zoom="zoom">
                             <el-amap-info-window
                                 :position="contentWindow.position"
@@ -82,6 +89,17 @@
                         </el-amap>
                     </div>
                 </div>
+            </div>
+            <div class="box-width link-list">
+                <dl class="clear">
+                    <dt tit="友情链接">
+                        <img :src="friendLink" alt="">
+                    </dt>
+                    <dd>
+                        <a v-for="item in linkList"
+                            :href="item.url">{{item.title}}</a>
+                    </dd>
+                </dl>
             </div>
         </div>
     </div>
@@ -101,6 +119,8 @@
     const friend1 = require('../images/friend1.jpg');
     const friend2 = require('../images/friend2.jpg');
     const friend3 = require('../images/friend3.jpg');
+    const defaultPic = require('../images/defaultpic.gif');
+    const friendLink = require('../images/friend-link.jpg');
     import Vue from 'vue';
     import AMap from 'vue-amap';
     import Toast from "../components/Toast/toast";
@@ -114,9 +134,14 @@
         data(){
             let self = this;
             return {
+                defaultPic:defaultPic,
+                friendLink:friendLink,
                 swiperItems:[pic1,pic2,pic3,pic4],
                 slideImages:null,
                 newsList:[],
+                caseShowList:[],
+                projectList:[],//解决方案
+                linkList:[],
                 swiperOption: {
                     navigation: {
                         nextEl: '.swiper-button-next',
@@ -177,13 +202,15 @@
                         this.slideImages = res.data.slideImages;
                         console.log(this.slideImages);
                         //新闻列表
-                        /*res.data.newsList.map(el=>{
-                            this.newsList.push(el);
-                        });*/
                         this.newsList = res.data.newsList;
-
+                        //案列
+                        this.caseShowList = res.data.caseShowList;
                         //随意模拟一下
-                        this.newsList = this.newsList.concat(this.newsList).concat(this.newsList);
+                        //this.newsList = this.newsList.concat(this.newsList).concat(this.newsList);
+                        //解决方案
+                        this.projectList = res.data.projectList;
+                        //友链
+                        this.linkList = res.data.linkList;
                     }else{
                         Toast(res.message || '服务器错误！');
                     }

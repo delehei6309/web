@@ -40,7 +40,9 @@
                 routeName:{
                     'press-list':'press-detail',
                     'solution-list':'solution-detail',
-                    'successful-list':'successful-detail'
+                    'successful-list':'successful-detail',
+                    'technical-list':'technical-detail',
+                    'about-list':'about-detail'
                 },
                 routePath:'press-list'
 
