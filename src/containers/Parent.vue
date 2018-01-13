@@ -57,7 +57,7 @@
         },
         computed: {
             key() {
-                return this.$route.name !== undefined? this.$route.name +new Date(): this.$route +new Date()
+                return this.$route.name !== undefined? this.$route.name +new Date().getTime(): this.$route +new Date().getTime();
             }
         },
         methods: {

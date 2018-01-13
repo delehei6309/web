@@ -1,7 +1,7 @@
 <template>
     <div class="inner-detail">
         <!--详细内容-->
-        <div class="inner-main">
+        <div class="inner-main" v-if="title || author || create_time || click || desc || content">
             <h6 class="tit">{{title}}</h6>
             <p><span class="tit">作者：</span><span>{{author}}</span></p>
             <ul class="clear">
@@ -21,6 +21,7 @@
             <p class="desc">{{desc}}</p>
             <div v-html="content"></div>
         </div>
+        <p v-else>此处空空，没有内容！</p>
     </div>
 </template>
 
@@ -34,13 +35,13 @@
         name: 'other-detail',
         data(){
             return {
-                router: 'ppp',
-                title:'title',
-                create_time:'2018-01-01',
-                author:'作者',
-                click:'1000000',
-                desc:'摘要',
-                content:'content'
+                router: '',
+                title:'',
+                create_time:'',
+                author:'',
+                click:'',
+                desc:'',
+                content:''
             }
         },
         created(){
