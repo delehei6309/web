@@ -18,6 +18,7 @@ const Solution = () => import('../containers/PressCenter');
 const PressList = () => import('../containers/PressList');
 const ProductDetail = () => import('../containers/ProductDetail');
 const PressDetail = () => import('../containers/PressDetail');
+const OtherDetail = () => import('../containers/OtherDetail');
 const SuccessfulCase = () => import('../containers/SuccessfulCase');
 const About = () => import('../containers/About');
 const DataCenter = () => import('../containers/DataCenter');
@@ -152,7 +153,7 @@ let routes = [
                     {
                         path:'successful-list',
                         name:'successful-list-first',
-                        component:PressList,//
+                        component:OtherDetail,//
                         meta: {
                             title: title
                         },
@@ -160,7 +161,7 @@ let routes = [
                     {
                         path:'successful-list/:id',
                         name:'successful-list',
-                        component:PressList,//
+                        component:OtherDetail,//
                         meta: {
                             title: title
                         }
@@ -222,7 +223,7 @@ let routes = [
                     {
                         path:'technical-list',
                         name:'technical-list-first',
-                        component:PressList,//
+                        component:OtherDetail,//
                         meta: {
                             title: title
                         },
@@ -230,11 +231,11 @@ let routes = [
                     {
                         path:'technical-list/:id',
                         name:'technical-list',
-                        component:PressList,//
+                        component:OtherDetail,//
                         meta: {
                             title: title
                         }
-                    },
+                    }/*,
                     {
                         path:'technical-detail/:id',
                         name:'technical-detail',
@@ -242,7 +243,7 @@ let routes = [
                         meta: {
                             title: title
                         }
-                    }
+                    }*/
                 ]
             },{
                 path:'about',
@@ -257,25 +258,25 @@ let routes = [
                     {
                         path:'about-list',
                         name:'about-list-first',
-                        component:PressList,//
+                        component:OtherDetail,//
                         meta: {
                             title: title
                         },
                     },{
                         path:'about-list/:id',
                         name:'about-list',
-                        component:PressList,//
+                        component:OtherDetail,//
                         meta: {
                             title: title
                         },
-                    },{
+                    }/*,{
                         path:'about-detail/:id',
                         name:'about-detail',
                         component:PressDetail,//
                         meta: {
                             title: title
                         },
-                    }
+                    }*/
                 ]
             }
         ]

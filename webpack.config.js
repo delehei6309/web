@@ -109,7 +109,7 @@ const config = {
         // new WebpackMd5Hash(),
         new HtmlWebpackPlugin({
             title: '北京致远嘉禾科技发展有限公司',
-            favicon: './src/images/logo.png',
+            favicon: './src/images/favicon.png',
             meta:{
                 keywords:'sb'
             },

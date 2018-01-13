@@ -5,8 +5,7 @@ let protocol = window.location.protocol;
 console.log(protocol)
 export const devUrl = `${protocol}//localhost/company/public`;
 export const testUrl = `${protocol}//127.0.0.1`;
-export const productionUrl = `${protocol}//127.0.0.1`;
-export const telNumber = '400-100-1000';
+export const productionUrl = `${protocol}//zhiyuan.com`;
 console.log(devUrl);
 export const sysDev = '';
 export const sysTest = '';

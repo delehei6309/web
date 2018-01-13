@@ -22,7 +22,7 @@
                                         >{{child.catename}}</router-link>
                                     </dt>
                                     <dd v-for="grandson in child.secondCateList">
-                                        <router-link :to="{name:'product-list',params:{id:grandson.id || '234'}}"
+                                        <router-link :to="{name:'product-list',params:{id:grandson.id}}"
                                                      active-class="menu-active"
                                         >{{grandson.catename}}</router-link>
                                     </dd>
@@ -33,7 +33,7 @@
                             <div class="nav-child clear" :style="{'width':item.width || '300px'}" v-show="item.show" @click="item.show=false">
                                 <dl v-for="(child,k) in item.children" class="no-product">
                                     <dt class="nav-child-view">
-                                        <router-link :to="{name:item.name,params:{id:child.id || '234'}}"
+                                        <router-link :to="{name:item.name,params:{id:child.id }}"
                                                      active-class="menu-active"
                                         >{{child.catename}}</router-link>
                                     </dt>

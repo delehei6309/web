@@ -1,7 +1,7 @@
 <template>
     <div class="press-center">
-        <!--<div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>-->
-        <swiper></swiper>
+        <div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>
+        <!--<swiper></swiper>-->
         <div>
             <div class="clear box-width">
                 <navigation-list :title="'网站导航'" :navs="navItems" :id="id"></navigation-list>
@@ -9,7 +9,7 @@
                     <div class="inner-list-title">
                         <h6>{{innerTitle}}</h6>
                     </div>
-                    <router-view :id="id"></router-view>
+                    <router-view :nav-id="id"></router-view>
                 </div>
 
             </div>
@@ -57,11 +57,13 @@
                         id:8
                     }
                 },
-                innerTitle:''
+                innerTitle:'',
+                id:'1',
 
             }
         },
         created(){
+            console.log(this.id);
             let paramId = this.$route.params.id;
             //匹配当前是哪个
             let path = this.$route.path;
@@ -82,6 +84,7 @@
                 if(res.code == 200){
                     res.data.secondCateList.map((item)=>{
                         item.link = this.link;
+
                         this.navItems.push(item);
                     });
                     /*//默认展示的内容

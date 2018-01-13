@@ -5,12 +5,12 @@
             <div class="clear product-items">
                 <dl v-for="(item) in articleList">
                     <dt>
-                        <router-link :to="{name:'product-detail',params:{id:item.id}}"><img  v-lazy="item.image" alt=""></router-link>
+                        <router-link :to="{name:'product-detail',params:{id:item.id},query:{second_cateid:item.second_cateid}}"><img  v-lazy="item.image" alt=""></router-link>
 
                     </dt>
                     <dd class="ellipsis">
                         <span>名称：</span><router-link
-                            :to="{name:'product-detail',params:{id:item.id}}"
+                            :to="{name:'product-detail',params:{id:item.id},query:{second_cateid:item.second_cateid}}"
                             :title="item.name">{{item.name}}</router-link>
                     </dd>
                     <dd>

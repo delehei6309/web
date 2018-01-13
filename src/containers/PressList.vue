@@ -5,7 +5,7 @@
             <div class=" press-items">
                 <dl v-for="(item) in articleList" class="clear">
                     <dt class="ellipsis">
-                        <router-link :to="{'name':routeName[routePath],params:{id:item.id}}">{{item.title}}</router-link>
+                        <router-link :to="{'name':routeName[routePath],params:{id:item.id},query:{second_cateid:item.second_cateid}}">{{item.title}}</router-link>
                     </dt>
                     <dd class="right">{{item.create_time}}</dd>
                 </dl>
@@ -29,7 +29,7 @@
     import axios from 'axios';
     import Toast from '../components/Toast';
     export default {
-        props:['id'],
+        props:['navId'],
         name: 'product-list',
         data(){
             return {
@@ -49,6 +49,7 @@
             }
         },
         created(){
+            console.log(this.navId);
             console.log(this.$route);
             let path = this.$route.path;
             if(this.$route.name.indexOf('first')>-1){
@@ -72,10 +73,11 @@
                 let {pageSize,pageCount} = this;
                 let url = '/index/article/clickCate.html';
                 let data = {
-                    cateid:this.id,
+                    cateid:this.navId,
                     pageCount,
                     pageSize
                 };
+                console.log('========.....',paramsId)
                 if(paramsId){
                     url = '/index/article/getArticleList.html';
                     data = {

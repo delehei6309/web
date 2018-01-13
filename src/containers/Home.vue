@@ -20,7 +20,7 @@
                     <inner-title :title="'新闻动态'"
                                  :link="'/parent/press-center/press-list'"></inner-title>
                     <div class="news-content com-content">
-                        <text-iscroll :items="newsList"></text-iscroll>
+                        <text-iscroll :items="newsList" :link="'/parent/press-center/press-detail/'"></text-iscroll>
                     </div>
                 </div>
                 <div class="big-con right">

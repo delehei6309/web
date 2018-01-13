@@ -15,7 +15,7 @@
 <script>
     import './text-iscroll.less';
     export default {
-        name: 'inner-title',
+        name: 'text-iscroll',
         props:['items','viewSize','link'],
         data(){
             return {

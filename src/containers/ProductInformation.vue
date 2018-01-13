@@ -46,9 +46,14 @@
                 if(res.code == 200){
                     res.data.productCateList.map((item)=>{
                         this.navItems.push(item);
-                        if(paramId && (item.id == paramId.toString().substring(0,2))){//id之间的关系
+                        /*item.secondCateList.forEach((m)=>{
+                            if(m.id == paramId){
+                                this.listName = item.catename + '——' +m.catename;
+                            }
+                        });*/
+                        /*if(paramId && (item.pid == paramId)){//id之间的关系
                             this.listName = item.catename;
-                        }
+                        }*/
                     });
                 }else{
                     Toast(res.message || '服务器错误！');
