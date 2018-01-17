@@ -67,17 +67,26 @@
                     </div>
                 </div>
             </div>
-            <div class="box-width clear">
+            <!--<div class="box-width clear">
 
                 <div class="big-con">
-                    <inner-title :title="'合作伙伴'"></inner-title>
+                    &lt;!&ndash;<inner-title :title="'合作伙伴'"></inner-title>
                     <div class="friend com-content">
                         <ul class="clear">
                             <li v-for="(item,index) in friends">
                                 <img :src="item" >
                             </li>
                         </ul>
-                    </div>
+                    </div>&ndash;&gt;
+                    <dl class="clear">
+                        <dt tit="友情链接">
+                            <img :src="friendLink" alt="">
+                        </dt>
+                        <dd>
+                            <a v-for="item in linkList"
+                               :href="item.url">{{item.title}}</a>
+                        </dd>
+                    </dl>
                 </div>
                 <div class="small-con right">
                     <inner-title :title="'我们的位置'" :more="'none'"></inner-title>
@@ -89,11 +98,11 @@
                                 :visible = "contentWindow.visible"
                                 :events="contentWindow.events">
                             </el-amap-info-window>
-                            <!--<el-amap-marker :position="center" ></el-amap-marker>-->
+                            &lt;!&ndash;<el-amap-marker :position="center" ></el-amap-marker>&ndash;&gt;
                         </el-amap>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="box-width link-list">
                 <dl class="clear">
                     <dt tit="友情链接">
@@ -121,14 +130,14 @@
     const friend3 = require('../images/friend3.jpg');
     const defaultPic = require('../images/defaultpic.gif');
     const friendLink = require('../images/friend-link.jpg');
-    import Vue from 'vue';
-    import AMap from 'vue-amap';
+    /*import Vue from 'vue';
+    import AMap from 'vue-amap';*/
     import Toast from "../components/Toast/toast";
-    Vue.use(AMap);
+    /*Vue.use(AMap);
     AMap.initAMapApiLoader({
         key: '4e4f60b6ba1c6d1ced6c01e3777e7b01',
         plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
-    });
+    });*/
     export default {
         name: 'home',
         data(){

@@ -1,0 +1,11 @@
+{
+    "code":"200",
+    "message":"success",
+    "result":"true",
+    "data":{
+        "merchantNumStatus": "缪清",
+        "certAuditingStatus": "焦秋月",
+        "certificationStatus": "陈欣欣",
+        "delFlag": "1"
+    }
+}

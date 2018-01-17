@@ -21,6 +21,7 @@ let pathObj = {
     '/index/article/clickCate.html':'newsClickCate',
     '/index/product/productDetail.html':'productDetail',
     '/index/article/articleDetail.html':'articleDetail',
+    '/channel/getChannelUser':'channelUser',
     '/index/index/index.html':'home'
 };
 let resultObj = {};

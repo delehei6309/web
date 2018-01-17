@@ -4,7 +4,7 @@
         <!--<swiper></swiper>-->
         <div>
             <div class="clear box-width">
-                <navigation-list :title="'网站导航'" :navs="navItems" :id="id"></navigation-list>
+                <navigation-list :title="'网站导航'" :id="id"></navigation-list>
                 <div class="right inner-right">
                     <div class="inner-list-title">
                         <h6>{{innerTitle}}</h6>
@@ -80,24 +80,7 @@
             let cateid = this.id;
             console.log(cateid)
             //获取左边导航与首次展示内容
-            $api.post('/index/article/clickCate.html',{cateid}).then((res)=>{
-                if(res.code == 200){
-                    res.data.secondCateList.map((item)=>{
-                        item.link = this.link;
 
-                        this.navItems.push(item);
-                    });
-                    /*//默认展示的内容
-                    if(!paramId){
-                        res.data.articleList.map((item)=>{
-                            this.articleList.push(item);
-                        });
-                    }
-                    console.log(this.articleList);*/
-                }else{
-                    Toast(res.message || '服务器错误！');
-                }
-            });
         },
         components: {
             NavigationList,Swiper

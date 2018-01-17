@@ -14,13 +14,13 @@ Vue.use(VueLazyload, {
 });
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-import 'flex.css/dist/flex.css';
+//import 'flex.css/dist/flex.css';
 import './less/base.less';
 import './less/public.less';
 import App from './App';
 import router from './router';
 import * as filters from './filters';
-//import store from './store';
+import store from './store';
 
 Object.keys(filters).forEach(key=>{
     Vue.filter(key, filters[key]);
@@ -29,7 +29,7 @@ Object.keys(filters).forEach(key=>{
 new Vue({
     el: '#app',
     router,
-    //store,
+    store,
     render: h => h(App)
 });
 
