@@ -1,6 +1,9 @@
 <template>
     <div class="press-center">
-        <div class="banner-box"><img src="../images/picture/pic1.jpg" alt=""></div>
+        <div class="banner-box" v-for="(item,key) in bannerItems"
+             v-if="$route.path.indexOf(key)>-1">
+            <img :src="item" alt="">
+        </div>
         <!--<swiper></swiper>-->
         <div>
             <div class="clear box-width">
@@ -18,9 +21,14 @@
 </template>
 
 <script>
-    import $api from '../tools/api';
     import '../less/press-center.less';
     import NavigationList from '../components/NavigationChild';
+    import linkConfig from '../linkConfig.js';
+    const press = require('../images/banner/news.jpg');
+    const successful = require('../images/banner/case.jpg');
+    const solution = require('../images/banner/solution.jpg');
+    const technical = require('../images/banner/technical.jpg');
+    const about = require('../images/banner/about.jpg');
     //import Swiper from '../components/Swiper';
     import Toast from '../components/Toast';
     export default {
@@ -30,36 +38,15 @@
                 navItems:[],
                 //items:[],//列表
                 articleList:[],
-                htmlConfig:{
-                    solution:{
-                        innerTitle:'解决方案',
-                        link:'solution-list',
-                        id:6,
-                    },
-                    press:{
-                        innerTitle:'新闻中心',
-                        link:'press-list',
-                        id:3,
-                    },
-                    successful:{
-                        innerTitle:'成功案例',
-                        link:'successful-list',
-                        id:4
-                    },
-                    technical:{
-                        innerTitle:'技术支持',
-                        link:'innerTitle-list',
-                        id:7
-                    },
-                    about:{
-                        innerTitle:'关于我们',
-                        link:'about-list',
-                        id:8
-                    }
-                },
                 innerTitle:'',
                 id:'1',
-
+                bannerItems:{
+                    press:press,
+                    case:successful,
+                    solution:solution,
+                    technical:technical,
+                    about:about
+                }
             }
         },
         created(){
@@ -67,11 +54,11 @@
             let paramId = this.$route.params.id;
             //匹配当前是哪个
             let path = this.$route.path;
-            for(let ind in this.htmlConfig){
+            for(let ind in linkConfig){
                 console.log(path.indexOf(ind))
                 if(path.indexOf(ind)>-1){
                     console.log('----------->>>>>>>>>>>>>',this.innerTitle)
-                    let thatObj = this.htmlConfig[ind];
+                    let thatObj = linkConfig[ind];
                     for(let j in thatObj){
                         this[j] = thatObj[j];
                     }
