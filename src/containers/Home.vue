@@ -125,9 +125,9 @@
     import InnerTitle from '../components/InnerTitle';
     import TextIscroll from '../components/TextIscroll';
     import { swiper, swiperSlide } from 'vue-awesome-swiper';
-    const friend1 = require('../images/friend1.jpg');
+    /*const friend1 = require('../images/friend1.jpg');
     const friend2 = require('../images/friend2.jpg');
-    const friend3 = require('../images/friend3.jpg');
+    const friend3 = require('../images/friend3.jpg');*/
     const defaultPic = require('../images/defaultpic.gif');
     const friendLink = require('../images/friend-link.jpg');
     /*import Vue from 'vue';
@@ -164,7 +164,7 @@
                         el: '.swiper-pagination'
                     }
                 },
-                friends:[friend1,friend2,friend3,friend1,friend2,friend3,friend1,friend3],
+                //friends:[friend1,friend2,friend3,friend1,friend2,friend3,friend1,friend3],
                 zoom: 14,
                 //center: [116.312878,39.872414],
                 lng: 0,

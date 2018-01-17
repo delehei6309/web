@@ -16,9 +16,8 @@
             </div>
         </template>
         <template v-else>
-            <div>
-                没有相关内容
-            </div>
+            <p v-if="articleList">此处空空，没有内容！</p>
+            <p v-else>加载中，请稍后......</p>
         </template>
     </div>
 </template>
@@ -49,8 +48,6 @@
             }
         },
         created(){
-            console.log(this.navId);
-            console.log(this.$route);
             let path = this.$route.path;
             if(this.$route.name.indexOf('first')>-1){
                 let pathArr = path.split('/');
@@ -77,7 +74,6 @@
                     pageCount,
                     pageSize
                 };
-                console.log('========.....',paramsId)
                 if(paramsId){
                     url = '/index/article/getArticleList.html';
                     data = {

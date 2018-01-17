@@ -21,7 +21,10 @@
             <p class="desc">{{desc}}</p>
             <div v-html="content"></div>
         </div>
-        <p v-else>此处空空，没有内容！</p>
+        <div v-else>
+            <p v-if="loaded">此处空空，没有内容！</p>
+            <p v-else>加载中，请稍后......</p>
+        </div>
     </div>
 </template>
 
@@ -41,7 +44,8 @@
                 author:'',
                 click:'',
                 desc:'',
-                content:''
+                content:'',
+                loaded:false
             }
         },
         created(){
@@ -61,6 +65,8 @@
                         for(let i in res.data.articleList){
                             this[i] = res.data.articleList[i];
                         }
+                        //数据获取完毕
+                        this.loaded = true;
                     }else{
                         Toast(res.message || '服务器错误！')
                     }
