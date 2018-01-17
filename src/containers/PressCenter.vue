@@ -21,7 +21,7 @@
     import $api from '../tools/api';
     import '../less/press-center.less';
     import NavigationList from '../components/NavigationChild';
-    import Swiper from '../components/Swiper';
+    //import Swiper from '../components/Swiper';
     import Toast from '../components/Toast';
     export default {
         name: 'about',
@@ -83,7 +83,7 @@
 
         },
         components: {
-            NavigationList,Swiper
+            NavigationList
         },
         computed: {},
         methods: {
