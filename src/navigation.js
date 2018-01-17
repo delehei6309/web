@@ -36,7 +36,8 @@ let navItems = [
         id:7,
         link:'/parent/technical-support',
         title:'技术支持',
-        children:null
+        children:null,
+        show:false
     },{
         id:8,
         link:'/parent/about',

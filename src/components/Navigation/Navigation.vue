@@ -1,9 +1,9 @@
 <template>
     <div class="nav">
         <div class="nav-content box-width">
-            <ul class="clear">
+            <ul class="clear ul-navigation">
                 <li v-for="(item,index) in navItems"
-                    @mouseenter="mouseenterEvent(item,index)"
+                    @mouseenter="mouseenterEvent(item,index,1)"
                     @mouseleave="mouseleaveEvent(item)"
                     @click="item.show=false"
                     >
@@ -22,7 +22,7 @@
                                         >{{child.catename}}</router-link>
                                     </dt>
                                     <dd v-for="grandson in child.secondCateList">
-                                        <router-link :to="{name:'product-list',params:{id:grandson.id || '234'}}"
+                                        <router-link :to="{name:'product-list',params:{id:grandson.id},query:{second_cateid:grandson.pid}}"
                                                      active-class="menu-active"
                                         >{{grandson.catename}}</router-link>
                                     </dd>
@@ -31,9 +31,9 @@
                         </template>
                         <template v-if="item.id != 2 && item.id != 1">
                             <div class="nav-child clear" :style="{'width':item.width || '300px'}" v-show="item.show" @click="item.show=false">
-                                <dl v-for="(child,k) in item.children" class="">
+                                <dl v-for="(child,k) in item.children" class="no-product">
                                     <dt class="nav-child-view">
-                                        <router-link :to="{name:item.name,params:{id:child.id || '234'}}"
+                                        <router-link :to="{name:linkConfig[item.link].link,params:{id:child.id }}"
                                                      active-class="menu-active"
                                         >{{child.catename}}</router-link>
                                     </dt>
@@ -51,7 +51,8 @@
     import './navigation.less';
     import $api from '../../tools/api';
     import Toast from '../Toast';
-    //import {navItems} from '../../../navigation.js';
+    import navItems from '../../navigation.js';
+    import linkConfig from '../../linkConfig.js';
     import {mapState} from 'vuex';
     import store from '../../store';
     export default {
@@ -59,69 +60,22 @@
         //props:['navItems'],
         data(){
             return {
-                /*navItems:[
-                    {
-                        id:1,
-                        title:'首页',
-                        link:'/parent/home',
-                        children:null,
-                        show:false
-                    },{
-                        id:2,
-                        title:'产品信息',
-                        link:'/parent/product-information',
-                        children:null,
-                        show:false
-                    },{
-                        id:3,
-                        link:'/parent/press-center',
-                        name:'press-list',
-                        title:'新闻中心',
-                        children:null,
-                        show:false
-                    },{
-                        id:4,
-                        link:'/parent/successful-case',
-                        title:'成功案例',
-                        children:null,
-                        show:false
-                    },{
-                        id:6,
-                        link:'/parent/solution',
-                        name:'solution-list',
-                        title:'解决方案',
-                        children:null,
-                        width:'400px',
-                        show:false
-                    },{
-                        id:7,
-                        link:'/parent/technical-support',
-                        title:'技术支持',
-                        children:null
-                    },{
-                        id:8,
-                        link:'/parent/about',
-                        title:'关于我们',
-                        children:null,
-                        show:false
-                    }/!*,{
-                        id:9,
-                        link:'/parent/join-us',
-                        title:'加入我们',
-                        children:null,
-                        show:false
-                    },{
-                        id:10,
-                        link:'/parent/contact-us',
-                        title:'联系我们',
-                        children:null,
-                        show:false
-                    }*!/
-                ]*/
+                linkConfig,
+                navArray:[]
             }
         },
         created(){
             //Toast('服务器错误！');
+            for(let i in navItems){
+                this.navArray.push(navItems[i]);
+                console.log(navItems[i]);
+            }
+            this.navArray.forEach((item,index)=>{
+                if(this.$route.path.indexOf(item.link)>-1){
+                    this.mouseenterEvent(item,index);
+                }
+            });
+
         },
         computed: {
             ...mapState([
@@ -129,37 +83,20 @@
             ])
         },
         methods: {
-            mouseenterEvent(item,index){
-                console.log(item);
+            mouseenterEvent(item,index,hover){
+                console.log('999999999999999',item,index,hover);
                 if(index == 0){
                     //首页没有子导航
                     return false;
                 }
+
                 if(!item.children || item.children.length<1){
+
                     this.$store.dispatch('getNavigation',item.id);
                 }
-                /*let url = '/index/cate/moveOnCate.html';
-                if(index == 1){
-                    //产品
-                    url = '/index/product_cate/getProductCateList.html';
-                }*/
-                /*let cateid = item.id;
-                console.log(cateid);
-                if(!item.children || item.children.length<1){
-                    $api.post(url,{cateid}).then((res)=>{
-                        if(res.code == 200){
-                            item.children = res.data.secondCateList;
-                            if(index == 1){
-                                //产品真是特殊
-                                item.children = res.data.productCateList;
-                            }
-                        }else{
-                            Toast(res.message || '服务器错误！');
-                        }
-                    });
+                if(hover){
+                    item.show = true;
                 }
-                console.log(item.children);*/
-                item.show = true;
             },
             mouseleaveEvent(item){
                 item.show = false;
@@ -167,6 +104,9 @@
             },
             navChange(item){
                 //item.val == this.activeVal ? this.activeVal = '' : this.activeVal = item.val;
+            },
+            getThisNavigation(){
+
             }
         },
         destroyed(){

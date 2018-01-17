@@ -5,9 +5,9 @@
                 <img src="../../images/logo.png" alt="logo">
             </div>
             <div class="intro">
-                <ul class="small-op clear">
+                <!--<ul class="small-op clear">
                     <li v-for="(item,index) in smallLinks">{{item.text}}</li>
-                </ul>
+                </ul>-->
                 <div class="tel">
                     <div>咨询热线</div>
                     <div class="tel-number">010-62155676</div>

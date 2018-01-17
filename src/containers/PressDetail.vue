@@ -1,25 +1,27 @@
 <template>
     <div class="inner-detail">
         <!--详细内容-->
-        <div class="inner-main">
-            <h6>{{title}}</h6>
+        <div class="inner-main" v-if="title || author || create_time || click || desc || content">
+            <h6 class="tit">{{title}}</h6>
+            <p><span class="tit">作者：</span><span>{{author}}</span></p>
             <ul class="clear">
                 <li>
-                    <span>时间：</span>
+                    <span class="tit">时间：</span>
                     <span>{{create_time}}</span>
                 </li>
-                <li>
+                <!--<li>
                     <span>作者：</span>
                     <span>{{author}}</span>
-                </li>
-                <li>
-                    <span>点击：</span>
+                </li>-->
+                <li class="right">
+                    <span class="tit">点击：</span>
                     <span>{{click}}次</span>
                 </li>
             </ul>
             <p class="desc">{{desc}}</p>
             <div v-html="content"></div>
         </div>
+        <p v-else>此处空空，没有内容！</p>
     </div>
 </template>
 
@@ -29,7 +31,7 @@
     import axios from 'axios';
     import Toast from "../components/Toast/toast";
     export default {
-        props:[],
+        props:['navId'],
         name: 'inner-detail',
         data(){
             return {

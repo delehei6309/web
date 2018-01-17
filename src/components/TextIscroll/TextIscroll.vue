@@ -2,7 +2,9 @@
     <div v-if="items && items.length>0" class="text-iscroll" style="height:260px;overflow: hidden">
         <ul :style="{transform:`translateY(${translate}px)`}" @mouseenter="animateStop" @mouseleave="animateStart">
             <li class="clear" v-for="(item,index) in items2" :style="{height:`${liHeight}px`}">
-                <div class="ellipsis">{{item.title}}</div>
+                <div class="ellipsis">
+                    <router-link :to="{path:link+item.id}">{{item.title}}</router-link>
+                </div>
                 <div class="right">{{item.time}}</div>
             </li>
         </ul>
@@ -13,8 +15,8 @@
 <script>
     import './text-iscroll.less';
     export default {
-        name: 'inner-title',
-        props:['items','viewSize'],
+        name: 'text-iscroll',
+        props:['items','viewSize','link'],
         data(){
             return {
                 styleObject:{

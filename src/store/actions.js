@@ -13,7 +13,6 @@ let getUserInfo = () => {
 };
 //获取导航
 let getNavigation = (id) => {
-    console.log('000000000000000000',id)
     let url = '/index/cate/moveOnCate.html';
     if(id == 2){
         //产品
@@ -36,21 +35,9 @@ actions.getNavigation = ({commit},id)=>{
     return getNavigation(id)
         .then(data => {
             if (data.code == 200) {
-                /*state.navItems.forEach(el=>{
-                    if(el.id == id){
-                        if(!el.children || el.children.length<1){
-                            el.children = data.data.secondCateList;
-                            if(id == 1){
-                                //产品真是特殊
-                                el.children = data.data.productCateList;
-                            }
-                            el.children = data.data.secondCateList;
-                            return
-                        }
-                    }
-                });*/
+
                 let list = data.data.secondCateList;
-                if(id == 1){
+                if(id == 2){
                     //产品真是特殊
                     list = data.data.productCateList;
                 }
