@@ -31,7 +31,7 @@ let $query = (data) => {
     return str.join('&');
 };
 let get = (path, data = {}) => {
-    data.callSystemID = '3102';
+    //data.callSystemID = '3102';
     data.t = new Date().getTime();
     let url = '';
     if (/http/.test(path)) {
@@ -100,8 +100,8 @@ let post = (path, data = {}) => {
             'Content-Type': 'application/x-www-form-urlencoded'
         },*/
         params: {
-            t: new Date().getTime(),
-            callSystemID: '3102'
+            t: new Date().getTime()
+            //callSystemID: '3102'
 
         },
         //withCredentials: true,
