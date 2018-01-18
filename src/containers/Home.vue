@@ -209,7 +209,7 @@
                         //案列
                         this.caseShowList = res.data.caseShowList;
                         //随意模拟一下
-                        this.caseShowList = this.caseShowList.concat(this.caseShowList).concat(this.caseShowList);
+                        //this.caseShowList = this.caseShowList.concat(this.caseShowList).concat(this.caseShowList);
                         //解决方案
                         this.projectList = res.data.projectList;
                         //合作伙伴
