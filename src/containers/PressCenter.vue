@@ -2,7 +2,7 @@
     <div class="press-center">
         <div class="banner-box" v-for="(item,key) in bannerItems"
              v-if="$route.path.indexOf(key)>-1">
-            <img :src="item" alt="">
+            <img class="banner-img" :src="item" alt="">
         </div>
         <!--<swiper></swiper>-->
         <div>

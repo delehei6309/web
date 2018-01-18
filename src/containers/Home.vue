@@ -4,7 +4,8 @@
             <swiper :options="swiperOption" ref="mySwiper">
                 <swiper-slide v-for="(item,index) in slideImages">
                     <a :href="item.url">
-                        <img :src="item.image" :alt="item.title">
+                        <!--<img :src="item.image" :alt="item.title">-->
+                        <div class="slide-child" :style="{backgroundImage:item.image}"></div>
                     </a>
                 </swiper-slide>
                 <div class="swiper-pagination"  slot="pagination"></div>
@@ -67,26 +68,19 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="box-width clear">
+            <div class="box-width clear">
 
                 <div class="big-con">
-                    &lt;!&ndash;<inner-title :title="'合作伙伴'"></inner-title>
+                    <inner-title :title="'合作伙伴'"></inner-title>
                     <div class="friend com-content">
                         <ul class="clear">
-                            <li v-for="(item,index) in friends">
-                                <img :src="item" >
+                            <li v-for="(item,index) in partnerList">
+                                <a :href="item.url">
+                                    <img :src="item.image" >
+                                </a>
                             </li>
                         </ul>
-                    </div>&ndash;&gt;
-                    <dl class="clear">
-                        <dt tit="友情链接">
-                            <img :src="friendLink" alt="">
-                        </dt>
-                        <dd>
-                            <a v-for="item in linkList"
-                               :href="item.url">{{item.title}}</a>
-                        </dd>
-                    </dl>
+                    </div>
                 </div>
                 <div class="small-con right">
                     <inner-title :title="'我们的位置'" :more="'none'"></inner-title>
@@ -98,11 +92,11 @@
                                 :visible = "contentWindow.visible"
                                 :events="contentWindow.events">
                             </el-amap-info-window>
-                            &lt;!&ndash;<el-amap-marker :position="center" ></el-amap-marker>&ndash;&gt;
+                            <el-amap-marker :position="center" ></el-amap-marker>
                         </el-amap>
                     </div>
                 </div>
-            </div>-->
+            </div>
             <div class="box-width link-list">
                 <dl class="clear">
                     <dt tit="友情链接">
@@ -130,26 +124,30 @@
     const friend3 = require('../images/friend3.jpg');*/
     const defaultPic = require('../images/defaultpic.gif');
     const friendLink = require('../images/friend-link.jpg');
-    /*import Vue from 'vue';
-    import AMap from 'vue-amap';*/
+    import Vue from 'vue';
+    import AMap from 'vue-amap';
     import Toast from "../components/Toast/toast";
-    /*Vue.use(AMap);
+    Vue.use(AMap);
     AMap.initAMapApiLoader({
         key: '4e4f60b6ba1c6d1ced6c01e3777e7b01',
         plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
-    });*/
+    });
     export default {
         name: 'home',
         data(){
             return {
                 defaultPic:defaultPic,
                 friendLink:friendLink,
-                slideImages:null,
+                slideImages:[],
                 newsList:[],
                 caseShowList:[],
                 projectList:[],//解决方案
+                partnerList:[],//合作伙伴
                 linkList:[],
                 swiperOption: {
+                    pagination: {
+                        el: '.swiper-pagination'
+                    },
                     navigation: {
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev'
@@ -157,16 +155,11 @@
                     effect: 'fade',
                     loop: true,
                     autoplay: {
-                        delay: 2500,
-                        //disableOnInteraction: false
-                    },
-                    pagination: {
-                        el: '.swiper-pagination'
+                        delay: 4000,
+                        disableOnInteraction: false
                     }
                 },
-                //friends:[friend1,friend2,friend3,friend1,friend2,friend3,friend1,friend3],
                 zoom: 14,
-                //center: [116.312878,39.872414],
                 lng: 0,
                 lat: 0,
                 loaded: false,
@@ -177,7 +170,7 @@
                     visible: true,
                     events: {
                         close() {
-                            console.log('close infowindow');
+                            //console.log('close infowindow');
                         }
                     }
                 },
@@ -190,9 +183,9 @@
             swiper,swiperSlide,InnerTitle,TextIscroll
         },
         computed: {
-            /*swiper() {
+            swiper() {
                 return this.$refs.mySwiper.swiper
-            }*/
+            }
         },
         mounted(){
             /*console.log('this is current swiper instance object', this.swiper)
@@ -203,16 +196,24 @@
                 $api.post('/index/index/index1.html').then((res)=>{
                     if(res.code == 200){
                         //轮播图
-                        this.slideImages = res.data.slideImages;
-                        console.log(this.slideImages);
+                        res.data.slideImages.map(el=>{
+                            let slide = `<div class="swiper-slide"><a href="${el.url}"><img class="banner-img" src="${el.image}" alt="${el.title}"></a></div>`;
+                            //let slide = `<div class="swiper-slide"><a href="${el.url}"><div class="slide-child" style="background-image:url(${el.image})"></div></a></div>`;
+                            this.swiper.appendSlide(slide)
+                        });
+                        //更新轮播图
+                        this.swiper.update();
+                        console.log(this.swiper);
                         //新闻列表
                         this.newsList = res.data.newsList;
                         //案列
                         this.caseShowList = res.data.caseShowList;
                         //随意模拟一下
-                        //this.newsList = this.newsList.concat(this.newsList).concat(this.newsList);
+                        //this.caseShowList = this.caseShowList.concat(this.caseShowList).concat(this.caseShowList);
                         //解决方案
                         this.projectList = res.data.projectList;
+                        //合作伙伴
+                        this.partnerList = res.data.partnerList;
                         //友链
                         this.linkList = res.data.linkList;
                     }else{

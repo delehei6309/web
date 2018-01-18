@@ -16,11 +16,11 @@
     import 'swiper/dist/css/swiper.css';
     import './swiper.less';
     import { swiper, swiperSlide } from 'vue-awesome-swiper';
-    const banner1 = require('../../images/banner/banner1.jpg');
+    /*const banner1 = require('../../images/banner/banner1.jpg');
     const banner2 = require('../../images/banner/banner2.jpg');
     const banner3 = require('../../images/banner/banner3.jpg');
     const banner4 = require('../../images/banner/banner4.jpg');
-    const banner5 = require('../../images/banner/banner5.jpg');
+    const banner5 = require('../../images/banner/banner5.jpg');*/
     /*const pic2 = require('../../images/picture/pic2.jpg');
     const pic3 = require('../../images/picture/pic3.jpg');
     const pic4 = require('../../images/picture/pic4.jpg');
@@ -32,7 +32,7 @@
         props:['scrollItems','viewSize'],
         data(){
             return {
-                swiperItems:[banner1,banner2,banner3,banner4,banner5],
+                swiperItems:['banner1','banner2','banner3','banner4','banner5'],
                 swiperOption:{
                     /*autoplay: {
                         delay: 3000,
