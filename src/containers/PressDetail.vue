@@ -21,7 +21,10 @@
             <p class="desc">{{desc}}</p>
             <div v-html="content"></div>
         </div>
-        <p v-else>此处空空，没有内容！</p>
+        <div v-else>
+            <p v-if="loaded">此处空空，没有内容！</p>
+            <p v-else>加载中，请稍后......</p>
+        </div>
     </div>
 </template>
 
@@ -35,13 +38,14 @@
         name: 'inner-detail',
         data(){
             return {
-                router: 'ppp',
-                title:'title',
-                create_time:'2018-01-01',
-                author:'作者',
-                click:'1000',
-                desc:'摘要',
-                content:'content'
+                router: '',
+                title:'',
+                create_time:'',
+                author:'',
+                click:'',
+                desc:'',
+                content:'',
+                loaded:false
             }
         },
         created(){
@@ -52,6 +56,8 @@
                     for(let i in res.data.articleInfo){
                         this[i] = res.data.articleInfo[i];
                     }
+                    //数据获取完毕
+                    this.loaded = true;
                 }else{
                     Toast(res.message || '服务器错误！')
                 }

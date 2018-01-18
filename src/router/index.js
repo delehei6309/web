@@ -19,10 +19,6 @@ const PressList = () => import('../containers/PressList');
 const ProductDetail = () => import('../containers/ProductDetail');
 const PressDetail = () => import('../containers/PressDetail');
 const OtherDetail = () => import('../containers/OtherDetail');
-const SuccessfulCase = () => import('../containers/SuccessfulCase');
-const About = () => import('../containers/About');
-const DataCenter = () => import('../containers/DataCenter');
-const NetworkSecurity = () => import('../containers/NetworkSecurity');
 const title = '北京致远嘉禾科技发展有限公司';
 let routes = [
     /*{

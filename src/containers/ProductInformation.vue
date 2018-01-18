@@ -1,6 +1,6 @@
 <template>
     <div class="product-information">
-        <div class="banner-box" ><img src="../images/picture/pic1.jpg" alt=""></div>
+        <div class="banner-box" ><img src="../images/banner/product.jpg" alt=""></div>
         <div>
             <div class="clear box-width">
                 <navigation-list :title="'产品列表'" :id="2"></navigation-list>

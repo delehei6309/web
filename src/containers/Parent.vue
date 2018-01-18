@@ -1,7 +1,7 @@
 <template>
     <div class="parent">
         <index-header></index-header>
-        <self-navigation></self-navigation>
+        <self-navigation :key="key"></self-navigation>
         <router-view  class="content-view" :key="key"></router-view>
         <index-footer></index-footer>
     </div>

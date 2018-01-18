@@ -24,7 +24,8 @@
             </div>
         </div>
         <div v-else>
-            没有相关内容
+            <p v-if="articleList">暂无相关内容！</p>
+            <p v-else>加载中，请稍后......</p>
         </div>
     </div>
 </template>

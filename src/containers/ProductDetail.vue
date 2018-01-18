@@ -1,11 +1,15 @@
 <template>
     <div class="inner-detail product-detail">
         <!--详细内容-->
-        <div class="inner-main">
+        <div class="inner-main" v-if="productInfor">
             <div class="product-detail-img img-box">
                 <img v-lazy="productInfor.image" alt="">
             </div>
             <div v-html="productInfor.content" class="content-wrap"></div>
+        </div>
+        <div class="inner-main" v-else>
+            <p v-if="productInfor">此处空空，没有内容！</p>
+            <p v-else>加载中，请稍后......</p>
         </div>
     </div>
 </template>
@@ -21,7 +25,7 @@
         data(){
             return {
                 router: 'ppp',
-                productInfor:{}
+                productInfor:null
             }
         },
         created(){
