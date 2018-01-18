@@ -144,7 +144,7 @@
             return {
                 defaultPic:defaultPic,
                 friendLink:friendLink,
-                slideImages:null,
+                slideImages:[],
                 newsList:[],
                 caseShowList:[],
                 projectList:[],//解决方案
@@ -157,16 +157,14 @@
                     effect: 'fade',
                     loop: true,
                     autoplay: {
-                        delay: 2500,
-                        //disableOnInteraction: false
+                        delay: 3500,
+                        disableOnInteraction: false
                     },
                     pagination: {
                         el: '.swiper-pagination'
                     }
                 },
-                //friends:[friend1,friend2,friend3,friend1,friend2,friend3,friend1,friend3],
                 zoom: 14,
-                //center: [116.312878,39.872414],
                 lng: 0,
                 lat: 0,
                 loaded: false,
@@ -190,9 +188,9 @@
             swiper,swiperSlide,InnerTitle,TextIscroll
         },
         computed: {
-            /*swiper() {
+            swiper() {
                 return this.$refs.mySwiper.swiper
-            }*/
+            }
         },
         mounted(){
             /*console.log('this is current swiper instance object', this.swiper)
@@ -203,8 +201,13 @@
                 $api.post('/index/index/index1.html').then((res)=>{
                     if(res.code == 200){
                         //轮播图
-                        this.slideImages = res.data.slideImages;
-                        console.log(this.slideImages);
+                        res.data.slideImages.map(el=>{
+                            let slide = `<div class="swiper-slide"><a href="${el.url}"><img src="${el.image}" alt="${el.title}"></a></div>`;
+                            this.swiper.appendSlide(slide)
+                        });
+                        //更新轮播图
+                        this.swiper.update();
+                        console.log(this.swiper);
                         //新闻列表
                         this.newsList = res.data.newsList;
                         //案列
