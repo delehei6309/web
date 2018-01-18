@@ -1,6 +1,8 @@
 <template>
     <div v-if="items && items.length>0" class="text-iscroll" style="height:260px;overflow: hidden">
-        <ul :style="{transform:`translateY(${translate}px)`}" @mouseenter="animateStop" @mouseleave="animateStart">
+        <ul :style="{
+            transform:`translateY(${translate}px)`,'WebkitTransform':`translateY(${translate}px)`,'MozTransform':`translateY(${translate}px)`,'MsTransform':`translateY(${translate}px`}"
+            @mouseenter="animateStop" @mouseleave="animateStart">
             <li class="clear" v-for="(item,index) in items2" :style="{height:`${liHeight}px`}">
                 <div class="ellipsis">
                     <router-link :to="{path:link+item.id}">{{item.title}}</router-link>
@@ -9,7 +11,10 @@
             </li>
         </ul>
     </div>
-    <div v-else>暂无内容</div>
+    <div v-else>
+        <p v-if="items2">暂无内容</p>
+        <p v-else>努力加载中，请稍后...</p>
+    </div>
 </template>
 
 <script>
@@ -24,57 +29,12 @@
                 },
                 translate:0,
                 liHeight:26,
-                /*items:[
-                    {
-                        text:'在那遥远的地方，有位好姑娘111122222222222221',
-                        date:'2017-12-22'
-                    },
-                    {
-                        text:'在那遥远的地方，有位好姑娘',
-                        date:'2017-12-22'
-                    },
-                    {
-                        text:'在那遥远的地方，有位好姑娘',
-                        date:'2017-12-22'
-                    },
-                    {
-                        text:'在那遥远的地方，有位好姑娘',
-                        date:'2017-12-22'
-                    },
-                    {
-                        text:'在那遥远的地方，有位好姑娘',
-                        date:'2017-12-22'
-                    },
-                    {
-                        text:'在那遥远的地方，有位好姑娘',
-                        date:'2017-12-22'
-                    },
-                    {
-                        text:'在那遥远的地方，有位好姑娘',
-                        date:'2017-12-22'
-                    },
-                    {
-                        text:'在那遥远的地方，有位好姑娘',
-                        date:'2017-12-22'
-                    },
-                    {
-                        text:'在那遥远的地方，有位好姑娘',
-                        date:'2017-12-22'
-                    },
-                    {
-                        text:'在那遥远的地方，有位好姑娘',
-                        date:'2017-12-22'
-                    },
-                    {
-                        text:'在那遥远的地方，有位好姑娘0',
-                        date:'2017-12-22'
-                    }
-                ],*/
-                items2:[],
+                items2:null,
                 animateStopState:false
             }
         },
         created(){
+            console.log(this.items);
             this.compatible();
 
         },
@@ -84,14 +44,12 @@
         },
         watch:{
             items(val) {
-                console.log('-------->>>>>>',val)
                 this.translate = 0;
                 this.animateStopState = false;
                 this.items2 = [];
                 if(val && val.length>0){
-                    if(val.length>10){
+                    if(val.length>8){
                         this.items2 = val.concat(val);
-                        console.log(this.items2);
                         this.animate();
                     }else{
                         this.items2 = this.items;
