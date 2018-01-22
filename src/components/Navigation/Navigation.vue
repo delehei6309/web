@@ -33,7 +33,7 @@
                             <div class="nav-child clear" :style="{'width':item.width || '300px'}" v-show="item.show" @click="item.show=false">
                                 <dl v-for="(child,k) in item.children" class="no-product">
                                     <dt class="nav-child-view">
-                                        <router-link :to="{name:linkConfig[item.link].link,params:{id:child.id }}"
+                                        <router-link :to="{name:linkConfig[item.link].link,params:{id:child.id }}" target="_blank"
                                                      active-class="menu-active"
                                         >{{child.catename}}</router-link>
                                     </dt>
