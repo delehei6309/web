@@ -14,7 +14,8 @@
                     </div>
                     <template v-if="item.children && item.children.length>0">
                         <template v-if="item.id == 2"><!--产品信息-->
-                            <div class="nav-child" :style="{'width':'500px'}" v-show="item.show" @click="item.show=false">
+                            <div class="nav-child clear delet-before" :style="{'minWidth':'700px',left:0}" v-show="item.show" @click="item.show=false">
+                                <!--<div><img :src="picNews" alt=""></div>-->
                                 <dl v-for="(child,k) in item.children" class="clear">
                                     <dt class="nav-child-view">
                                         <router-link :to="{name: 'product-list', params: { id: child.id },query:{pid:child.pid}}"
@@ -27,17 +28,21 @@
                                         >{{grandson.catename}}</router-link>
                                     </dd>
                                 </dl>
+
                             </div>
                         </template>
                         <template v-if="item.id != 2 && item.id != 1">
-                            <div class="nav-child clear" :style="{'width':item.width || '300px'}" v-show="item.show" @click="item.show=false">
-                                <dl v-for="(child,k) in item.children" class="no-product">
-                                    <dt class="nav-child-view">
-                                        <router-link :to="{name:linkConfig[item.link].link,params:{id:child.id }}" target="_blank"
-                                                     active-class="menu-active"
-                                        >{{child.catename}}</router-link>
-                                    </dt>
-                                </dl>
+                            <div class="nav-child clear" v-show="item.show" @click="item.show=false" :style="{'width':item.width?(item.width+200) +'px':'480px'}">
+                                <div v-if="item.picNav"><img :src="item.picNav" style="width:160px;" alt=""></div>
+                                <div class="clear" :style="{'width':item.width+'px' || '300px'}"  style="borderLeft:solid 1px #0061ae;paddingLeft:8px">
+                                    <dl v-for="(child,k) in item.children" class="no-product">
+                                        <dt class="nav-child-view">
+                                            <router-link :to="{name:linkConfig[item.link].link,params:{id:child.id }}" target="_blank"
+                                                         active-class="menu-active"
+                                            >{{child.catename}}</router-link>
+                                        </dt>
+                                    </dl>
+                                </div>
                             </div>
                         </template>
                     </template>
@@ -55,13 +60,16 @@
     import linkConfig from '../../linkConfig.js';
     import {mapState} from 'vuex';
     import store from '../../store';
+    //const picNews = require('../../images/yy89.jpg');
+    console.log(navItems);
     export default {
         name: 'navigation-child',
         //props:['navItems'],
         data(){
             return {
                 linkConfig,
-                navArray:[]
+                navArray:[],
+                //picNews
             }
         },
         created(){
