@@ -14,7 +14,7 @@
                     </div>
                     <template v-if="item.children && item.children.length>0">
                         <template v-if="item.id == 2"><!--产品信息-->
-                            <div class="nav-child clear delet-before" :style="{'minWidth':'700px',left:0}" v-show="item.show" @click="item.show=false">
+                            <div class="nav-child delet-before" :style="{'width':'500px',left:0}" v-show="item.show" @click="item.show=false">
                                 <!--<div><img :src="picNews" alt=""></div>-->
                                 <dl v-for="(child,k) in item.children" class="clear">
                                     <dt class="nav-child-view">
