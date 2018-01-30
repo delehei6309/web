@@ -56,12 +56,13 @@
     import './navigation.less';
     import $api from '../../tools/api';
     import Toast from '../Toast';
-    import navItems from '../../navigation.js';
+    import $navigation from '../../navigation.js';
+    let {navItems} = $navigation;
     import linkConfig from '../../linkConfig.js';
     import {mapState} from 'vuex';
     import store from '../../store';
     //const picNews = require('../../images/yy89.jpg');
-    console.log(navItems);
+
     export default {
         name: 'navigation-child',
         //props:['navItems'],
@@ -74,6 +75,7 @@
         },
         created(){
             //Toast('服务器错误！');
+            console.log('=======================>>>>>>>>>>>>>>>>',navItems);
             for(let i in navItems){
                 this.navArray.push(navItems[i]);
                 console.log(navItems[i]);
@@ -103,6 +105,7 @@
                     this.$store.dispatch('getNavigation',item.id);
                 }
                 if(hover){
+                    console.log('---------------------------')
                     item.show = true;
                 }
             },

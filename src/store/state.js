@@ -3,12 +3,12 @@
  */
 'use strict'
 //
-import navItems from '../navigation.js';
+import $navigation from '../navigation.js';
 const state = {
     merchantNumStatus: 0,
     certAuditingStatus: 0,
     certificationStatus: '',
     delFlag: '',
-    navItems:navItems,
+    navItems:$navigation.navItems,
 };
 export default state;
