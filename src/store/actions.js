@@ -5,8 +5,6 @@
 'use strict';
 const actions = {};
 import $api from '../tools/api';
-import navItems from '../navigation.js';
-console.log(navItems);
 // 个人信息
 let getUserInfo = () => {
     return $api.post('/channel/getChannelUser');

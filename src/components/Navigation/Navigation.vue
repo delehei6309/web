@@ -49,6 +49,7 @@
                 </li>
             </ul>
         </div>
+        <div style="display: none !important;">{{_navItems}}}</div>
     </div>
 </template>
 
@@ -56,12 +57,13 @@
     import './navigation.less';
     import $api from '../../tools/api';
     import Toast from '../Toast';
-    import navItems from '../../navigation.js';
+    import $navigation from '../../navigation.js';
+    let {navItems} = $navigation;
     import linkConfig from '../../linkConfig.js';
     import {mapState} from 'vuex';
     import store from '../../store';
     //const picNews = require('../../images/yy89.jpg');
-    console.log(navItems);
+
     export default {
         name: 'navigation-child',
         //props:['navItems'],
@@ -73,19 +75,20 @@
             }
         },
         created(){
-            //Toast('服务器错误！');
-            for(let i in navItems){
-                this.navArray.push(navItems[i]);
-                console.log(navItems[i]);
-            }
-            this.navArray.forEach((item,index)=>{
-                if(this.$route.path.indexOf(item.link)>-1){
-                    this.mouseenterEvent(item,index);
-                }
-            });
+            
 
         },
         computed: {
+            _navItems:function(){
+                console.log(this.navItems);
+                this.navItems.map((el,index)=>{
+                    console.log(el);
+                    if(this.$route.path.indexOf(el.link)>-1){
+                        this.mouseenterEvent(el,index);
+                    }
+                });
+                return this.navItems;
+            },
             ...mapState([
                 'navItems'
             ])
@@ -103,6 +106,7 @@
                     this.$store.dispatch('getNavigation',item.id);
                 }
                 if(hover){
+                    console.log('---------------------------')
                     item.show = true;
                 }
             },
