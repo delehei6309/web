@@ -71,7 +71,7 @@
             <div class="box-width clear">
 
                 <div class="big-con">
-                    <inner-title :title="'合作伙伴'"></inner-title>
+                    <inner-title :title="'合作伙伴'" :more="'none'"></inner-title>
                     <div class="friend com-content">
                         <ul class="clear">
                             <li v-for="(item,index) in partnerList">
