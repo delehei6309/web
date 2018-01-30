@@ -32,8 +32,8 @@
     const about = require('../images/banner/about.jpg');
     //import Swiper from '../components/Swiper';
     import {mapState} from 'vuex';
-    import store from '../store';
-    import Toast from '../components/Toast';
+    //import store from '../store';
+    //import Toast from '../components/Toast';
     export default {
         name: 'about',
         data(){

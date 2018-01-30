@@ -1,9 +1,12 @@
 <template>
     <div class="product-information">
-        <div class="banner-box" ><img class="banner-img" src="../images/banner/product.jpg" alt=""></div>
+        <div class="banner-box" >
+            <img class="banner-img" v-for="item in navItems" v-if="$route.path.indexOf(item.link)>-1"
+                 :src="item.image" alt="">
+        </div>
         <div>
             <div class="clear box-width">
-                <navigation-list :title="'产品列表'" :id="2"></navigation-list>
+                <navigation-list  v-if="$route.path.indexOf(item.link)>-1" :title="item.title" :id="item.id" v-for="item in navItems"></navigation-list>
                 <div class="right inner-right">
                     <div class="inner-list-title">
                         <h6>{{listName}}</h6>
@@ -20,13 +23,13 @@
     import '../less/product-information.less';
     import NavigationList from '../components/NavigationChild';
     import Toast from '../components/Toast';
-    //import {navItems} from '../../navigation.js';
+    import {mapState} from 'vuex';
     export default {
         name: 'product-information',
         data(){
             return {
                 listName:'产品信息',
-                navItems:[],
+                //navItems:[],
                 articleList:[],
                 routeName:this.$route.name,
                 data:123,
@@ -39,13 +42,16 @@
             }
         },
         created(){
-
+            console.log(this.navItems);
 
         },
         components: {
             NavigationList
         },
         computed: {
+            ...mapState([
+                'navItems'
+            ])
         },
         methods: {
         },

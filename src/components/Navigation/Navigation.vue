@@ -49,6 +49,7 @@
                 </li>
             </ul>
         </div>
+        <div style="display: none !important;">{{_navItems}}}</div>
     </div>
 </template>
 
@@ -74,20 +75,20 @@
             }
         },
         created(){
-            //Toast('服务器错误！');
-            console.log('=======================>>>>>>>>>>>>>>>>',navItems);
-            for(let i in navItems){
-                this.navArray.push(navItems[i]);
-                console.log(navItems[i]);
-            }
-            this.navArray.forEach((item,index)=>{
-                if(this.$route.path.indexOf(item.link)>-1){
-                    this.mouseenterEvent(item,index);
-                }
-            });
+            
 
         },
         computed: {
+            _navItems:function(){
+                console.log(this.navItems);
+                this.navItems.map((el,index)=>{
+                    console.log(el);
+                    if(this.$route.path.indexOf(el.link)>-1){
+                        this.mouseenterEvent(el,index);
+                    }
+                });
+                return this.navItems;
+            },
             ...mapState([
                 'navItems'
             ])
