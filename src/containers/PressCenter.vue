@@ -1,22 +1,23 @@
 <template>
     <div class="press-center">
-        <div class="banner-box" v-for="(item,key) in navItems"
-             v-if="$route.path.indexOf(item.link)>-1">
-            <img class="banner-img" :src="item.image" alt="">
-        </div>
-        <!--<swiper></swiper>-->
-        <div>
-            <div class="clear box-width">
-                <navigation-list :title="'网站导航'" :id="id"></navigation-list>
-                <div class="right inner-right">
-                    <div class="inner-list-title">
-                        <h6>{{innerTitle}}</h6>
-                    </div>
-                    <router-view :nav-id="id"></router-view>
-                </div>
-
+        <template v-for="(item,key) in navItems" v-if="$route.path.indexOf(item.link)>-1">
+            <div class="banner-box">
+                <img class="banner-img" :src="item.image" alt="">
             </div>
-        </div>
+            <!--<swiper></swiper>-->
+            <div>
+                <div class="clear box-width">
+                    <navigation-list :title="'网站导航'" :id="id"></navigation-list>
+                    <div class="right inner-right">
+                        <div class="inner-list-title">
+                            <h6>{{item.title}}</h6>
+                        </div>
+                        <router-view :nav-id="item.id"></router-view>
+                    </div>
+
+                </div>
+            </div>
+        </template>
     </div>
 </template>
 
@@ -53,19 +54,18 @@
         },
         created(){
             console.log(this.navItems);
-            let paramId = this.$route.params.id;
+            //let paramId = this.$route.params.id;
             //匹配当前是哪个
-            let path = this.$route.path;
+            /*let path = this.$route.path;
             for(let ind in linkConfig){
                 console.log(path.indexOf(ind))
                 if(path.indexOf(ind)>-1){
-                    console.log('----------->>>>>>>>>>>>>',this.innerTitle)
                     let thatObj = linkConfig[ind];
                     for(let j in thatObj){
                         this[j] = thatObj[j];
                     }
                 }
-            }
+            }*/
             let cateid = this.id;
             console.log(cateid)
             //获取左边导航与首次展示内容

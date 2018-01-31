@@ -31,10 +31,30 @@
 
                             </div>
                         </template>
-                        <template v-if="item.id != 2 && item.id != 1">
-                            <div class="nav-child clear" v-show="item.show" @click="item.show=false" :style="{'width':item.width?(item.width+200) +'px':'480px'}">
+                        <template v-if="item.id == 4"><!--解决方案-->
+                            <div class="nav-child clear" :style="{'width':'990px'}" v-show="item.show" @click="item.show=false">
+                                <div><img :src="item.picNav" style="width:160px;" alt=""></div>
+                                <div style="width:796px">
+                                    <dl v-for="(child,k) in item.children" class="clear">
+                                        <dt class="nav-child-view">
+                                            <router-link :to="{name: 'successful-list', params: { id: child.id },query:{pid:child.pid}}"
+                                                         active-class="menu-active"
+                                            >{{child.catename}}</router-link>
+                                        </dt>
+                                        <dd v-for="grandson in child.secondCateList">
+                                            <router-link :to="{name:'successful-list',params:{id:grandson.id},query:{second_cateid:grandson.pid}}"
+                                                         active-class="menu-active"
+                                            >{{grandson.catename}}</router-link>
+                                        </dd>
+                                    </dl>
+                                </div>
+
+                            </div>
+                        </template>
+                        <template v-if="item.id != 2 && item.id != 1 && item.id != 4">
+                            <div class="nav-child clear" v-show="item.show" @click="item.show=false" :style="{'width':item.width?(item.width+200) +'px':'496px'}">
                                 <div v-if="item.picNav"><img :src="item.picNav" style="width:160px;" alt=""></div>
-                                <div class="clear" :style="{'width':item.width+'px' || '300px'}"  style="borderLeft:solid 1px #0061ae;paddingLeft:8px">
+                                <div class="clear" :style="{'width':item.width ? item.width+'px' : '300px'}"  style="borderLeft:solid 1px #0061ae;paddingLeft:8px">
                                     <dl v-for="(child,k) in item.children" class="no-product">
                                         <dt class="nav-child-view">
                                             <router-link :to="{name:linkConfig[item.link].link,params:{id:child.id }}" target="_blank"
@@ -75,7 +95,7 @@
             }
         },
         created(){
-            
+
 
         },
         computed: {
