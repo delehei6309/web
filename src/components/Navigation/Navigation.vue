@@ -17,15 +17,17 @@
                             <div class="nav-child delet-before" :style="{'width':'500px',left:0}" v-show="item.show" @click="item.show=false">
                                 <!--<div><img :src="picNews" alt=""></div>-->
                                 <dl v-for="(child,k) in item.children" class="clear">
-                                    <dt class="nav-child-view">
+                                    <dt class="nav-child-view" style="width:126px;">
                                         <router-link :to="{name: 'product-list', params: { id: child.id },query:{pid:child.pid}}"
                                                      active-class="menu-active"
                                         >{{child.catename}}</router-link>
                                     </dt>
-                                    <dd v-for="grandson in child.secondCateList">
-                                        <router-link :to="{name:'product-list',params:{id:grandson.id},query:{second_cateid:grandson.pid}}"
-                                                     active-class="menu-active"
-                                        >{{grandson.catename}}</router-link>
+                                    <dd class="clear" style="width: 340px;">
+                                        <div style="min-width:100px; padding:0 10px" v-for="grandson in child.secondCateList">
+                                            <router-link :to="{name:'product-list',params:{id:grandson.id},query:{second_cateid:grandson.pid}}"
+                                                         active-class="menu-active"
+                                            >{{grandson.catename}}</router-link>
+                                        </div>
                                     </dd>
                                 </dl>
 
@@ -36,15 +38,17 @@
                                 <div><img :src="item.picNav" style="width:160px;" alt=""></div>
                                 <div style="width:796px">
                                     <dl v-for="(child,k) in item.children" class="clear">
-                                        <dt class="nav-child-view">
+                                        <dt class="nav-child-view" style="width:160px;">
                                             <router-link :to="{name: 'successful-list', params: { id: child.id },query:{pid:child.pid}}"
                                                          active-class="menu-active"
                                             >{{child.catename}}</router-link>
                                         </dt>
-                                        <dd v-for="grandson in child.secondCateList">
-                                            <router-link :to="{name:'successful-list',params:{id:grandson.id},query:{second_cateid:grandson.pid}}"
-                                                         active-class="menu-active"
-                                            >{{grandson.catename}}</router-link>
+                                        <dd class="clear" style="width: 636px;">
+                                            <div v-for="grandson in child.secondCateList" style="min-width:120px; padding:0 15px">
+                                                <router-link :to="{name:'successful-list',params:{id:grandson.id},query:{second_cateid:grandson.pid}}"
+                                                             active-class="menu-active"
+                                                >{{grandson.catename}}</router-link>
+                                            </div>
                                         </dd>
                                     </dl>
                                 </div>
