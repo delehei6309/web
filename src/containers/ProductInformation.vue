@@ -5,11 +5,11 @@
                  :src="item.image" alt="">
         </div>
         <div>
-            <div class="clear box-width">
-                <navigation-list  v-if="$route.path.indexOf(item.link)>-1" :title="item.title" :id="item.id" v-for="item in navItems"></navigation-list>
+            <div class="clear box-width" v-for="item in navItems" v-if="$route.path.indexOf(item.link)>-1">
+                <navigation-list :title="item.title" :id="item.id" ></navigation-list>
                 <div class="right inner-right">
                     <div class="inner-list-title">
-                        <h6>{{listName}}</h6>
+                        <h6>{{item.title}}</h6>
                     </div>
                     <router-view ></router-view>
                 </div>
@@ -22,6 +22,8 @@
     import $api from '../tools/api';
     import '../less/product-information.less';
     import NavigationList from '../components/NavigationChild';
+    import $navigation from '../navigation.js';
+    let {linkConfig} = $navigation;
     import Toast from '../components/Toast';
     import {mapState} from 'vuex';
     export default {

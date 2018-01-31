@@ -16,6 +16,9 @@ let getNavigation = (id) => {
         //产品
         url =  '/index/product_cate/getProductCateList.html';
     }
+    if(id == 4){
+        url='/index/article/getCateList.html';
+    }
     return $api.post(url,{cateid:id});
 };
 actions.getUserInfo = ({commit}) => {
@@ -39,7 +42,9 @@ actions.getNavigation = ({commit},id)=>{
                     //产品真是特殊
                     list = data.data.productCateList;
                 }
-
+                if(id == 4){
+                    list = data.data.cateList;
+                }
                commit('setNavigation',{list,id})
             }
             return data;
