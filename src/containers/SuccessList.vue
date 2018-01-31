@@ -86,6 +86,14 @@
                         pageCount,
                         pageSize
                     };
+                    if(this.$route.query.pid == '4'){
+                        url = '/index/article/getSecondArticleList.html';
+                        data = {
+                            second_cateid:paramsId,
+                            pageCount,
+                            pageSize
+                        }
+                    }
                 }
                 $api.post(url,data).then((res)=>{
                     if(res.code == 200){
