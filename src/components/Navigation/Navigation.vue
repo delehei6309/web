@@ -45,7 +45,7 @@
                                         </dt>
                                         <dd class="clear" style="width: 636px;">
                                             <div v-for="grandson in child.secondCateList" style="min-width:120px; padding:0 15px">
-                                                <router-link :to="{name:'successful-list',params:{id:grandson.id},query:{second_cateid:grandson.pid}}"
+                                                <router-link :to="{name:'successful-list',params:{id:grandson.id},query:{second_cateid:grandson.pid}}" target="_blank"
                                                              active-class="menu-active"
                                                 >{{grandson.catename}}</router-link>
                                             </div>
