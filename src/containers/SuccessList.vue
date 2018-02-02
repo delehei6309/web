@@ -1,0 +1,123 @@
+<template>
+    <div class="inner-list press-list">
+        <template v-if="articleList && articleList.length>0">
+            <!--产品列表-->
+            <div class=" press-items">
+                <dl v-for="(item) in articleList" class="clear">
+                    <dt class="ellipsis">
+                        <router-link :to="{'name':'successful-detail',params:{id:item.id}}">{{item.title}}</router-link>
+                    </dt>
+                    <dd class="right">{{item.create_time}}</dd>
+                </dl>
+            </div>
+            <!--分页-->
+            <div class="pagination-wrap">
+                <b-pagination size="md" :total-rows="totalRows" v-model="pageCount" :per-page="pageSize" align="center" @change="pageChange"></b-pagination>
+            </div>
+        </template>
+        <template v-else>
+            <p v-if="articleList">此处空空，没有内容！</p>
+            <p v-else>加载中，请稍后......</p>
+        </template>
+    </div>
+</template>
+
+<script>
+    import $api from '../tools/api';
+    import '../less/press-list.less';
+    import axios from 'axios';
+    import Toast from '../components/Toast';
+    import {mapState} from 'vuex';
+    export default {
+        props:['navId'],
+        name: 'product-list',
+        data(){
+            return {
+                pageSize:15,
+                pageCount:1,
+                totalRows:0,
+                articleList:null,
+                routeName:{
+                    'press-list':'press-detail',
+                    'solution-list':'solution-detail',
+                    'successful-list':'successful-detail',
+                    'technical-list':'technical-detail',
+                    'about-list':'about-detail'
+                },
+                routePath:'successful-list'
+
+            }
+        },
+        created(){
+            let path = this.$route.path;
+            /*if(this.$route.name.indexOf('first')>-1){
+                let pathArr = path.split('/');
+                if(pathArr && pathArr.length>0){
+                    this.routePath = pathArr[pathArr.length-1];
+                }
+            }else{
+                this.routePath = this.$route.name;
+            }*/
+
+            this.getPressList();
+        },
+        components: {
+
+        },
+        computed: {
+            ...mapState([
+                'navItems'
+            ])
+        },
+        methods: {
+            getPressList(){
+                let paramsId = this.$route.params.id;
+                let {pageSize,pageCount} = this;
+                let url = '/index/article/clickCate.html';
+                let data = {
+                    cateid:this.navId,
+                    pageCount,
+                    pageSize
+                };
+                if(paramsId){
+                    url = '/index/article/getThirdArticleList.html';
+                    data = {
+                        third_cateid:paramsId,
+                        pageCount,
+                        pageSize
+                    };
+                    if(this.$route.query.pid == '4'){
+                        url = '/index/article/getSecondArticleList.html';
+                        data = {
+                            second_cateid:paramsId,
+                            pageCount,
+                            pageSize
+                        }
+                    }
+                }
+                $api.post(url,data).then((res)=>{
+                    if(res.code == 200){
+                        this.articleList = res.data.articleList;
+                        this.totalRows = res.data.articleCount;
+                    }else{
+                        Toast(res.message || '服务器错误！');
+                    }
+                });
+            },
+            pageChange(){
+                this.$nextTick(()=>{
+                    this.getPressList();
+                });
+            }
+        },
+
+        watch: {
+            navItems(val){
+                console.log('-----------------------------ppppppppppp',val);
+            }
+        },
+        destroyed(){
+
+        }
+    }
+</script>

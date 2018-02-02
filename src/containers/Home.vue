@@ -51,11 +51,11 @@
                                     <img :src="item.pic || defaultPic" alt="">
                                 </div>
                                 <div class="right">
-                                    <div class="title">
+                                    <div class="title ellipsis">
                                         <router-link
                                             :to="{path:'/parent/solution/solution-detail/'+item.id}">{{item.title}}</router-link>
                                     </div>
-                                    <div class="">{{item.desc}}</div>
+                                    <div class="desc">{{item.desc}}</div>
                                 </div>
                             </li>
                         </ul>
@@ -71,7 +71,7 @@
             <div class="box-width clear">
 
                 <div class="big-con">
-                    <inner-title :title="'合作伙伴'"></inner-title>
+                    <inner-title :title="'合作伙伴'" :more="'none'"></inner-title>
                     <div class="friend com-content">
                         <ul class="clear">
                             <li v-for="(item,index) in partnerList">
