@@ -7,8 +7,8 @@ import {setTitle} from '../tools/operation';
 //import Parent from '../containers/Parent';
 /*import Home from '../containers/Home';
 import Solution from '../containers/Solution';
-import DataCenter from '../containers/DataCenter';
-import NetworkSecurity from '../containers/NetworkSecurity';*/
+import DataCenter from '../containers/DataCenter';*/
+const SuccessList = ()=> import ('../containers/SuccessList');
 const Parent = () => import('../containers/Parent');
 const Home = () => import('../containers/Home');
 const ProductInformation = () => import('../containers/ProductInformation');
@@ -149,26 +149,29 @@ let routes = [
                     {
                         path:'successful-list',
                         name:'successful-list-first',
-                        component:OtherDetail,//
+                        component:SuccessList,//
                         meta: {
-                            title: title
+                            title: title,
+                            sss:true
                         },
                     },
                     {
                         path:'successful-list/:id',
                         name:'successful-list',
-                        component:OtherDetail,//
+                        component:SuccessList,//
                         meta: {
-                            title: title
-                        }
+                            title: title,
+                            sss:true
+                        },
                     },
                     {
                         path:'successful-detail/:id',
                         name:'successful-detail',
-                        component:PressDetail,//
+                        component:PressDetail,//详细
                         meta: {
-                            title: title
-                        }
+                            title: title,
+                            sss:true
+                        },
                     }
                 ]
             },{
