@@ -51,11 +51,11 @@
                                     <img :src="item.pic || defaultPic" alt="">
                                 </div>
                                 <div class="right">
-                                    <div class="title">
+                                    <div class="title ellipsis">
                                         <router-link
                                             :to="{path:'/parent/solution/solution-detail/'+item.id}">{{item.title}}</router-link>
                                     </div>
-                                    <div class="">{{item.desc}}</div>
+                                    <div class="desc">{{item.desc}}</div>
                                 </div>
                             </li>
                         </ul>
