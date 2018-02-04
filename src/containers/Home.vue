@@ -43,7 +43,7 @@
             <div class="box-width clear">
 
                 <div class="big-con">
-                    <inner-title :title="'解决方案'" :link="'/parent/solution/solution-list'"></inner-title>
+                    <inner-title :title="'解决方案'" :link="'/parent/successful-case/successful-list'"></inner-title>
                     <div class="intro com-content solution">
                         <ul class="clear solution-items">
                             <li class="clear solution-item" v-for="item in projectList">
@@ -53,7 +53,7 @@
                                 <div class="right">
                                     <div class="title ellipsis">
                                         <router-link
-                                            :to="{path:'/parent/solution/solution-detail/'+item.id}">{{item.title}}</router-link>
+                                            :to="{path:'/parent/successful-case/successful-detail/'+item.id}">{{item.title}}</router-link>
                                     </div>
                                     <div class="desc">{{item.desc}}</div>
                                 </div>
@@ -62,9 +62,9 @@
                     </div>
                 </div>
                 <div class="small-con right">
-                    <inner-title :title="'案例展示'" :link="'/parent/successful-case/successful-list'"></inner-title>
+                    <inner-title :title="'案例展示'" :link="'/parent/technical-support/technical-list'"></inner-title>
                     <div class="news-content com-content">
-                        <text-iscroll :items="caseShowList" :link="'/parent/successful-case/successful-detail/'"></text-iscroll>
+                        <text-iscroll :items="caseShowList" :link="'/parent/technical-support/technical-detail/'"></text-iscroll>
                     </div>
                 </div>
             </div>

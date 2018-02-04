@@ -222,7 +222,7 @@ let routes = [
                     {
                         path:'technical-list',
                         name:'technical-list-first',
-                        component:OtherDetail,//
+                        component:PressList,//
                         meta: {
                             title: title
                         },
@@ -230,11 +230,11 @@ let routes = [
                     {
                         path:'technical-list/:id',
                         name:'technical-list',
-                        component:OtherDetail,//
+                        component:PressList,//
                         meta: {
                             title: title
                         }
-                    }/*,
+                    },
                     {
                         path:'technical-detail/:id',
                         name:'technical-detail',
@@ -242,7 +242,7 @@ let routes = [
                         meta: {
                             title: title
                         }
-                    }*/
+                    }
                 ]
             },{
                 path:'about',
