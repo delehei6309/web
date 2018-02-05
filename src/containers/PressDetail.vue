@@ -13,10 +13,10 @@
                     <span>作者：</span>
                     <span>{{author}}</span>
                 </li>-->
-                <li class="right">
+                <!--<li class="right">
                     <span class="tit">点击：</span>
                     <span>{{click}}次</span>
-                </li>
+                </li>-->
             </ul>
             <p class="desc">{{desc}}</p>
             <div v-html="content"></div>
