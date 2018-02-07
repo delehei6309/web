@@ -187,7 +187,7 @@ let routes = [
                     {
                         path:'solution-list',
                         name:'solution-list-first',
-                        component:PressList,//
+                        component:OtherDetail,//
                         meta: {
                             title: title
                         },
@@ -195,7 +195,7 @@ let routes = [
                     {
                         path:'solution-list/:id',
                         name:'solution-list',
-                        component:PressList,//
+                        component:OtherDetail,//
                         meta: {
                             title: title
                         }
