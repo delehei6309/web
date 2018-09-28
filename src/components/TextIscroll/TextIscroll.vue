@@ -1,5 +1,5 @@
 <template>
-    <div v-if="items && items.length>0" class="text-iscroll" style="height:260px;overflow: hidden">
+    <div v-if="items && items.length>0" class="text-iscroll" style="height:100%;overflow: hidden">
         <ul :style="{
             transform:`translateY(${translate}px)`,'WebkitTransform':`translateY(${translate}px)`,'MozTransform':`translateY(${translate}px)`,'MsTransform':`translateY(${translate}px`}"
             @mouseenter="animateStop" @mouseleave="animateStart">
@@ -90,7 +90,8 @@
                 this.animateStopState = true;
             },
             animateStart(){
-                if(this.items.length>10){
+                console.log(this.items.length)
+                if(this.items.length>7){
                     this.animateStopState = false;
                     this.animate();
                 }
