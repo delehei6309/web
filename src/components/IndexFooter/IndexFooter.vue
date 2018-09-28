@@ -2,11 +2,7 @@
     <div class="index-footer">
         <div class="footer-content clear">
             <div class="div-left">
-<<<<<<< HEAD
                 <p>地址：北京市海淀区学清路16号学知轩大厦1812室</p>
-=======
-                <p>地址：北京市海淀区双榆树东里甲22号都市网景2号楼5层</p>
->>>>>>> fd88ea600285cf8264b7967c9ff3c8e1958c4abf
                 <p>电话：010-62155676&nbsp;&nbsp;传真：010-62155626</p>
                 <p>QQ：2885238080&nbsp;&nbsp;Email：wyl@zhiyuanjiahe.com</p>
                 <!--<p>Copyright © 2002-2017 北京致远嘉禾科技发展有限公司 版权所有 ICP备案:京ICP备14040948号-1</p>-->
